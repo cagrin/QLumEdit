@@ -1,0 +1,50 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>images/socket.png</file>
+    <file>images/lumen.png</file>       
+    
+    <file>images/new.png</file>
+    <file>images/open.png</file>
+    <file>images/save.png</file>   
+     
+    <file>translations/qt_pl.qm</file>  
+      
+    <file>translations/qlumedit_pl.qm</file>    
+    
+    <file>templates/road_luminaire.ldt</file>  
+    <file>templates/projector.ldt</file>  
+    <file>templates/fluorescent_luminaire.ldt</file>  
+    <file>templates/floor_uplight.ldt</file>                   
+    
+    <file>templates/0-0-0.ldt</file>
+    <file>templates/0-0-1.ldt</file>
+    <file>templates/0-0-2.ldt</file>
+    <file>templates/0-1-0.ldt</file>
+    <file>templates/0-1-1.ldt</file>
+    <file>templates/0-1-2.ldt</file>
+    <file>templates/0-2-0.ldt</file>
+    <file>templates/0-2-1.ldt</file>
+    <file>templates/0-2-2.ldt</file>
+    <file>templates/0-3-0.ldt</file>
+    <file>templates/0-3-1.ldt</file>
+    <file>templates/0-3-2.ldt</file>
+    <file>templates/0-4-0.ldt</file>
+    <file>templates/0-4-1.ldt</file>
+    <file>templates/0-4-2.ldt</file>
+    <file>templates/1-0-0.ldt</file>
+    <file>templates/1-0-1.ldt</file>
+    <file>templates/1-0-2.ldt</file>
+    <file>templates/1-1-0.ldt</file>
+    <file>templates/1-1-1.ldt</file>
+    <file>templates/1-1-2.ldt</file>
+    <file>templates/1-2-0.ldt</file>
+    <file>templates/1-2-1.ldt</file>
+    <file>templates/1-2-2.ldt</file>
+    <file>templates/1-3-0.ldt</file>
+    <file>templates/1-3-1.ldt</file>
+    <file>templates/1-3-2.ldt</file>
+    <file>templates/1-4-0.ldt</file>
+    <file>templates/1-4-1.ldt</file>
+    <file>templates/1-4-2.ldt</file>             
+</qresource>
+</RCC>
