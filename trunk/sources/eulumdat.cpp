@@ -1,6 +1,6 @@
 /*
 * This file is part of QLumEdit, an ultimate Eulumdat file editor
-* Copyright (C) 2007  Krzysztof Struginski
+* Copyright (C) 2007-2012 Krzysztof Strugiñski
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *
-* Contact e-mail: Krzysztof Struginski <cagrin@gmail.com>
+* Contact e-mail: Krzysztof Strugiñski <cagrin@gmail.com>
 *   Program page: http://sourceforge.net/projects/qlumedit
 */
 

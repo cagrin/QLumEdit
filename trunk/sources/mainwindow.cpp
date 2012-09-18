@@ -1,6 +1,6 @@
 /*
 * This file is part of QLumEdit, an ultimate Eulumdat file editor
-* Copyright (C) 2007  Krzysztof Struginski
+* Copyright (C) 2007-2012 Krzysztof Strugiñski
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 *
-* Contact e-mail: Krzysztof Struginski <cagrin@gmail.com>
+* Contact e-mail: Krzysztof Strugiñski <cagrin@gmail.com>
 *   Program page: http://sourceforge.net/projects/qlumedit
 */
 
@@ -55,9 +55,9 @@ MainWindow::MainWindow()
 
 void MainWindow::about()
 {
-   QMessageBox::about(this, tr("About QLumEdit"), "<b><font size=\"+4\">QLumEdit 0.2.1</font></b><br><br>"+
+   QMessageBox::about(this, tr("About QLumEdit"), "<b><font size=\"+4\">QLumEdit 1.0.1</font></b><br><br>"+
             tr("An ultimate open-source Eulumdat file editor.")+"<br><br>"
-            	"QLumEdit is Copyright (C) 2007 Krzysztof Strugi&#324;ski "
+            	"Copyright (C) 2007-2012 Krzysztof Strugi&#324;ski "
             	"<a href=\"mailto:cagrin@gmail.com\">cagrin@gmail.com</a>" "<br><br>"
 	            "<a href=\"http://sourceforge.net/projects/qlumedit/\">http://sourceforge.net/projects/qlumedit/</a>" "<br><br>"            	
             	+ tr("You may use, distribute and copy the QLumEdit under "

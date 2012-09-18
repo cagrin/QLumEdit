@@ -1,5 +1,7 @@
-This file is part of QLumEdit, an ultimate Eulumdat file editor
-Copyright (C) 2007  Krzysztof Struginski
+LICENCE
+
+QLumEdit, an ultimate Eulumdat file editor
+Copyright (C) 2007-2012 Krzysztof Strugiñski
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -11,10 +13,16 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-Contact e-mail: Krzysztof Struginski <cagrin@gmail.com>
+Contact e-mail: Krzysztof Strugiñski <cagrin@gmail.com>
   Program page: http://sourceforge.net/projects/qlumedit
       Icon set: http://www.iconarchive.com/show/gartoon-icons-by-zeusbox.html
+
+
+CHANGELOG
+
+1.0.1 (2012-09-19):
++ new installer and icon set
++ file association *.ldt
+
+0.2.1 (2007-06-29):
+- becomes version 1.0

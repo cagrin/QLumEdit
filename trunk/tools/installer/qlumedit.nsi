@@ -1,7 +1,7 @@
 !include "MUI.nsh"
 
 !define PRODUCT_NAME "QLumEdit"
-!define PRODUCT_VERSION "0.2.1"
+!define PRODUCT_VERSION "1.0.1"
 !define PRODUCT_PUBLISHER "Krzysztof Strugiñski"
 !define PRODUCT_WEB_SITE "http:\\sourceforge.net\projects\qlumedit\"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\QLumEdit.exe"
@@ -42,7 +42,7 @@
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "${PRODUCT_NAME}_${PRODUCT_VERSION}-setup.exe"
+OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-setup.exe"
 InstallDir "$PROGRAMFILES\QLumEdit"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
