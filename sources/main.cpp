@@ -1,7 +1,7 @@
 /*
 * This file is part of QLumEdit, an ultimate Eulumdat file editor
 * Copyright (C) 2007  Krzysztof Struginski
-* 
+*
 * "qt_pl.ts" Copyright (C) 2006-2007  ARISE  http://qtdev.arise.pl/
 *
 * This program is free software; you can redistribute it and/or modify
@@ -39,24 +39,43 @@ int main(int argc, char *argv[])
 
     QSettings settings("Cagrinlabs", "QLumEdit");
     QString language = settings.value("lang", QString(QLocale::system().name())).toString();
-	qApp->processEvents();
-	
-	QTranslator main_translator;
-	main_translator.load(":/translations/qt_" + language + ".qm");
-	app.installTranslator( &main_translator );  	
-	
-	QTranslator translator;	
-	translator.load(":/translations/qlumedit_" + language + ".qm");
-	app.installTranslator( &translator );
+    qApp->processEvents();
+
+    QTranslator main_translator;
+    main_translator.load(":/translations/qt_" + language + ".qm");
+    app.installTranslator( &main_translator );
+
+    QTranslator translator;
+    translator.load(":/translations/qlumedit_" + language + ".qm");
+    app.installTranslator( &translator );
 
     QTextCodec::setCodecForTr(QTextCodec::codecForName("Windows-1250"));
-	
-    if(language == "pl") {
-    	QLocale::setDefault(QLocale::Polish);
-   	}
-   	  	      
+
+    if (language == "pl")
+    {
+        QLocale::setDefault(QLocale::Polish);
+    }
+
+    QStringList files;
+    QStringList args = app.arguments();
+
+    for (int i = 1; i < args.count(); ++i)
+    {
+        QString argument = args.at(i);
+        if (!files.contains(argument))
+        {
+            files.append(argument);
+        }
+    }
+
     MainWindow mainWin;
-	mainWin.setWindowIcon(QIcon(":/images/socket.png"));
+    mainWin.setWindowIcon(QIcon(":/images/socket.png"));
     mainWin.show();
+
+    if (files.count())
+    {
+        mainWin.loadFile(files.last());
+    }
+
     return app.exec();
 }

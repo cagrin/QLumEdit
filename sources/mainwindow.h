@@ -65,7 +65,6 @@ private:
     void readSettings();
     void writeSettings();
     bool maybeSave();
-    void loadFile(const QString &fileName);
     bool saveFile(const QString &fileName);
     
     void setCurrentFile(const QString &fileName = QString());
@@ -102,7 +101,7 @@ public:
     MainTabWidget *central;
     
     void setValidatorOptions();  
- 
+    void loadFile(const QString &fileName);
             
 };
 
