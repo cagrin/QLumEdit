@@ -47,13 +47,6 @@ int main(int argc, char *argv[])
     translator.load(":/translations/qlumedit_" + language + ".qm");
     app.installTranslator( &translator );
 
-    QTextCodec::setCodecForTr(QTextCodec::codecForName("Windows-1250"));
-
-    if (language == "pl")
-    {
-        QLocale::setDefault(QLocale::Polish);
-    }
-
     QStringList files;
     QStringList args = app.arguments();
 

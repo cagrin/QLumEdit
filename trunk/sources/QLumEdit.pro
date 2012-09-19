@@ -43,4 +43,5 @@ target.path +=   $$[QT_INSTALL_EXAMPLES]/mainwindows/application
 CONFIG +=   release \
   warn_on \
   debug_i_release
-TRANSLATIONS +=   translations/qlumedit_pl.ts
+TRANSLATIONS +=   translations/qlumedit_pl.ts \
+  translations/qlumedit_de.ts
