@@ -24,7 +24,7 @@
 !define MUI_LANGDLL_REGISTRY_VALUENAME "NSIS:Language"
 
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "..\..\build\LICENSE.rtf"
+!insertmacro MUI_PAGE_LICENSE "..\..\build\win32\LICENSE.rtf"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
@@ -42,7 +42,7 @@
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-setup.exe"
+OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-win32.exe"
 InstallDir "$PROGRAMFILES\QLumEdit"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
@@ -55,13 +55,13 @@ FunctionEnd
 Section "${PRODUCT_NAME}" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
-  File "..\..\build\QtGui4.dll"
-  File "..\..\build\QtCore4.dll"
-  File "..\..\build\QLumEdit.exe"
+  File "..\..\build\win32\QtGui4.dll"
+  File "..\..\build\win32\QtCore4.dll"
+  File "..\..\build\win32\QLumEdit.exe"
   CreateDirectory "$SMPROGRAMS\QLumEdit"
   CreateShortCut "$SMPROGRAMS\QLumEdit\QLumEdit.lnk" "$INSTDIR\QLumEdit.exe"
   CreateShortCut "$DESKTOP\QLumEdit.lnk" "$INSTDIR\QLumEdit.exe"
-  File "..\..\build\mingwm10.dll"
+  File "..\..\build\win32\mingwm10.dll"
 SectionEnd
 
 LangString DESC_FileAssociations ${LANG_ENGLISH} "Set up associations"
