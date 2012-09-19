@@ -37,6 +37,7 @@ TabDialog::TabDialog(QWidget *parent) : QDialog(parent)
 	QLabel *label2 = new QLabel("(" + tr("requires application restart") + ")");
 	comboBox1 = new QComboBox; 
 	comboBox1->setMinimumContentsLength(4);
+	comboBox1->addItem("de");
 	comboBox1->addItem("en");
     comboBox1->addItem("pl");
     
