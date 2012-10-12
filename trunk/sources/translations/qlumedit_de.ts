@@ -903,7 +903,7 @@ Sollen die Änderungen gespeichert werden?</translation>
     <message>
         <location filename="../mainwindow.cpp" line="193"/>
         <source>Eulumdat &amp;Validator...</source>
-        <translation>&amp;Prüfung  Eulumdat...</translation>
+        <translation>&amp;Prüfung Eulumdat...</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="194"/>
