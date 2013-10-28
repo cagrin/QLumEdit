@@ -1,7 +1,7 @@
 LICENCE
 
 QLumEdit, an ultimate Eulumdat file editor
-Copyright (C) 2007-2012 Krzysztof Strugiñski
+Copyright (C) 2007-2013 Krzysztof Strugiñski
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,6 +26,9 @@ TRANSLATIONS
 
 
 CHANGELOG
+
+1.0.2 (2013-10-28):
++ updated to Qt 5.x
 
 1.0.1 (2012-09-19):
 + new installer and icon set
