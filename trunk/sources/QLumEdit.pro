@@ -1,3 +1,5 @@
+QT += widgets
+CODECFORSRC = UTF-8
 HEADERS +=   eulumdat.h \
   eulumdatwidget.h \
   eulumdatwidget2.h \
