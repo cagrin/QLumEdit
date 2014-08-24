@@ -27,8 +27,9 @@ TRANSLATIONS
 
 CHANGELOG
 
-1.0.2 (2013-10-28):
-+ updated to Qt 5.x
+1.0.2 (2014-08-24):
++ updated project file to Qt 5.3
++ added German translation
 
 1.0.1 (2012-09-19):
 + new installer and icon set

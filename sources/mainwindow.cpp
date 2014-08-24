@@ -33,9 +33,9 @@ MainWindow::MainWindow()
 
 void MainWindow::about()
 {
-   QMessageBox::about(this, tr("About QLumEdit"), "<b><font size=\"+4\">QLumEdit 1.0.1</font></b><br><br>"+
+   QMessageBox::about(this, tr("About QLumEdit"), "<b><font size=\"+4\">QLumEdit 1.0.2</font></b><br><br>"+
             tr("An ultimate open-source Eulumdat file editor.")+"<br><br>"
-                "Copyright (C) 2007-2013 Krzysztof Strugi&#324;ski "
+                "Copyright (C) 2007-2014 Krzysztof Strugi&#324;ski "
             	"<a href=\"mailto:cagrin@gmail.com\">cagrin@gmail.com</a>" "<br><br>"
 	            "<a href=\"http://sourceforge.net/projects/qlumedit/\">http://sourceforge.net/projects/qlumedit/</a>" "<br><br>"            	
             	+ tr("You may use, distribute and copy the QLumEdit under "
