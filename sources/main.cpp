@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     qApp->processEvents();
 
     QTranslator main_translator;
-    main_translator.load(":/translations/qt_" + language + ".qm");
+    main_translator.load(":/translations/qtbase_" + language + ".qm");
     app.installTranslator( &main_translator );
 
     QTranslator translator;

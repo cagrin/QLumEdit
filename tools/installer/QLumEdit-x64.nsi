@@ -1,7 +1,8 @@
+Unicode True
 !include "MUI.nsh"
 
 !define PRODUCT_NAME "QLumEdit"
-!define PRODUCT_VERSION "1.0.1"
+!define PRODUCT_VERSION "1.0.2"
 !define PRODUCT_PUBLISHER "Krzysztof Strugiñski"
 !define PRODUCT_WEB_SITE "http:\\sourceforge.net\projects\qlumedit\"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\QLumEdit.exe"
@@ -24,7 +25,7 @@
 !define MUI_LANGDLL_REGISTRY_VALUENAME "NSIS:Language"
 
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "..\..\build\win32\LICENSE.rtf"
+!insertmacro MUI_PAGE_LICENSE "..\..\build\x64\LICENSE.rtf"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
@@ -35,15 +36,14 @@
 
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "German"
-!insertmacro MUI_LANGUAGE "Italian"
 !insertmacro MUI_LANGUAGE "Polish"
 
 !insertmacro MUI_RESERVEFILE_LANGDLL
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-win32.exe"
-InstallDir "$PROGRAMFILES\QLumEdit"
+OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-x64-setup.exe"
+InstallDir "$PROGRAMFILES64\QLumEdit"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
@@ -55,18 +55,23 @@ FunctionEnd
 Section "${PRODUCT_NAME}" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
-  File "..\..\build\win32\QtGui4.dll"
-  File "..\..\build\win32\QtCore4.dll"
-  File "..\..\build\win32\QLumEdit.exe"
+  File "..\..\build\x64\Qt5Gui.dll"
+  File "..\..\build\x64\Qt5Core.dll"
+  File "..\..\build\x64\Qt5Widgets.dll"  
+  File "..\..\build\x64\QLumEdit.exe"
   CreateDirectory "$SMPROGRAMS\QLumEdit"
   CreateShortCut "$SMPROGRAMS\QLumEdit\QLumEdit.lnk" "$INSTDIR\QLumEdit.exe"
   CreateShortCut "$DESKTOP\QLumEdit.lnk" "$INSTDIR\QLumEdit.exe"
-  File "..\..\build\win32\mingwm10.dll"
+  File "..\..\build\x64\libgcc_s_seh-1.dll"
+  File "..\..\build\x64\libstdc++-6.dll"
+  File "..\..\build\x64\libwinpthread-1.dll" 
+  CreateDirectory "$INSTDIR\platforms"
+  SetOutPath "$INSTDIR\platforms"
+  File "..\..\build\x64\platforms\qwindows.dll"   
 SectionEnd
 
 LangString DESC_FileAssociations ${LANG_ENGLISH} "Set up associations"
 LangString DESC_FileAssociations ${LANG_GERMAN} "Zuordnungen einrichten"
-LangString DESC_FileAssociations ${LANG_ITALIAN} "Impostazione associazioni"
 LangString DESC_FileAssociations ${LANG_POLISH} "Ustaw skojarzenia"
 
 SectionGroup $(DESC_FileAssociations)
@@ -115,16 +120,21 @@ FunctionEnd
 
 Section Uninstall
   Delete "$INSTDIR\uninst.exe"
-  Delete "$INSTDIR\mingwm10.dll"
   Delete "$INSTDIR\QLumEdit.exe"
-  Delete "$INSTDIR\QtCore4.dll"
-  Delete "$INSTDIR\QtGui4.dll"
+  Delete "$INSTDIR\Qt5Gui.dll"
+  Delete "$INSTDIR\Qt5Core.dll"
+  Delete "$INSTDIR\Qt5Widgets.dll"
+  Delete "$INSTDIR\libgcc_s_seh-1.dll"
+  Delete "$INSTDIR\libstdc++-6.dll"
+  Delete "$INSTDIR\libwinpthread-1.dll"
+  Delete "$INSTDIR\platforms\qwindows.dll"
 
   ;Delete "$SMPROGRAMS\QLumEdit\Uninstall.lnk"
   Delete "$DESKTOP\QLumEdit.lnk"
   Delete "$SMPROGRAMS\QLumEdit\QLumEdit.lnk"
 
   RMDir "$SMPROGRAMS\QLumEdit"
+  RMDir "$INSTDIR\platforms"
   RMDir "$INSTDIR"
 
   ReadRegStr $R0 HKCR ".ldt" ""
