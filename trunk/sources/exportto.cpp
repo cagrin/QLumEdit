@@ -19,8 +19,9 @@ void MainWindow::exportToHTML() {
     		    	
 	QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), info.path()+"/"+QFileInfo(QString(curFile).remove(QFileInfo(curFile).completeSuffix())).fileName()+"html", tr("HTML file (*.html)"));
          
-    if (fileName.isEmpty())
-        return;     
+    if (fileName.isEmpty()) {
+        return;
+    }
 
 	QFile file(fileName);  
       
@@ -209,8 +210,9 @@ void MainWindow::exportToIesna() {
     		    	
 	QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), info.path()+"/"+QFileInfo(QString(curFile).remove(QFileInfo(curFile).completeSuffix())).fileName()+"ies", tr("Iesna LM-63-1995 file (*.ies)"));
          
-    if (fileName.isEmpty())
-        return;     
+    if (fileName.isEmpty()) {
+        return;
+    }
 
 	QFile file(fileName);  
       

@@ -7,8 +7,8 @@
     <file>images/open.png</file>
     <file>images/save.png</file>
 
-    <file>translations/qt_pl.qm</file>
-    <file>translations/qt_de.qm</file>
+    <file>translations/qtbase_pl.qm</file>
+    <file>translations/qtbase_de.qm</file>
 
     <file>translations/qlumedit_pl.qm</file>
     <file>translations/qlumedit_de.qm</file>
