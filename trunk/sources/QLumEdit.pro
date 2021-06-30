@@ -1,7 +1,7 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = QLumEdit
 TEMPLATE = app
+QT += core gui
+qtHaveModule(widgets): QT += widgets
 SOURCES +=   eulumdat.cpp \
   eulumdatwidget.cpp \
   eulumdatwidget2.cpp \
@@ -31,9 +31,8 @@ HEADERS +=   eulumdat.h \
   vars.h \
   validator.h \
   newdialog.h
-CONFIG += mobility
-MOBILITY = 
-RC_FILE +=   application.rc
 RESOURCES +=   application.qrc
 TRANSLATIONS +=   translations/qlumedit_pl.ts \
   translations/qlumedit_de.ts
+macos: ICON = images/socket.icns
+win32: RC_FILE = application.rc

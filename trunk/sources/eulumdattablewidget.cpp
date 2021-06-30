@@ -138,7 +138,7 @@ void EulumdatTableWidget::tryToImportFromClipboard() {
 	data.replace("\n",";");
 	data.replace(",",".");
 	
-	QStringList list = data.split(";", QString::SkipEmptyParts);
+    QStringList list = data.split(";", Qt::SkipEmptyParts);
 	
 	int a = list.size()+1;
 	int m = a/n;
