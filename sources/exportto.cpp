@@ -192,7 +192,7 @@ out <<
 "</body>\n"
 "</html>\n";
     
-    out << flush;
+    Qt::flush(out);
     
 	file.close();
 
@@ -228,13 +228,13 @@ void MainWindow::exportToIesna() {
 	QLocale locale;
 	int i, j;
 
-	out << "IESNA:LM-63-1995" << endl;
-	out << "[TEST] " << ldt->sMrn << endl;
-	out << "[MANUFAC] " << ldt->sIden << endl;
-	out << "[LUMCAT] " << ldt->sLnum << endl;
-	out << "[LUMINAIRE] " << ldt->sLnam << endl;
-	out << "[LAMP] " << ldt->sTL[0] << endl;	
-	out << "TILT=NONE" << endl;
+    out << "IESNA:LM-63-1995" << Qt::endl;
+    out << "[TEST] " << ldt->sMrn << Qt::endl;
+    out << "[MANUFAC] " << ldt->sIden << Qt::endl;
+    out << "[LUMCAT] " << ldt->sLnum << Qt::endl;
+    out << "[LUMINAIRE] " << ldt->sLnam << Qt::endl;
+    out << "[LAMP] " << ldt->sTL[0] << Qt::endl;
+    out << "TILT=NONE" << Qt::endl;
 	out << QString("%1").arg(ldt->iNL[0]) + " "
 	+ QString("%1").arg(ldt->dTLF[0] / ldt->iNL[0]) + " "
 	+ QString("%1").arg(ldt->dCFLI) + " "
@@ -242,13 +242,13 @@ void MainWindow::exportToIesna() {
 	+ QString("%1").arg(ldt->iMc) + " 1 2 "
 	+ QString("%1").arg(ldt->dL / 1000) + " "
 	+ QString("%1").arg(ldt->dB / 1000) + " "
-	+ QString("%1").arg(ldt->dH / 1000) << endl;
-	out << "1 1 " << QString("%1").arg(ldt->dWB[0]) << endl;
+    + QString("%1").arg(ldt->dH / 1000) << Qt::endl;
+    out << "1 1 " << QString("%1").arg(ldt->dWB[0]) << Qt::endl;
 
 	for(i=0; i<ldt->iNg; i++) {
 		out << QString("%1").arg(ldt->dG[i]) << " ";
 	}		
-	out << endl;
+    out << Qt::endl;
 	j=0;
     if(ldt->iIsym == 3) {
     	while(ldt->dC[j] < 90.0) {
@@ -258,16 +258,16 @@ void MainWindow::exportToIesna() {
 	for(i=0; i<ldt->iMc; i++) {
 		out << QString("%1").arg(ldt->dC[i+j]) << " ";
 	}	
-	out << endl;
+    out << Qt::endl;
 	
 	for(int i=0; i<ldt->iMc; i++) {
 		for(int j=0; j<ldt->iNg; j++) {
 			out << QString("%1").arg(ldt->dLcd[i][j]) << " ";
 		}
-		out << endl;
+        out << Qt::endl;
 	}	
 	
-	out << flush;    
+    Qt::flush(out);
 	file.close();
 
     statusBar()->showMessage(tr("File exported to Iesna LM-63-1995"), 5000);

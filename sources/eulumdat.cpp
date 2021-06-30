@@ -175,69 +175,69 @@ int Eulumdat::saveFile(QString fileName) {
 	file.open(QFile::WriteOnly | QFile::Text);
     QTextStream out(&file);
 	
-   	out << sIden << endl;	
+    out << sIden << Qt::endl;
    	
    	if(iItyp != 2) {
    		if(iIsym == 1) {
-	   		out << 1 << endl;	
+            out << 1 << Qt::endl;
   		}
   		else {
-			out << 3 << endl;  			
+            out << 3 << Qt::endl;
  		}
   	}
   	else {
-  		out << 2 << endl;
+        out << 2 << Qt::endl;
  	}
    	   	
-   	out << iIsym << endl;
-   	out << iNc << endl;
-   	out << dDc << endl;
-   	out << iNg << endl;
-   	out << dDg << endl;
-   	out << sMrn << endl;
-   	out << sLnam << endl;
-   	out << sLnum << endl;
-   	out << sFnam << endl;
-   	out << sDate << endl;
-   	out << dL << endl;
-   	out << dB << endl;
-   	out << dH << endl;
-   	out << dLa << endl;
-   	out << dB1 << endl;
-   	out << dHC0 << endl;
-   	out << dHC90 << endl;
-   	out << dHC180 << endl;  	   	   	
-   	out << dHC270 << endl;
-   	out << dDFF << endl;
-   	out << dLORL << endl;
-   	out << dCFLI << endl;
-   	out << dTILT << endl;
+    out << iIsym << Qt::endl;
+    out << iNc << Qt::endl;
+    out << dDc << Qt::endl;
+    out << iNg << Qt::endl;
+    out << dDg << Qt::endl;
+    out << sMrn << Qt::endl;
+    out << sLnam << Qt::endl;
+    out << sLnum << Qt::endl;
+    out << sFnam << Qt::endl;
+    out << sDate << Qt::endl;
+    out << dL << Qt::endl;
+    out << dB << Qt::endl;
+    out << dH << Qt::endl;
+    out << dLa << Qt::endl;
+    out << dB1 << Qt::endl;
+    out << dHC0 << Qt::endl;
+    out << dHC90 << Qt::endl;
+    out << dHC180 << Qt::endl;
+    out << dHC270 << Qt::endl;
+    out << dDFF << Qt::endl;
+    out << dLORL << Qt::endl;
+    out << dCFLI << Qt::endl;
+    out << dTILT << Qt::endl;
 	
-   	out << iN << endl;   	 
+    out << iN << Qt::endl;
 	for(int i=0; i<iN; i++) {
-		out << iNL[i] << endl;
-		out << sTL[i] << endl;
-		out << dTLF[i] << endl;
-		out << sCA[i] << endl;
-		out << sCRG[i] << endl;
-		out << dWB[i] << endl;
+        out << iNL[i] << Qt::endl;
+        out << sTL[i] << Qt::endl;
+        out << dTLF[i] << Qt::endl;
+        out << sCA[i] << Qt::endl;
+        out << sCRG[i] << Qt::endl;
+        out << dWB[i] << Qt::endl;
 	}   
 	for(int i=0; i<10; i++) {
-		out << dDR[i] << endl;
+        out << dDR[i] << Qt::endl;
 	}
 	for(int i=0; i<iNc; i++) {
-		out << dC[i] << endl;
+        out << dC[i] << Qt::endl;
 	}
 	for(int i=0; i<iNg; i++) {
-		out << dG[i] << endl;
+        out << dG[i] << Qt::endl;
 	}
 	for(int i=0; i<iMc; i++) {
 		for(int j=0; j<iNg; j++) {
-			out << dLcd[i][j] << endl;
+            out << dLcd[i][j] << Qt::endl;
 		}
 	}
 	
-	out << flush;
+    Qt::flush(out);
 	file.close();
 	
 	return 0;

@@ -27,6 +27,10 @@ TRANSLATIONS
 
 CHANGELOG
 
+1.0.3-alpha (2021-06-30):
++ updated to Qt 6.2.0-alpha
++ MacOS version icon
+
 1.0.2 (2021-02-09):
 + updated project file to Qt 5.14.2
 + added German translation
