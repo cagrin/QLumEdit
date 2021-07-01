@@ -1,3 +1,4 @@
+;NSIS v3.06.1
 Unicode True
 !include "MUI.nsh"
 
