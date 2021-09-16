@@ -18,12 +18,14 @@ int main(int argc, char *argv[])
     qApp->processEvents();
 
     QTranslator main_translator;
-    main_translator.load(":/translations/qtbase_" + language + ".qm");
-    app.installTranslator( &main_translator );
+    if (main_translator.load(":/translations/qtbase_" + language + ".qm")) {
+        app.installTranslator( &main_translator );
+    }
 
     QTranslator translator;
-    translator.load(":/translations/qlumedit_" + language + ".qm");
-    app.installTranslator( &translator );
+    if (translator.load(":/translations/qlumedit_" + language + ".qm")) {
+        app.installTranslator( &translator );
+    }
 
     QStringList files;
     QStringList args = app.arguments();
