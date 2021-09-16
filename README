@@ -1,7 +1,7 @@
 LICENCE
 
 QLumEdit, an ultimate Eulumdat file editor
-Copyright (C) 2007-2021 Krzysztof Strugiñski
+Copyright (C) 2007-2021 Krzysztof StrugiÅ„ski
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -13,7 +13,7 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-Contact e-mail: Krzysztof Strugiñski <cagrin@gmail.com>
+Contact e-mail: Krzysztof StrugiÅ„ski <cagrin@gmail.com>
   Program page: http://sourceforge.net/projects/qlumedit
       Icon set: http://www.iconarchive.com/show/gartoon-icons-by-zeusbox.html
 
@@ -27,8 +27,8 @@ TRANSLATIONS
 
 CHANGELOG
 
-1.0.3-alpha (2021-06-30):
-+ updated to Qt 6.2.0-alpha
+1.0.3-rc (2021-09-16):
++ updated to Qt 6.2.0-rc
 + MacOS version icon
 
 1.0.2 (2021-02-09):
