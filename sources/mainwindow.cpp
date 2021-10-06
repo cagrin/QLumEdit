@@ -37,7 +37,7 @@ void MainWindow::about()
             tr("An ultimate open-source Eulumdat file editor.")+"<br><br>"
                 "Copyright (C) 2007-2021 Krzysztof Strugi&#324;ski "
             	"<a href=\"mailto:cagrin@gmail.com\">cagrin@gmail.com</a>" "<br><br>"
-	            "<a href=\"http://sourceforge.net/projects/qlumedit/\">http://sourceforge.net/projects/qlumedit/</a>" "<br><br>"            	
+	            "<a href=\"http://sourceforge.net/projects/qlumedit/\">http://sourceforge.net/projects/qlumedit/</a>" "<br><br>"
             	+ tr("You may use, distribute and copy the QLumEdit under "
  				"the terms of GPL version 2.")
  				+ "<br><br>"
