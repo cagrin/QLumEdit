@@ -3,7 +3,7 @@ Unicode True
 !include "MUI.nsh"
 
 !define PRODUCT_NAME "QLumEdit"
-!define PRODUCT_VERSION "1.0.2"
+!define PRODUCT_VERSION "1.0.3"
 !define PRODUCT_PUBLISHER "Krzysztof Strugiñski"
 !define PRODUCT_WEB_SITE "http:\\sourceforge.net\projects\qlumedit\"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\QLumEdit.exe"
@@ -43,7 +43,7 @@ Unicode True
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-x64-setup.exe"
+OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-windows-x64-installer.exe"
 InstallDir "$PROGRAMFILES64\QLumEdit"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
@@ -56,9 +56,9 @@ FunctionEnd
 Section "${PRODUCT_NAME}" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
-  File "..\..\build\x64\Qt5Gui.dll"
-  File "..\..\build\x64\Qt5Core.dll"
-  File "..\..\build\x64\Qt5Widgets.dll"  
+  File "..\..\build\x64\Qt6Gui.dll"
+  File "..\..\build\x64\Qt6Core.dll"
+  File "..\..\build\x64\Qt6Widgets.dll"  
   File "..\..\build\x64\QLumEdit.exe"
   CreateDirectory "$SMPROGRAMS\QLumEdit"
   CreateShortCut "$SMPROGRAMS\QLumEdit\QLumEdit.lnk" "$INSTDIR\QLumEdit.exe"
@@ -122,9 +122,9 @@ FunctionEnd
 Section Uninstall
   Delete "$INSTDIR\uninst.exe"
   Delete "$INSTDIR\QLumEdit.exe"
-  Delete "$INSTDIR\Qt5Gui.dll"
-  Delete "$INSTDIR\Qt5Core.dll"
-  Delete "$INSTDIR\Qt5Widgets.dll"
+  Delete "$INSTDIR\Qt6Gui.dll"
+  Delete "$INSTDIR\Qt6Core.dll"
+  Delete "$INSTDIR\Qt6Widgets.dll"
   Delete "$INSTDIR\libgcc_s_seh-1.dll"
   Delete "$INSTDIR\libstdc++-6.dll"
   Delete "$INSTDIR\libwinpthread-1.dll"
