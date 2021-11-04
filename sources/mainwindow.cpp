@@ -424,7 +424,7 @@ void MainWindow::saveFromWidget(void) {
 void MainWindow::setMaybeSaveTriggers() {
 
     connect(central->general->LineEdit1, SIGNAL(textChanged(QString)), this, SLOT(documentWasModified())); 
-	connect(central->general->ComboBox2, SIGNAL(currentIndexChanged(QString)), this, SLOT(documentWasModified()));      
+    connect(central->general->ComboBox2, SIGNAL(currentIndexChanged(int)), this, SLOT(documentWasModified()));
     connect(central->general->LineEdit8, SIGNAL(textChanged(QString)), this, SLOT(documentWasModified())); 
     connect(central->general->LineEdit9, SIGNAL(textChanged(QString)), this, SLOT(documentWasModified())); 
     connect(central->general->LineEdit10, SIGNAL(textChanged(QString)), this, SLOT(documentWasModified())); 
