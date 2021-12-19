@@ -1,0 +1,53 @@
+name: Just build
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  QT_VERSION: 6.2.2
+
+jobs:
+  build-on-ubuntu-latest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      QT_ARCH: linux desktop
+      QT_SPEC: gcc_64
+    steps:
+      - uses: actions/checkout@master
+      - name: Install Prerequisites
+        run: sudo apt-get install build-essential libgl1-mesa-dev
+      - name: Install aqt
+        run: pip install aqtinstall
+      - name: Install QT
+        run: |
+          aqt list-qt ${{env.QT_ARCH}} --arch ${{env.QT_VERSION}}
+          aqt install-qt ${{env.QT_ARCH}} ${{env.QT_VERSION}} ${{env.QT_SPEC}}
+      - name: Try to build
+        run: |
+          cd sources
+          ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
+          make
+  build-on-windows-2019:
+    runs-on: windows-2019
+    timeout-minutes: 15
+    env:
+      QT_ARCH: windows desktop
+      QT_SPEC: msvc2019_64
+    steps:
+      - uses: actions/checkout@master
+      - name: Install aqt
+        run: pip install aqtinstall
+      - name: Install QT
+        run: |
+          aqt list-qt ${{env.QT_ARCH}} --arch ${{env.QT_VERSION}}
+          aqt install-qt ${{env.QT_ARCH}} ${{env.QT_VERSION}} win64_${{env.QT_SPEC}}
+      - name: Try to build
+        shell: cmd
+        run: |
+          cd sources
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          "..\${{env.QT_VERSION}}\${{env.QT_SPEC}}\bin\qmake.exe" QLumEdit.pro
+          nmake release
