@@ -30,6 +30,26 @@ jobs:
           cd sources
           ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
           make
+  build-on-macos-11:
+    runs-on: macos-11
+    timeout-minutes: 15
+    env:
+      AQT_VERSION: 2.0.5
+      QT_SPEC: clang_64
+    steps:
+      - uses: actions/checkout@master
+      - name: Install QT
+        uses: jurplel/install-qt-action@v2
+        with:
+          aqtversion: '==${{env.AQT_VERSION}}'
+          version: ${{env.QT_VERSION}}
+          arch: ${{env.QT_SPEC}}
+          dir: '.'
+      - name: Try to build
+        run: |
+          cd sources
+          ../Qt/${{env.QT_VERSION}}/macos/bin/qmake QLumEdit.pro
+          make
   build-on-windows-2019:
     runs-on: windows-2019
     timeout-minutes: 15
