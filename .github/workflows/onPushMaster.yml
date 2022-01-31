@@ -3,7 +3,7 @@ name: Just build
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   QT_VERSION: 6.2.2
