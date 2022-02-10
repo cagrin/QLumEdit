@@ -10,7 +10,7 @@ env:
 
 jobs:
   build-on-ubuntu-latest:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     timeout-minutes: 15
     env:
       QT_ARCH: linux desktop
@@ -30,11 +30,11 @@ jobs:
           cd sources
           ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
           make
-  build-on-macos-11:
+  build-on-macos-latest:
     runs-on: macos-11
     timeout-minutes: 15
     env:
-      AQT_VERSION: 2.0.5
+      AQT_VERSION: 2.0.6
       QT_SPEC: clang_64
     steps:
       - uses: actions/checkout@master
@@ -50,8 +50,8 @@ jobs:
           cd sources
           ../Qt/${{env.QT_VERSION}}/macos/bin/qmake QLumEdit.pro
           make
-  build-on-windows-2019:
-    runs-on: windows-2019
+  build-on-windows-latest:
+    runs-on: windows-2022
     timeout-minutes: 15
     env:
       QT_ARCH: windows desktop
@@ -68,6 +68,6 @@ jobs:
         shell: cmd
         run: |
           cd sources
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
           "..\${{env.QT_VERSION}}\${{env.QT_SPEC}}\bin\qmake.exe" QLumEdit.pro
           nmake release
