@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  QT_VERSION: 6.2.2
+  QT_VERSION: 6.2.4
 
 jobs:
   build-on-ubuntu-latest:
