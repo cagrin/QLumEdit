@@ -18,7 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Install Prerequisites
-        run: sudo apt-get install build-essential libgl1-mesa-dev
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential libgl1-mesa-dev
       - name: Install aqt
         run: pip install aqtinstall
       - name: Install QT
