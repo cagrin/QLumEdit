@@ -41,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Install QT
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           aqtversion: '==${{env.AQT_VERSION}}'
           version: ${{env.QT_VERSION}}
