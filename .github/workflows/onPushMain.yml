@@ -6,65 +6,42 @@ on:
       - main
 
 env:
-  QT_VERSION: 6.2.4
+  QT_VERSION: 6.8.3
 
 jobs:
-  list-qt:
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 15
-    strategy:
-      matrix:
-        include:
-          - os: ubuntu-24.04
-            qt_arch: "linux desktop"
-            qt_spec: linux_gcc_64
-            shell: bash
-
-          - os: ubuntu-24.04-arm
-            qt_arch: "linux desktop"
-            qt_spec: gcclinux_gcc_arm64
-            shell: bash
-
-          - os: macos-13
-            qt_arch: "mac desktop"
-            qt_spec: clang_64
-            shell: bash
-
-          - os: macos-15
-            qt_arch: "mac desktop"
-            qt_spec: macos_arm64
-            shell: bash
-
-          - os: windows-2025
-            qt_arch: "windows desktop"
-            qt_spec: win64_msvc2022_64
-            shell: cmd
-
-          - os: windows-11-arm
-            qt_arch: "windows desktop"
-            qt_spec: win64_msvc2022_arm64
-            shell: cmd
-
-    steps:
-      - uses: actions/checkout@master
-      - name: Install aqtinstall
-        run: pip install aqtinstall
-      - name: List available Qt versions
-        shell: ${{ matrix.shell }}
-        run: |
-          aqt list-qt "${{ matrix.qt_arch }}" --arch ${{ matrix.qt_spec }}
   build-on-ubuntu-latest:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
       QT_ARCH: linux desktop
-      QT_SPEC: gcc_64
+      QT_SPEC: linux_gcc_64
+      QT_PATH: gcc_64
     steps:
       - uses: actions/checkout@master
+      - name: Install aqt
+        run: pip install aqtinstall
+      - name: Install QT
+        run: |
+          aqt list-qt ${{env.QT_ARCH}} --arch ${{env.QT_VERSION}}
+          aqt install-qt ${{env.QT_ARCH}} ${{env.QT_VERSION}} ${{env.QT_SPEC}}
       - name: Install Prerequisites
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential libgl1-mesa-dev
+          sudo apt-get install libgl1-mesa-dev
+      - name: Try to build
+        run: |
+          cd sources
+          ./../${{env.QT_VERSION}}/${{env.QT_PATH}}/bin/qmake QLumEdit.pro
+          make
+  build-on-macos-latest:
+    runs-on: macos-13
+    timeout-minutes: 15
+    env:
+      QT_ARCH: mac desktop
+      QT_SPEC: clang_64
+      QT_PATH: macos
+    steps:
+      - uses: actions/checkout@master
       - name: Install aqt
         run: pip install aqtinstall
       - name: Install QT
@@ -74,34 +51,15 @@ jobs:
       - name: Try to build
         run: |
           cd sources
-          ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
-          make
-  build-on-macos-latest:
-    runs-on: macos-13
-    timeout-minutes: 15
-    env:
-      AQT_VERSION: 2.0.6
-      QT_SPEC: clang_64
-    steps:
-      - uses: actions/checkout@master
-      - name: Install QT
-        uses: jurplel/install-qt-action@v4
-        with:
-          aqtversion: '==${{env.AQT_VERSION}}'
-          version: ${{env.QT_VERSION}}
-          arch: ${{env.QT_SPEC}}
-          dir: '.'
-      - name: Try to build
-        run: |
-          cd sources
-          ../Qt/${{env.QT_VERSION}}/macos/bin/qmake QLumEdit.pro
+          ./../${{env.QT_VERSION}}/${{env.QT_PATH}}/bin/qmake QLumEdit.pro
           make
   build-on-windows-latest:
     runs-on: windows-2022
     timeout-minutes: 15
     env:
       QT_ARCH: windows desktop
-      QT_SPEC: msvc2019_64
+      QT_SPEC: win64_msvc2022_64
+      QT_PATH: msvc2022_64
     steps:
       - uses: actions/checkout@master
       - name: Install aqt
@@ -109,11 +67,11 @@ jobs:
       - name: Install QT
         run: |
           aqt list-qt ${{env.QT_ARCH}} --arch ${{env.QT_VERSION}}
-          aqt install-qt ${{env.QT_ARCH}} ${{env.QT_VERSION}} win64_${{env.QT_SPEC}}
+          aqt install-qt ${{env.QT_ARCH}} ${{env.QT_VERSION}} ${{env.QT_SPEC}}
       - name: Try to build
         shell: cmd
         run: |
           cd sources
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          "..\${{env.QT_VERSION}}\${{env.QT_SPEC}}\bin\qmake.exe" QLumEdit.pro
+          "..\${{env.QT_VERSION}}\${{env.QT_PATH}}\bin\qmake.exe" QLumEdit.pro
           nmake release

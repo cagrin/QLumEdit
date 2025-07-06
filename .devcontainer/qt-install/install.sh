@@ -1,6 +1,6 @@
+QT_VERSION=6.8.3
 QT_ARCH="linux desktop"
-QT_VERSION=6.2.4
-QT_SPEC=gcc_64
+QT_SPEC=linux_gcc_64
 
 pip install aqtinstall
 
