@@ -13,17 +13,17 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
-      QT_ARCH: linux desktop
-      QT_SPEC: linux_gcc_64
-      QT_PATH: gcc_64
+      QT_HOST: linux desktop
+      QT_ARCH: linux_gcc_64
+      QT_SPEC: gcc_64
     steps:
       - uses: actions/checkout@master
       - name: Install aqt
         run: pip install aqtinstall
       - name: Install QT
         run: |
-          aqt list-qt ${{env.QT_ARCH}} --arch ${{env.QT_VERSION}}
-          aqt install-qt ${{env.QT_ARCH}} ${{env.QT_VERSION}} ${{env.QT_SPEC}}
+          aqt list-qt ${{env.QT_HOST}} --arch ${{env.QT_VERSION}}
+          aqt install-qt ${{env.QT_HOST}} ${{env.QT_VERSION}} ${{env.QT_ARCH}}
       - name: Install Prerequisites
         run: |
           sudo apt-get update
@@ -31,47 +31,47 @@ jobs:
       - name: Try to build
         run: |
           cd sources
-          ./../${{env.QT_VERSION}}/${{env.QT_PATH}}/bin/qmake QLumEdit.pro
+          ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
           make
   build-on-macos-latest:
     runs-on: macos-13
     timeout-minutes: 15
     env:
-      QT_ARCH: mac desktop
-      QT_SPEC: clang_64
-      QT_PATH: macos
+      QT_HOST: mac desktop
+      QT_ARCH: clang_64
+      QT_SPEC: macos
     steps:
       - uses: actions/checkout@master
       - name: Install aqt
         run: pip install aqtinstall
       - name: Install QT
         run: |
-          aqt list-qt ${{env.QT_ARCH}} --arch ${{env.QT_VERSION}}
-          aqt install-qt ${{env.QT_ARCH}} ${{env.QT_VERSION}} ${{env.QT_SPEC}}
+          aqt list-qt ${{env.QT_HOST}} --arch ${{env.QT_VERSION}}
+          aqt install-qt ${{env.QT_HOST}} ${{env.QT_VERSION}} ${{env.QT_ARCH}}
       - name: Try to build
         run: |
           cd sources
-          ./../${{env.QT_VERSION}}/${{env.QT_PATH}}/bin/qmake QLumEdit.pro
+          ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
           make
   build-on-windows-latest:
     runs-on: windows-2022
     timeout-minutes: 15
     env:
-      QT_ARCH: windows desktop
-      QT_SPEC: win64_msvc2022_64
-      QT_PATH: msvc2022_64
+      QT_HOST: windows desktop
+      QT_ARCH: win64_msvc2022_64
+      QT_SPEC: msvc2022_64
     steps:
       - uses: actions/checkout@master
       - name: Install aqt
         run: pip install aqtinstall
       - name: Install QT
         run: |
-          aqt list-qt ${{env.QT_ARCH}} --arch ${{env.QT_VERSION}}
-          aqt install-qt ${{env.QT_ARCH}} ${{env.QT_VERSION}} ${{env.QT_SPEC}}
+          aqt list-qt ${{env.QT_HOST}} --arch ${{env.QT_VERSION}}
+          aqt install-qt ${{env.QT_HOST}} ${{env.QT_VERSION}} ${{env.QT_ARCH}}
       - name: Try to build
         shell: cmd
         run: |
           cd sources
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          "..\${{env.QT_VERSION}}\${{env.QT_PATH}}\bin\qmake.exe" QLumEdit.pro
+          "..\${{env.QT_VERSION}}\${{env.QT_SPEC}}\bin\qmake.exe" QLumEdit.pro
           nmake release
