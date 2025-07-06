@@ -12,3 +12,6 @@ aqt install-qt $QT_HOST $QT_VERSION $QT_ARCH --outputdir $QT_OUTPUT_DIR
 
 echo "export PATH=\"$QT_PATH:\$PATH\"" >> /etc/profile.d/qt-path.sh
 chmod +x /etc/profile.d/qt-path.sh
+
+apt-get update
+apt-get install -y --no-install-recommends libgl1-mesa-dev libxkbcommon-dev

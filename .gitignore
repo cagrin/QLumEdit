@@ -1,2 +1,7 @@
-*.user
-build*
+sources/.qmake.stash
+sources/*.o
+sources/Makefile
+sources/moc_*.cpp
+sources/moc_*.h
+sources/QLumEdit
+sources/qrc_application.cpp
