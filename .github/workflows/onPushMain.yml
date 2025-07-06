@@ -9,6 +9,50 @@ env:
   QT_VERSION: 6.2.4
 
 jobs:
+  list-qt:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-24.04
+            qt_arch: "linux desktop"
+            qt_spec: linux_gcc_64
+            shell: bash
+
+          - os: ubuntu-24.04-arm
+            qt_arch: "linux desktop"
+            qt_spec: gcclinux_gcc_arm64
+            shell: bash
+
+          - os: macos-13
+            qt_arch: "mac desktop"
+            qt_spec: clang_64
+            shell: bash
+
+          - os: macos-15
+            qt_arch: "mac desktop"
+            qt_spec: macos_arm64
+            shell: bash
+
+          - os: windows-2025
+            qt_arch: "windows desktop"
+            qt_spec: win64_msvc2022_64
+            shell: cmd
+
+          - os: windows-11-arm
+            qt_arch: "windows desktop"
+            qt_spec: win64_msvc2022_arm64
+            shell: cmd
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Install aqtinstall
+        run: pip install aqtinstall
+      - name: List available Qt versions
+        shell: ${{ matrix.shell }}
+        run: |
+          aqt list-qt "${{ matrix.qt_arch }}" --arch ${{ matrix.qt_spec }}
   build-on-ubuntu-latest:
     runs-on: ubuntu-22.04
     timeout-minutes: 15
@@ -33,7 +77,7 @@ jobs:
           ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
           make
   build-on-macos-latest:
-    runs-on: macos-12
+    runs-on: macos-13
     timeout-minutes: 15
     env:
       AQT_VERSION: 2.0.6
