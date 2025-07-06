@@ -1,0 +1,13 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/universal",
+    "features": {
+        "./qt-install": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+				"ms-vscode.cpptools"
+			]
+        }
+    }
+}
