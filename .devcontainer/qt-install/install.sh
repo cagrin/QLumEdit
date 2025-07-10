@@ -14,4 +14,4 @@ echo "export PATH=\"$QT_PATH:\$PATH\"" >> /etc/profile.d/qt-path.sh
 chmod +x /etc/profile.d/qt-path.sh
 
 apt-get update
-apt-get install -y --no-install-recommends libgl1-mesa-dev libxkbcommon-dev
+apt-get install -y libgl1-mesa-dev libxkbcommon-x11-0 libxcb-cursor0 libxcb-keysyms1 libxcb-icccm4 

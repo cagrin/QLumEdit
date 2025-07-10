@@ -1,8 +1,15 @@
 {
     "image": "mcr.microsoft.com/devcontainers/universal",
     "features": {
-        "./qt-install": {}
+        "ghcr.io/devcontainers/features/desktop-lite": {
+            "password": "vscode",
+            "webPort": 6080
+        },
+        "./qt-install": {
+            "installsAfter": ["ghcr.io/devcontainers/features/desktop-lite"]
+        }
     },
+    "forwardPorts": [6080],
     "customizations": {
         "vscode": {
             "extensions": [
