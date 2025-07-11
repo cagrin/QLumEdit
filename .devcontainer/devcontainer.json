@@ -1,20 +1,15 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
     "features": {
-        "ghcr.io/devcontainers/features/desktop-lite": {
-            "password": "vscode",
-            "webPort": 6080
-        },
-        "./qt-install": {
-            "installsAfter": ["ghcr.io/devcontainers/features/desktop-lite"]
-        }
+        "ghcr.io/devcontainers/features/desktop-lite": {},
+        "./qt-install": {}
     },
     "forwardPorts": [6080],
     "customizations": {
         "vscode": {
             "extensions": [
-				"ms-vscode.cpptools"
-			]
+                "ms-vscode.cpptools"
+            ]
         }
     }
 }
