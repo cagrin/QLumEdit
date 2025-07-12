@@ -1,16 +1,16 @@
 ARCH="$(uname -m)"
-case "$ARCH" in
-  aarch64|arm64)
+if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
     QT_HOST=linux_arm64
     QT_ARCH=linux_gcc_arm64
     QT_SPEC=gcc_arm64
-    ;;
-  *)
+elif [ "$ARCH" = "x86_64" ] || [ "$ARCH" = "amd64" ]; then
     QT_HOST=linux
     QT_ARCH=linux_gcc_64
     QT_SPEC=gcc_64
-    ;;
-esac
+else
+    echo "Unsupported architecture: $ARCH" >&2
+    exit 1
+fi
 QT_VERSION=6.8.3
 QT_OUTPUT_DIR=/opt/qt
 QT_PATH=$QT_OUTPUT_DIR/$QT_VERSION/$QT_SPEC/bin
