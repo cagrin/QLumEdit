@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      QT_HOST: linux desktop
+      QT_HOST: linux
       QT_ARCH: linux_gcc_64
       QT_SPEC: gcc_64
     steps:
@@ -22,8 +22,8 @@ jobs:
         run: pip install aqtinstall
       - name: Install QT
         run: |
-          aqt list-qt ${{env.QT_HOST}} --arch ${{env.QT_VERSION}}
-          aqt install-qt ${{env.QT_HOST}} ${{env.QT_VERSION}} ${{env.QT_ARCH}}
+          aqt list-qt ${{env.QT_HOST}} desktop --arch ${{env.QT_VERSION}}
+          aqt install-qt ${{env.QT_HOST}} desktop ${{env.QT_VERSION}} ${{env.QT_ARCH}}
       - name: Install Prerequisites
         run: |
           sudo apt-get update
@@ -32,12 +32,12 @@ jobs:
         run: |
           cd sources
           ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
-          make
+          make -j$(nproc)
   build-on-macos-latest:
     runs-on: macos-latest
     timeout-minutes: 15
     env:
-      QT_HOST: mac desktop
+      QT_HOST: mac
       QT_ARCH: clang_64
       QT_SPEC: macos
     steps:
@@ -46,18 +46,18 @@ jobs:
         run: pip install aqtinstall
       - name: Install QT
         run: |
-          aqt list-qt ${{env.QT_HOST}} --arch ${{env.QT_VERSION}}
-          aqt install-qt ${{env.QT_HOST}} ${{env.QT_VERSION}} ${{env.QT_ARCH}}
+          aqt list-qt ${{env.QT_HOST}} desktop --arch ${{env.QT_VERSION}}
+          aqt install-qt ${{env.QT_HOST}} desktop ${{env.QT_VERSION}} ${{env.QT_ARCH}}
       - name: Try to build
         run: |
           cd sources
           ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
-          make
+          make -j$(nproc)
   build-on-windows-latest:
     runs-on: windows-latest
     timeout-minutes: 15
     env:
-      QT_HOST: windows desktop
+      QT_HOST: windows
       QT_ARCH: win64_msvc2022_64
       QT_SPEC: msvc2022_64
     steps:
@@ -66,8 +66,8 @@ jobs:
         run: pip install aqtinstall
       - name: Install QT
         run: |
-          aqt list-qt ${{env.QT_HOST}} --arch ${{env.QT_VERSION}}
-          aqt install-qt ${{env.QT_HOST}} ${{env.QT_VERSION}} ${{env.QT_ARCH}}
+          aqt list-qt ${{env.QT_HOST}} desktop --arch ${{env.QT_VERSION}}
+          aqt install-qt ${{env.QT_HOST}} desktop ${{env.QT_VERSION}} ${{env.QT_ARCH}}
       - name: Try to build
         shell: cmd
         run: |
