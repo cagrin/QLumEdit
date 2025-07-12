@@ -52,7 +52,7 @@ jobs:
         run: |
           cd sources
           ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
-          make -j$(nproc)
+          make -j$(sysctl -n hw.ncpu)
   build-on-windows-latest:
     runs-on: windows-latest
     timeout-minutes: 15
