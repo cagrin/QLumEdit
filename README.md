@@ -1,44 +1,12 @@
 # QLumEdit
 
-### LICENCE
-```
-QLumEdit, an ultimate Eulumdat file editor
-Copyright (C) 2007-2021 Krzysztof Strugiński
+### Project history
+This project was created nearly 20 years ago as part of my Master's thesis. The application, built using the Qt 4.3 framework, was posted on SourceForge in 2007. A few years later, I added the first Windows installer, and in the next version, also the x64 build. The latest version 1.0.3 was built using Qt 6.2.0 and the NSIS 3.06 installer.
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+### Current status
+I am continuously maintaining and evolving this project, ensuring it remains compatible and buildable with the current version of **Qt LTS (6.8.3)**.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+### Containerization & CI/CD
+In the ```.devcontainer``` folder, you can find an implementation of the lightweight FluxBox graphical environment, which allows running the application from a container in a browser.
 
-Contact e-mail: Krzysztof Strugiński <cagrin@gmail.com>
-  Program page: https://github.com/cagrin/qlumedit
-      Icon set: https://iconarchive.com/show/gartoon-icons-by-zeusbox.html
-```
-### TRANSLATIONS
-```
-       English: https://github.com/cagrin
-        Polish: https://github.com/cagrin
-        German: https://sourceforge.net/users/erni24
-```
-### CHANGELOG
-
-1.0.3 (2021-10-06):
-+ updated to Qt 6.2.0
-+ macOS universal version
-
-1.0.2 (2021-02-09):
-+ updated project file to Qt 5.14.2
-+ added German translation
-+ x64 version
-
-1.0.1 (2012-09-19):
-+ new installer and icon set
-+ file association *.ldt
-
-0.2.1 (2007-06-29):
-- becomes version 1.0
+In the ```.github``` folder, you can find how to build the application on all platforms: Windows, Linux and macOS.
