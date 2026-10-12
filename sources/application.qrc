@@ -7,12 +7,6 @@
     <file>images/open.png</file>
     <file>images/save.png</file>
 
-    <file>translations/qtbase_pl.qm</file>
-    <file>translations/qtbase_de.qm</file>
-
-    <file>translations/qlumedit_pl.qm</file>
-    <file>translations/qlumedit_de.qm</file>
-
     <file>templates/road_luminaire.ldt</file>
     <file>templates/projector.ldt</file>
     <file>templates/fluorescent_luminaire.ldt</file>

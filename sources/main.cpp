@@ -17,11 +17,7 @@ int main(int argc, char *argv[])
     QString language = settings.value("lang", QString(QLocale::system().name())).toString();
     qApp->processEvents();
 
-    QTranslator main_translator;
-    if (main_translator.load(":/translations/qtbase_" + language + ".qm")) {
-        app.installTranslator( &main_translator );
-    }
-
+    // qlumedit_<lang>.qm also contains Qt's qtbase translations (MERGE_QT_TRANSLATIONS).
     QTranslator translator;
     if (translator.load(":/translations/qlumedit_" + language + ".qm")) {
         app.installTranslator( &translator );

@@ -10,7 +10,7 @@
         {
             "name": "build",
             "inherits": "base",
-            "cacheVariables": { "QLUMEDIT_TESTS": "OFF", "QLUMEDIT_QMAKE_APP": "ON" }
+            "cacheVariables": { "QLUMEDIT_TESTS": "OFF", "CMAKE_BUILD_TYPE": "Release" }
         },
         {
             "name": "test",
@@ -29,6 +29,7 @@
     ],
     "buildPresets": [
         { "name": "build", "configurePreset": "build" },
+        { "name": "build-windows", "configurePreset": "build", "targets": ["deploy"] },
         { "name": "test", "configurePreset": "test" },
         { "name": "test-coverage", "configurePreset": "test-coverage", "targets": ["coverage"] },
         { "name": "test-sanitize", "configurePreset": "test-sanitize" }
@@ -43,6 +44,13 @@
             "steps": [
                 { "type": "configure", "name": "build" },
                 { "type": "build", "name": "build" }
+            ]
+        },
+        {
+            "name": "build-windows",
+            "steps": [
+                { "type": "configure", "name": "build" },
+                { "type": "build", "name": "build-windows" }
             ]
         },
         {

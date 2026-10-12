@@ -27,12 +27,11 @@ jobs:
       - name: Install Prerequisites
         run: |
           sudo apt-get update
-          sudo apt-get install libgl1-mesa-dev
+          sudo apt-get install libgl1-mesa-dev ninja-build
       - name: Try to build
-        run: |
-          cd sources
-          ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
-          make -j$(nproc)
+        env:
+          CMAKE_PREFIX_PATH: ${{github.workspace}}/${{env.QT_VERSION}}/${{env.QT_SPEC}}
+        run: cmake --workflow --preset build
   build-on-macos-latest:
     runs-on: macos-latest
     timeout-minutes: 15
@@ -48,11 +47,12 @@ jobs:
         run: |
           aqt list-qt ${{env.QT_HOST}} desktop --arch ${{env.QT_VERSION}}
           aqt install-qt ${{env.QT_HOST}} desktop ${{env.QT_VERSION}} ${{env.QT_ARCH}}
+      - name: Install Prerequisites
+        run: brew install ninja
       - name: Try to build
-        run: |
-          cd sources
-          ./../${{env.QT_VERSION}}/${{env.QT_SPEC}}/bin/qmake QLumEdit.pro
-          make -j$(sysctl -n hw.ncpu)
+        env:
+          CMAKE_PREFIX_PATH: ${{github.workspace}}/${{env.QT_VERSION}}/${{env.QT_SPEC}}
+        run: cmake --workflow --preset build
   build-on-windows-latest:
     runs-on: windows-latest
     timeout-minutes: 15
@@ -70,8 +70,8 @@ jobs:
           aqt install-qt ${{env.QT_HOST}} desktop ${{env.QT_VERSION}} ${{env.QT_ARCH}}
       - name: Try to build
         shell: cmd
+        env:
+          CMAKE_PREFIX_PATH: ${{github.workspace}}\${{env.QT_VERSION}}\${{env.QT_SPEC}}
         run: |
-          cd sources
           call "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
-          "..\${{env.QT_VERSION}}\${{env.QT_SPEC}}\bin\qmake.exe" QLumEdit.pro
-          nmake release
+          cmake --workflow --preset build
