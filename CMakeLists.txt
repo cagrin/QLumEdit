@@ -33,7 +33,6 @@ target_include_directories(qlumedit_core PUBLIC sources)
 target_link_libraries(qlumedit_core PUBLIC Qt6::Widgets)
 
 # Widgets reach MainWindow through Vars(), so the GUI is one library (everything except main.cpp).
-# eulumdatimage.cpp is not built: it does not compile.
 add_library(qlumedit_gui STATIC
     sources/configtabdialog.h sources/configtabdialog.cpp
     sources/eulumdattablewidget.h sources/eulumdattablewidget.cpp
