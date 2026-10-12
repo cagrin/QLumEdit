@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  QT_VERSION: 6.8.3
+  QT_VERSION: 6.12.0
 
 jobs:
   build-on-ubuntu-latest:
@@ -63,7 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Install aqt
-        run: pip install aqtinstall
+        run: pip install git+https://github.com/miurahr/aqtinstall@076e1659807d0b362a3ed684d54c2e9c775eb9c7
       - name: Install QT
         run: |
           aqt list-qt ${{env.QT_HOST}} desktop --arch ${{env.QT_VERSION}}
@@ -72,6 +72,6 @@ jobs:
         shell: cmd
         run: |
           cd sources
-          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          call "C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
           "..\${{env.QT_VERSION}}\${{env.QT_SPEC}}\bin\qmake.exe" QLumEdit.pro
           nmake release

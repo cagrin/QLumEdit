@@ -11,7 +11,7 @@ else
     echo "Unsupported architecture: $ARCH" >&2
     exit 1
 fi
-QT_VERSION=6.8.3
+QT_VERSION=6.12.0
 QT_OUTPUT_DIR=/opt/qt
 QT_PATH=$QT_OUTPUT_DIR/$QT_VERSION/$QT_SPEC/bin
 
