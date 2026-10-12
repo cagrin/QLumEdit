@@ -1,0 +1,72 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "/tmp/qlumedit/${presetName}"
+        },
+        {
+            "name": "build",
+            "inherits": "base",
+            "cacheVariables": { "QLUMEDIT_TESTS": "OFF", "QLUMEDIT_QMAKE_APP": "ON" }
+        },
+        {
+            "name": "test",
+            "inherits": "base"
+        },
+        {
+            "name": "test-coverage",
+            "inherits": "test",
+            "cacheVariables": { "QLUMEDIT_COVERAGE": "ON" }
+        },
+        {
+            "name": "test-sanitize",
+            "inherits": "test",
+            "cacheVariables": { "QLUMEDIT_SANITIZE": "ON" }
+        }
+    ],
+    "buildPresets": [
+        { "name": "build", "configurePreset": "build" },
+        { "name": "test", "configurePreset": "test" },
+        { "name": "test-coverage", "configurePreset": "test-coverage", "targets": ["coverage"] },
+        { "name": "test-sanitize", "configurePreset": "test-sanitize" }
+    ],
+    "testPresets": [
+        { "name": "test", "configurePreset": "test", "output": { "outputOnFailure": true } },
+        { "name": "test-sanitize", "configurePreset": "test-sanitize", "output": { "outputOnFailure": true } }
+    ],
+    "workflowPresets": [
+        {
+            "name": "build",
+            "steps": [
+                { "type": "configure", "name": "build" },
+                { "type": "build", "name": "build" }
+            ]
+        },
+        {
+            "name": "test",
+            "steps": [
+                { "type": "configure", "name": "test" },
+                { "type": "build", "name": "test" },
+                { "type": "test", "name": "test" }
+            ]
+        },
+        {
+            "name": "test-coverage",
+            "steps": [
+                { "type": "configure", "name": "test-coverage" },
+                { "type": "build", "name": "test-coverage" }
+            ]
+        },
+        {
+            "name": "test-sanitize",
+            "steps": [
+                { "type": "configure", "name": "test-sanitize" },
+                { "type": "build", "name": "test-sanitize" },
+                { "type": "test", "name": "test-sanitize" }
+            ]
+        }
+    ]
+}
