@@ -8,6 +8,18 @@ cmake --build --preset build
 macdeployqt /tmp/qlumedit/build/QLumEdit.app
 ```
 
+# How to build the Windows installer
+
+Requires NSIS 3 (`winget install NSIS.NSIS`); `makensis` is searched in `PATH` and in `Program Files (x86)/NSIS`.
+
+```bash
+cmake --workflow --preset installer-windows
+```
+
+This runs the `build-windows` steps (build + windeployqt) and then `makensis` on `tools/installer/QLumEdit-x64.nsi`.
+The version is taken from `project(QLumEdit VERSION ...)` in `CMakeLists.txt`.
+The installer is written to `/tmp/qlumedit/build/QLumEdit-<version>-windows-x64-installer.exe`.
+
 # How to build and run unit tests
 
 The application and the tests are built with CMake (Qt 6.9 or newer is required).
@@ -16,11 +28,12 @@ In the dev container CMake, Ninja and gcovr are installed by the `apt-packages` 
 Run from the repository root (presets are in `CMakePresets.json`):
 
 ```bash
-cmake --workflow --preset build          # build the application (Release)
-cmake --workflow --preset build-windows  # Windows only: build + windeployqt into /tmp/qlumedit/build/windows
-cmake --workflow --preset test           # configure, build and run tests
-cmake --workflow --preset test-coverage  # the same with code coverage (gcovr)
-cmake --workflow --preset test-sanitize  # the same with AddressSanitizer and UBSan
+cmake --workflow --preset build              # build the application (Release)
+cmake --workflow --preset build-windows      # Windows only: build + windeployqt into /tmp/qlumedit/build/windows
+cmake --workflow --preset installer-windows  # Windows only: build-windows + NSIS installer
+cmake --workflow --preset test               # configure, build and run tests
+cmake --workflow --preset test-coverage      # the same with code coverage (gcovr)
+cmake --workflow --preset test-sanitize      # the same with AddressSanitizer and UBSan
 ```
 
 Build directories are in `/tmp/qlumedit/<preset>`, because the workspace mount does not allow CMake to set file permissions.
@@ -45,4 +58,3 @@ To refresh `sources/translations/*.ts` after changing `tr()` strings:
 ```bash
 cmake --build --preset build --target update_translations
 ```
-

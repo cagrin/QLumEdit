@@ -89,6 +89,27 @@ if(WIN32)
         VERBATIM
     )
     add_dependencies(deploy QLumEdit)
+
+    find_program(MAKENSIS_EXECUTABLE makensis PATHS "C:/Program Files (x86)/NSIS" "C:/Program Files/NSIS")
+    if(MAKENSIS_EXECUTABLE)
+        file(TO_NATIVE_PATH ${DEPLOY_DIR} DEPLOY_DIR_NATIVE)
+        file(TO_NATIVE_PATH ${CMAKE_BINARY_DIR} OUTPUT_DIR_NATIVE)
+        add_custom_target(installer
+            COMMAND ${MAKENSIS_EXECUTABLE} /V2
+                    /DPRODUCT_VERSION=${PROJECT_VERSION}
+                    /DDEPLOY_DIR=${DEPLOY_DIR_NATIVE}
+                    /DOUTPUT_DIR=${OUTPUT_DIR_NATIVE}
+                    ${CMAKE_SOURCE_DIR}/tools/installer/QLumEdit-x64.nsi
+            USES_TERMINAL
+            VERBATIM
+        )
+    else()
+        add_custom_target(installer
+            COMMAND ${CMAKE_COMMAND} -E echo "makensis not found - install NSIS 3 and reconfigure"
+            COMMAND ${CMAKE_COMMAND} -E false
+        )
+    endif()
+    add_dependencies(installer deploy)
 endif()
 
 if(QLUMEDIT_TESTS)

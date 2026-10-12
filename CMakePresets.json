@@ -30,6 +30,7 @@
     "buildPresets": [
         { "name": "build", "configurePreset": "build" },
         { "name": "build-windows", "configurePreset": "build", "targets": ["deploy"] },
+        { "name": "installer-windows", "configurePreset": "build", "targets": ["installer"] },
         { "name": "test", "configurePreset": "test" },
         { "name": "test-coverage", "configurePreset": "test-coverage", "targets": ["coverage"] },
         { "name": "test-sanitize", "configurePreset": "test-sanitize" }
@@ -51,6 +52,13 @@
             "steps": [
                 { "type": "configure", "name": "build" },
                 { "type": "build", "name": "build-windows" }
+            ]
+        },
+        {
+            "name": "installer-windows",
+            "steps": [
+                { "type": "configure", "name": "build" },
+                { "type": "build", "name": "installer-windows" }
             ]
         },
         {

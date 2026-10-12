@@ -1,10 +1,15 @@
-;NSIS v3.06.1
+﻿;NSIS v3
+; Built by the CMake 'installer' target, which passes PRODUCT_VERSION, DEPLOY_DIR and OUTPUT_DIR.
 Unicode True
 !include "MUI.nsh"
 
+!ifdef PRODUCT_VERSION & DEPLOY_DIR & OUTPUT_DIR
+!else
+  !error "Define PRODUCT_VERSION, DEPLOY_DIR and OUTPUT_DIR (use: cmake --workflow --preset installer-windows)"
+!endif
+
 !define PRODUCT_NAME "QLumEdit"
-!define PRODUCT_VERSION "1.0.3"
-!define PRODUCT_PUBLISHER "Krzysztof Strugi�ski"
+!define PRODUCT_PUBLISHER "Krzysztof Strugiński"
 !define PRODUCT_WEB_SITE "http:\\sourceforge.net\projects\qlumedit\"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\QLumEdit.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -26,7 +31,7 @@ Unicode True
 !define MUI_LANGDLL_REGISTRY_VALUENAME "NSIS:Language"
 
 !insertmacro MUI_PAGE_WELCOME
-!insertmacro MUI_PAGE_LICENSE "..\..\build\x64\LICENSE.rtf"
+!insertmacro MUI_PAGE_LICENSE "..\..\LICENSE"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
@@ -43,7 +48,7 @@ Unicode True
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "${PRODUCT_NAME}-${PRODUCT_VERSION}-windows-x64-installer.exe"
+OutFile "${OUTPUT_DIR}\${PRODUCT_NAME}-${PRODUCT_VERSION}-windows-x64-installer.exe"
 InstallDir "$PROGRAMFILES64\QLumEdit"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
@@ -56,19 +61,10 @@ FunctionEnd
 Section "${PRODUCT_NAME}" SEC01
   SetOutPath "$INSTDIR"
   SetOverwrite ifnewer
-  File "..\..\build\x64\Qt6Gui.dll"
-  File "..\..\build\x64\Qt6Core.dll"
-  File "..\..\build\x64\Qt6Widgets.dll"  
-  File "..\..\build\x64\QLumEdit.exe"
+  File /r "${DEPLOY_DIR}\*.*"
   CreateDirectory "$SMPROGRAMS\QLumEdit"
   CreateShortCut "$SMPROGRAMS\QLumEdit\QLumEdit.lnk" "$INSTDIR\QLumEdit.exe"
   CreateShortCut "$DESKTOP\QLumEdit.lnk" "$INSTDIR\QLumEdit.exe"
-  File "..\..\build\x64\libgcc_s_seh-1.dll"
-  File "..\..\build\x64\libstdc++-6.dll"
-  File "..\..\build\x64\libwinpthread-1.dll" 
-  CreateDirectory "$INSTDIR\platforms"
-  SetOutPath "$INSTDIR\platforms"
-  File "..\..\build\x64\platforms\qwindows.dll"   
 SectionEnd
 
 LangString DESC_FileAssociations ${LANG_ENGLISH} "Set up associations"
@@ -122,20 +118,15 @@ FunctionEnd
 Section Uninstall
   Delete "$INSTDIR\uninst.exe"
   Delete "$INSTDIR\QLumEdit.exe"
-  Delete "$INSTDIR\Qt6Gui.dll"
-  Delete "$INSTDIR\Qt6Core.dll"
-  Delete "$INSTDIR\Qt6Widgets.dll"
-  Delete "$INSTDIR\libgcc_s_seh-1.dll"
-  Delete "$INSTDIR\libstdc++-6.dll"
-  Delete "$INSTDIR\libwinpthread-1.dll"
-  Delete "$INSTDIR\platforms\qwindows.dll"
+  Delete "$INSTDIR\*.dll"
+  RMDir /r "$INSTDIR\platforms"
+  RMDir /r "$INSTDIR\styles"
 
   ;Delete "$SMPROGRAMS\QLumEdit\Uninstall.lnk"
   Delete "$DESKTOP\QLumEdit.lnk"
   Delete "$SMPROGRAMS\QLumEdit\QLumEdit.lnk"
 
   RMDir "$SMPROGRAMS\QLumEdit"
-  RMDir "$INSTDIR\platforms"
   RMDir "$INSTDIR"
 
   ReadRegStr $R0 HKCR ".ldt" ""
