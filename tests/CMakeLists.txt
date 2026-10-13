@@ -32,6 +32,7 @@ qlumedit_add_test(tst_eulumdatwidget2 qlumedit_gui)
 qlumedit_add_test(tst_eulumdatwidget3 qlumedit_gui)
 qlumedit_add_test(tst_eulumdatwidget4 qlumedit_gui)
 qlumedit_add_test(tst_eulumdattablewidget qlumedit_gui)
+qlumedit_add_test(tst_ldtroundtrip qlumedit_gui)
 
 qlumedit_add_test(tst_screenshots qlumedit_gui)
 set_tests_properties(tst_screenshots PROPERTIES LABELS screenshots)
