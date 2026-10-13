@@ -36,7 +36,7 @@ private slots:
     void about();
     
     void exportToHTML();
-   	void exportToIesna();
+       void exportToIesna();
 
 private:
     void createActions();

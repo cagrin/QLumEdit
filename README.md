@@ -1,4 +1,4 @@
-[![Coverage Status](https://img.shields.io/coveralls/github/cagrin/QLumEdit)](https://coveralls.io/github/cagrin/QLumEdit)
+[![Coverage Status](https://coveralls.io/repos/github/cagrin/QLumEdit/badge.svg?branch=main)](https://coveralls.io/github/cagrin/QLumEdit?branch=main)
 
 # QLumEdit
 

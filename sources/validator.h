@@ -15,22 +15,22 @@ class ValidatorDialog : public QDialog
 
 public:
     ValidatorDialog(QWidget *parent = 0);
-    
+
 private slots:
-	void reject();
-	void openDirectory();
-	void stopAll();
+    void reject();
+    void openDirectory();
+    void stopAll();
 
 private:
-	QTextEdit *textEdit;
-	QPushButton *openDir;
-	QPushButton *stopButton;	
-	QLabel *dirName;
+    QTextEdit *textEdit;
+    QPushButton *openDir;
+    QPushButton *stopButton;
+    QLabel *dirName;
     QDialogButtonBox *buttonBox;
-    
-	QStringList getAllFilesFromPath(const QString &, const QStringList &);
-	QStringList getAllSubdirs(const QString &);  	
-	bool stop;
+
+    QStringList getAllFilesFromPath(const QString &, const QStringList &);
+    QStringList getAllSubdirs(const QString &);
+    bool stop;
 };
 
 #endif // __VALIDATOR_H__

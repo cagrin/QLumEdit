@@ -6,122 +6,122 @@
 TabDialog::TabDialog(QWidget *parent) : QDialog(parent)
 {
     setWindowTitle(tr("Options"));
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);   
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    
 
-	QLabel *label1 = new QLabel(tr("Language selection"));
-	QLabel *label2 = new QLabel("(" + tr("requires application restart") + ")");
-	comboBox1 = new QComboBox; 
-	comboBox1->setMinimumContentsLength(4);
-	comboBox1->addItem("de");
-	comboBox1->addItem("en");
+
+    QLabel *label1 = new QLabel(tr("Language selection"));
+    QLabel *label2 = new QLabel("(" + tr("requires application restart") + ")");
+    comboBox1 = new QComboBox;
+    comboBox1->setMinimumContentsLength(4);
+    comboBox1->addItem("de");
+    comboBox1->addItem("en");
     comboBox1->addItem("pl");
-    
+
     QSettings settings("Cagrinlabs", "QLumEdit");
-    QString language = settings.value("lang", QString("")).toString();    
-    comboBox1->setCurrentIndex(comboBox1->findText(language));    
-     
-    QGroupBox *transBox = new QGroupBox(tr("User interface")); 
-	QHBoxLayout *HLayout1 = new QHBoxLayout; 
-	HLayout1->addWidget(label1);          			
-	HLayout1->addWidget(comboBox1);	
-    HLayout1->addStretch(1);	
+    QString language = settings.value("lang", QString("")).toString();
+    comboBox1->setCurrentIndex(comboBox1->findText(language));
+
+    QGroupBox *transBox = new QGroupBox(tr("User interface"));
+    QHBoxLayout *HLayout1 = new QHBoxLayout;
+    HLayout1->addWidget(label1);
+    HLayout1->addWidget(comboBox1);
+    HLayout1->addStretch(1);
     QVBoxLayout *VLayout1 = new QVBoxLayout;
     VLayout1->addLayout(HLayout1);
     VLayout1->addWidget(label2);
-    VLayout1->addStretch(1);    
-    transBox->setLayout(VLayout1); 
+    VLayout1->addStretch(1);
+    transBox->setLayout(VLayout1);
 
     radio1 = new QRadioButton(tr("Eulumdat/1 restricted (78/24 chars)"));
     radio2 = new QRadioButton(tr("limit to 255 chars"));
 
     QString restricted = settings.value("restricted", QString("false")).toString();
     if(restricted == "true") {
-	    radio1->setChecked(true);    	
-   	}
-   	else {
-	   	radio2->setChecked(true);
-  	}
+        radio1->setChecked(true);
+       }
+       else {
+           radio2->setChecked(true);
+      }
 
     QGroupBox *groupBox = new QGroupBox(tr("Text line length"));
     QVBoxLayout *vbox = new QVBoxLayout;
     vbox->addWidget(radio1);
     vbox->addWidget(radio2);
     vbox->addStretch(1);
-    groupBox->setLayout(vbox); 
-    
-   
-    checkBox = new QCheckBox(tr("Fill curves of luminous intesity"));    
+    groupBox->setLayout(vbox);
+
+
+    checkBox = new QCheckBox(tr("Fill curves of luminous intesity"));
     QString filldiagram = settings.value("filldiagram", QString("true")).toString();
     if(filldiagram == "true") {
-	    checkBox->setChecked(true);    	
-   	}
-   	else {
-	   	checkBox->setChecked(false);
-  	}    
-  	
-    legendBox = new QCheckBox(tr("Draw legend"));    
+        checkBox->setChecked(true);
+       }
+       else {
+           checkBox->setChecked(false);
+      }
+
+    legendBox = new QCheckBox(tr("Draw legend"));
     QString drawlegend = settings.value("drawlegend", QString("true")).toString();
     if(drawlegend == "true") {
-	    legendBox->setChecked(true);    	
-   	}
-   	else {
-	   	legendBox->setChecked(false);
-  	}     	
-  	
-  	
+        legendBox->setChecked(true);
+       }
+       else {
+           legendBox->setChecked(false);
+      }
+
+
     QGroupBox *drawBox = new QGroupBox(tr("Diagram drawing"));
     QVBoxLayout *vbox2 = new QVBoxLayout;
     vbox2->addWidget(checkBox);
     vbox2->addWidget(legendBox);
     vbox2->addStretch(1);
-    drawBox->setLayout(vbox2);   	
-  	
-  	
+    drawBox->setLayout(vbox2);
 
-	QVBoxLayout *mainLayout = new QVBoxLayout;
-	mainLayout->addWidget(transBox);	
-	mainLayout->addWidget(groupBox);		
-	mainLayout->addWidget(drawBox);	
-    mainLayout->addWidget(buttonBox);		       
+
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(transBox);
+    mainLayout->addWidget(groupBox);
+    mainLayout->addWidget(drawBox);
+    mainLayout->addWidget(buttonBox);
     setLayout(mainLayout);
 }
 
 void TabDialog::accept()
 {
-	QSettings settings("Cagrinlabs", "QLumEdit");
-	settings.setValue("lang", comboBox1->currentText());
-	
-	if(radio1->isChecked()) {
-		settings.setValue("restricted", "true");			
-	}
-	else {
-		settings.setValue("restricted", "false");					
-	}
-	
-	if(checkBox->isChecked()) {
-		settings.setValue("filldiagram", "true");	
-    	Vars().fill = true;				
-	}
-	else {
-		settings.setValue("filldiagram", "false");	
-		Vars().fill = false;				
-	}	
-	
-	if(legendBox->isChecked()) {
-		settings.setValue("drawlegend", "true");	
-    	Vars().legend = true;				
-	}
-	else {
-		settings.setValue("drawlegend", "false");	
-		Vars().legend = false;				
-	}		
-   	
-	
-	Vars().mainWindow->setValidatorOptions();
-	
+    QSettings settings("Cagrinlabs", "QLumEdit");
+    settings.setValue("lang", comboBox1->currentText());
+
+    if(radio1->isChecked()) {
+        settings.setValue("restricted", "true");
+    }
+    else {
+        settings.setValue("restricted", "false");
+    }
+
+    if(checkBox->isChecked()) {
+        settings.setValue("filldiagram", "true");
+        Vars().fill = true;
+    }
+    else {
+        settings.setValue("filldiagram", "false");
+        Vars().fill = false;
+    }
+
+    if(legendBox->isChecked()) {
+        settings.setValue("drawlegend", "true");
+        Vars().legend = true;
+    }
+    else {
+        settings.setValue("drawlegend", "false");
+        Vars().legend = false;
+    }
+
+
+    Vars().mainWindow->setValidatorOptions();
+
     QDialog::accept();
 
 }

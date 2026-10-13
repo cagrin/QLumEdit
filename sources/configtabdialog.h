@@ -15,14 +15,14 @@ class TabDialog : public QDialog
 
 public:
     TabDialog(QWidget *parent = 0);
-    
+
 private slots:
-	void accept();
+    void accept();
 
 private:
-    QDialogButtonBox *buttonBox; 
+    QDialogButtonBox *buttonBox;
     QRadioButton *radio1;
-    QRadioButton *radio2; 
+    QRadioButton *radio2;
     QComboBox * comboBox1;
     QCheckBox * checkBox;
     QCheckBox * legendBox;

@@ -16,26 +16,26 @@ class EulumdatWidget4 : public QWidget
 
 public:
     EulumdatWidget4(Eulumdat &ldt, QWidget *parent = 0);
-    
-   	Eulumdat * pldt;    
-    
-	QDoubleSpinBox *DoubleSpinBox13;
-	QDoubleSpinBox *DoubleSpinBox14;
-	QDoubleSpinBox *DoubleSpinBox15;
-	QDoubleSpinBox *DoubleSpinBox16;
-	QDoubleSpinBox *DoubleSpinBox17;
-	QDoubleSpinBox *DoubleSpinBox18;
-	QDoubleSpinBox *DoubleSpinBox19;
-	QDoubleSpinBox *DoubleSpinBox20;
-	QDoubleSpinBox *DoubleSpinBox21;
-	QDoubleSpinBox *DoubleSpinBox22;
-	
-	QPushButton *computePushButton;
-	
+
+       Eulumdat * pldt;
+
+    QDoubleSpinBox *DoubleSpinBox13;
+    QDoubleSpinBox *DoubleSpinBox14;
+    QDoubleSpinBox *DoubleSpinBox15;
+    QDoubleSpinBox *DoubleSpinBox16;
+    QDoubleSpinBox *DoubleSpinBox17;
+    QDoubleSpinBox *DoubleSpinBox18;
+    QDoubleSpinBox *DoubleSpinBox19;
+    QDoubleSpinBox *DoubleSpinBox20;
+    QDoubleSpinBox *DoubleSpinBox21;
+    QDoubleSpinBox *DoubleSpinBox22;
+
+    QPushButton *computePushButton;
+
 public slots:
-	void compute();
-												
-								
+    void compute();
+
+
 };
 
 #endif // __EULUMDATWIDGET4_H__

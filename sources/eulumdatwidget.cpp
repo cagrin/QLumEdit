@@ -5,11 +5,11 @@
 
 EulumdatWidget::EulumdatWidget(Eulumdat &ldt, QWidget *parent) : QWidget(parent)
 {   
-	pldt = &ldt;
+    pldt = &ldt;
 
     QLabel *Label1 = new QLabel(tr("Identification"));
 
-	Label2 = new QLabel;
+    Label2 = new QLabel;
     Label3 = new QLabel;
     Label4 = new QLabel;
     Label5 = new QLabel;
@@ -22,126 +22,126 @@ EulumdatWidget::EulumdatWidget(Eulumdat &ldt, QWidget *parent) : QWidget(parent)
     QLabel *Label11 = new QLabel(tr("File name"));
     QLabel *Label12 = new QLabel(tr("Date/user"));               
     
-	LineEdit1 = new QLineEdit(ldt.sIden);  
-	
-	ComboBox2 = new QComboBox;   	
+    LineEdit1 = new QLineEdit(ldt.sIden);  
+    
+    ComboBox2 = new QComboBox;       
     Label2->setText(tr("Type indicator"));
     ComboBox2->addItem(tr("with point source") + "  ");
     ComboBox2->addItem(tr("linear luminaire") + "  ");    
-    if(ldt.iItyp != 2) ComboBox2->setCurrentIndex(0);    	
-   	else ComboBox2->setCurrentIndex(1);   		
-	
-	LineEdit8 = new QLineEdit(ldt.sMrn);
-	LineEdit9 = new QLineEdit(ldt.sLnam);
-	LineEdit10 = new QLineEdit(ldt.sLnum);
-	LineEdit11 = new QLineEdit(ldt.sFnam);
-	LineEdit12 = new QLineEdit(ldt.sDate);
-	
-	LineEdit1->setMaxLength(Vars().line);
-	LineEdit8->setMaxLength(Vars().line);
-	LineEdit9->setMaxLength(Vars().line);
-	LineEdit10->setMaxLength(Vars().line);
-	LineEdit11->setMaxLength(Vars().lineFNam);
-	LineEdit12->setMaxLength(Vars().line);					
+    if(ldt.iItyp != 2) ComboBox2->setCurrentIndex(0);        
+       else ComboBox2->setCurrentIndex(1);           
     
-	QHBoxLayout *HLayout1 = new QHBoxLayout; 
-	HLayout1->addWidget(Label1);          			
-	HLayout1->addWidget(LineEdit1);	
-	QHBoxLayout *HLayout2 = new QHBoxLayout; 
-	HLayout2->addWidget(Label2);          			
-	HLayout2->addWidget(ComboBox2);    	
-    HLayout2->addStretch(1);		
-	QHBoxLayout *HLayout3 = new QHBoxLayout; 
-	HLayout3->addWidget(Label3);          				
-	QHBoxLayout *HLayout4 = new QHBoxLayout; 
-	HLayout4->addWidget(Label4);
-	QHBoxLayout *HLayout5 = new QHBoxLayout; 
-	HLayout5->addWidget(Label5);
-	QHBoxLayout *HLayout6 = new QHBoxLayout; 
-	HLayout6->addWidget(Label6);
-	QHBoxLayout *HLayout7 = new QHBoxLayout; 
-	HLayout7->addWidget(Label7);
-	QHBoxLayout *HLayout8 = new QHBoxLayout; 
-	HLayout8->addWidget(Label8);
-	HLayout8->addWidget(LineEdit8);
-	QHBoxLayout *HLayout9 = new QHBoxLayout; 
-	HLayout9->addWidget(Label9);
-	HLayout9->addWidget(LineEdit9);
-	QHBoxLayout *HLayout10 = new QHBoxLayout; 
-	HLayout10->addWidget(Label10);
-	HLayout10->addWidget(LineEdit10);
-	QHBoxLayout *HLayout11 = new QHBoxLayout; 
-	HLayout11->addWidget(Label11);
-	HLayout11->addWidget(LineEdit11);
-	QHBoxLayout *HLayout12 = new QHBoxLayout; 
-	HLayout12->addWidget(Label12);
-	HLayout12->addWidget(LineEdit12);
-	
+    LineEdit8 = new QLineEdit(ldt.sMrn);
+    LineEdit9 = new QLineEdit(ldt.sLnam);
+    LineEdit10 = new QLineEdit(ldt.sLnum);
+    LineEdit11 = new QLineEdit(ldt.sFnam);
+    LineEdit12 = new QLineEdit(ldt.sDate);
+    
+    LineEdit1->setMaxLength(Vars().line);
+    LineEdit8->setMaxLength(Vars().line);
+    LineEdit9->setMaxLength(Vars().line);
+    LineEdit10->setMaxLength(Vars().line);
+    LineEdit11->setMaxLength(Vars().lineFNam);
+    LineEdit12->setMaxLength(Vars().line);                    
+    
+    QHBoxLayout *HLayout1 = new QHBoxLayout; 
+    HLayout1->addWidget(Label1);                      
+    HLayout1->addWidget(LineEdit1);    
+    QHBoxLayout *HLayout2 = new QHBoxLayout; 
+    HLayout2->addWidget(Label2);                      
+    HLayout2->addWidget(ComboBox2);        
+    HLayout2->addStretch(1);        
+    QHBoxLayout *HLayout3 = new QHBoxLayout; 
+    HLayout3->addWidget(Label3);                          
+    QHBoxLayout *HLayout4 = new QHBoxLayout; 
+    HLayout4->addWidget(Label4);
+    QHBoxLayout *HLayout5 = new QHBoxLayout; 
+    HLayout5->addWidget(Label5);
+    QHBoxLayout *HLayout6 = new QHBoxLayout; 
+    HLayout6->addWidget(Label6);
+    QHBoxLayout *HLayout7 = new QHBoxLayout; 
+    HLayout7->addWidget(Label7);
+    QHBoxLayout *HLayout8 = new QHBoxLayout; 
+    HLayout8->addWidget(Label8);
+    HLayout8->addWidget(LineEdit8);
+    QHBoxLayout *HLayout9 = new QHBoxLayout; 
+    HLayout9->addWidget(Label9);
+    HLayout9->addWidget(LineEdit9);
+    QHBoxLayout *HLayout10 = new QHBoxLayout; 
+    HLayout10->addWidget(Label10);
+    HLayout10->addWidget(LineEdit10);
+    QHBoxLayout *HLayout11 = new QHBoxLayout; 
+    HLayout11->addWidget(Label11);
+    HLayout11->addWidget(LineEdit11);
+    QHBoxLayout *HLayout12 = new QHBoxLayout; 
+    HLayout12->addWidget(Label12);
+    HLayout12->addWidget(LineEdit12);
+    
     QVBoxLayout *mainLayout = new QVBoxLayout;
-	mainLayout->addLayout(HLayout1);
-	mainLayout->addLayout(HLayout2);
-	mainLayout->addLayout(HLayout3);
-	mainLayout->addLayout(HLayout4);
-	mainLayout->addLayout(HLayout5);
-	mainLayout->addLayout(HLayout6);
-	mainLayout->addLayout(HLayout7);
-	mainLayout->addLayout(HLayout8);
-	mainLayout->addLayout(HLayout9);
-	mainLayout->addLayout(HLayout10);
-	mainLayout->addLayout(HLayout11);
-	mainLayout->addLayout(HLayout12);
-    mainLayout->addStretch(1);	       
+    mainLayout->addLayout(HLayout1);
+    mainLayout->addLayout(HLayout2);
+    mainLayout->addLayout(HLayout3);
+    mainLayout->addLayout(HLayout4);
+    mainLayout->addLayout(HLayout5);
+    mainLayout->addLayout(HLayout6);
+    mainLayout->addLayout(HLayout7);
+    mainLayout->addLayout(HLayout8);
+    mainLayout->addLayout(HLayout9);
+    mainLayout->addLayout(HLayout10);
+    mainLayout->addLayout(HLayout11);
+    mainLayout->addLayout(HLayout12);
+    mainLayout->addStretch(1);           
     setLayout(mainLayout);
-	
-	setValues();
+    
+    setValues();
 }
 
 void EulumdatWidget::setValues() {
-	
-	QString begin = " = ", end = "";
-	QLocale locale;
-	QString text;
-	/*
-	QStringList indicator;
-	indicator << tr("point source with symmetry about the vertical axis")
-    	<< tr("linear luminaire")
-   		<< tr("point source with any other symmetry");	
-    Label2->setText(tr("Type indicator") + begin + indicator[pldt->iItyp-1] + end);	
+    
+    QString begin = " = ", end = "";
+    QLocale locale;
+    QString text;
+    /*
+    QStringList indicator;
+    indicator << tr("point source with symmetry about the vertical axis")
+        << tr("linear luminaire")
+           << tr("point source with any other symmetry");    
+    Label2->setText(tr("Type indicator") + begin + indicator[pldt->iItyp-1] + end);    
     */
 
-	
-	QStringList symmetry;
-	symmetry << tr("no symmetry")
-		<< tr("symmetry about the vertical axis")
-		<< tr("symmetry to plane C0-C180")
-		<< tr("symmetry to plane C90-C270")
-		<< tr("symmetry to plane C0-C180 and to plane C90-C270");	
-		
+    
+    QStringList symmetry;
+    symmetry << tr("no symmetry")
+        << tr("symmetry about the vertical axis")
+        << tr("symmetry to plane C0-C180")
+        << tr("symmetry to plane C90-C270")
+        << tr("symmetry to plane C0-C180 and to plane C90-C270");    
+        
     Label3->setText(tr("Symmetry indicator") + begin + symmetry[pldt->iIsym] + end);
     
     Label4->setText(tr("Number of C-planes")
-    	+ begin + locale.toString(pldt->iNc) + end);
+        + begin + locale.toString(pldt->iNc) + end);
 
-	text = tr("Distance between C-planes") + begin;
-	if(pldt->dDc != 0.0) {
-    	text += locale.toString(pldt->dDc) + QString("%1").arg((char)176) + end;
-	}
-	else {
-    	text += tr("non-equidistantly") + end;
-	}
+    text = tr("Distance between C-planes") + begin;
+    if(pldt->dDc != 0.0) {
+        text += locale.toString(pldt->dDc) + QString("%1").arg((char)176) + end;
+    }
+    else {
+        text += tr("non-equidistantly") + end;
+    }
     Label5->setText(text);
-    	
+        
     Label6->setText(tr("Number of luminous intensities in each C-plane")
-    	+ begin + locale.toString(pldt->iNg) + end);
-    	
-	text = tr("Distance between luminous intensities per C-plane") + begin;
-	if(pldt->dDg != 0.0) {
-    	text += locale.toString(pldt->dDg) + QString("%1").arg((char)176) + end;
-	}
-	else {
-    	text += tr("non-equidistantly") + end;
-	}
-    Label7->setText(text);    	
+        + begin + locale.toString(pldt->iNg) + end);
+        
+    text = tr("Distance between luminous intensities per C-plane") + begin;
+    if(pldt->dDg != 0.0) {
+        text += locale.toString(pldt->dDg) + QString("%1").arg((char)176) + end;
+    }
+    else {
+        text += tr("non-equidistantly") + end;
+    }
+    Label7->setText(text);        
     
 }
 

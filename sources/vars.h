@@ -6,13 +6,13 @@
 class Singleton {
 public:
 
-	MainWindow * mainWindow;
-	
-	int line, lineFNam, lineTL, lineCA, lineCRG;
-	
-	bool fill, legend;
-	
-	QString newFile;
+    MainWindow * mainWindow;
+
+    int line, lineFNam, lineTL, lineCA, lineCRG;
+
+    bool fill, legend;
+
+    QString newFile;
 
 private:
     Singleton();

@@ -13,13 +13,13 @@ class RenderWidget: public QWidget
 
 public:
     RenderWidget(Eulumdat &ldt, QWidget *parent = 0);
-    
+
     void setVectors();
-	void saveImage(QString, int);    
-    
+    void saveImage(QString, int);
+
     QVector<QPointF> vectorC0C180, vectorC90C270;
     double max;
-	Eulumdat * pldt;    
+    Eulumdat * pldt;
 
 protected:
     void paintEvent(QPaintEvent *event);

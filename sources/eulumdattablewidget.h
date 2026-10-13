@@ -16,19 +16,19 @@ class EulumdatTableWidget : public QWidget
 public:
     EulumdatTableWidget(Eulumdat &ldt, QWidget *parent = 0);
     void setTable();
-    
+
     QTableWidget *tableWidget;
- 							
-	QPushButton *importPushButton;
-	QPushButton *exportPushButton;	
-	
-	Eulumdat * pldt;
+
+    QPushButton *importPushButton;
+    QPushButton *exportPushButton;
+
+    Eulumdat * pldt;
 
 public slots:
-	void importFromClipboard();
-	void exportToClipboard();		
+    void importFromClipboard();
+    void exportToClipboard();
 private slots:
-	void tryToImportFromClipboard();	
+    void tryToImportFromClipboard();
 };
 
 #endif // __EULUMDATTABLEWIDGET_H__

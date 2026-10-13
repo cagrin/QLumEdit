@@ -17,26 +17,26 @@ class EulumdatWidget : public QWidget
     Q_OBJECT
 
 public:
-	EulumdatWidget(Eulumdat &ldt, QWidget *parent = 0);
+    EulumdatWidget(Eulumdat &ldt, QWidget *parent = 0);
     
-	QLineEdit *LineEdit1;
-	QComboBox *ComboBox2;	
-	QLineEdit *LineEdit8;
-	QLineEdit *LineEdit9;
-	QLineEdit *LineEdit10;
-	QLineEdit *LineEdit11;
-	QLineEdit *LineEdit12;		
-	
-	Eulumdat * pldt;
-	
-	QLabel *Label2;
-	QLabel *Label3;						
-	QLabel *Label4;
-	QLabel *Label5;
-	QLabel *Label6;
-	QLabel *Label7;
-	
-	void setValues();
+    QLineEdit *LineEdit1;
+    QComboBox *ComboBox2;    
+    QLineEdit *LineEdit8;
+    QLineEdit *LineEdit9;
+    QLineEdit *LineEdit10;
+    QLineEdit *LineEdit11;
+    QLineEdit *LineEdit12;        
+    
+    Eulumdat * pldt;
+    
+    QLabel *Label2;
+    QLabel *Label3;                        
+    QLabel *Label4;
+    QLabel *Label5;
+    QLabel *Label6;
+    QLabel *Label7;
+    
+    void setValues();
 };
 
 #endif // __EULUMDATWIDGET_H__

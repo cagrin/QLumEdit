@@ -12,27 +12,27 @@ class NewDialog : public QDialog
 
 public:
     NewDialog(QWidget *parent = 0);
-    
+
 private slots:
-	void setA();
-	void setB();
-	void setC();
-	void setD();	
-	
-	void setTemplate();		
+    void setA();
+    void setB();
+    void setC();
+    void setD();
+
+    void setTemplate();
 
 private:
 
-	QPushButton *pushButtonA;
-	QPushButton *pushButtonB;
-	QPushButton *pushButtonC;
-	QPushButton *pushButtonD;			
-	
-	QPushButton *pushTemplate;
-	
-	QComboBox *ComboBox1;
-	QComboBox *ComboBox2;
-	QComboBox *ComboBox3;
+    QPushButton *pushButtonA;
+    QPushButton *pushButtonB;
+    QPushButton *pushButtonC;
+    QPushButton *pushButtonD;
+
+    QPushButton *pushTemplate;
+
+    QComboBox *ComboBox1;
+    QComboBox *ComboBox2;
+    QComboBox *ComboBox3;
 
 };
 

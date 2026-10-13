@@ -19,14 +19,14 @@ class MainTabWidget : public QWidget
 
 public:
     MainTabWidget(Eulumdat &ldt, QWidget *parent = 0);
-    
+
     QTabWidget * tabWidget;
-	EulumdatWidget * general;
-	EulumdatWidget2 * luminaire;
-	EulumdatWidget3 * lamps;
-	EulumdatWidget4 * UFtable;
-	EulumdatTableWidget * table;
-	RenderWidget * render;	
+    EulumdatWidget * general;
+    EulumdatWidget2 * luminaire;
+    EulumdatWidget3 * lamps;
+    EulumdatWidget4 * UFtable;
+    EulumdatTableWidget * table;
+    RenderWidget * render;
 };
 
 #endif // __MAINTABWIDGET_H__

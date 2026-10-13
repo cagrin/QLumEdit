@@ -15,7 +15,7 @@
 
 MainWindow::MainWindow()
 {
-	Vars().mainWindow = this;
+    Vars().mainWindow = this;
 
     mods = false;
     setMinimumWidth(640);
@@ -27,7 +27,7 @@ MainWindow::MainWindow()
     createStatusBar();
 
     readSettings();
-	setValidatorOptions();
+    setValidatorOptions();
     setCurrentFile("");
 }
 
@@ -42,17 +42,17 @@ void MainWindow::about()
    QMessageBox::about(this, tr("About QLumEdit"), "<b><font size=\"+4\">QLumEdit 1.0.3</font></b><br><br>"+
             tr("An ultimate open-source Eulumdat file editor.")+"<br><br>"
                 "Copyright (C) 2007-2021 Krzysztof Strugi&#324;ski "
-            	"<a href=\"mailto:cagrin@gmail.com\">cagrin@gmail.com</a>" "<br><br>"
-	            "<a href=\"http://sourceforge.net/projects/qlumedit/\">http://sourceforge.net/projects/qlumedit/</a>" "<br><br>"
-            	+ tr("You may use, distribute and copy the QLumEdit under "
- 				"the terms of GPL version 2.")
- 				+ "<br><br>"
- 				+ "<img src=\":images/lumen.png\" />&nbsp;&nbsp;"
- 				+ tr("This version of QLumEdit is a part of master thesis "
- 				"and it was made under supervision of Poznan University of Technology") + "<br>"
- 				+ tr("Institute of Electrical Engineering and Electronics") + "<br>"
- 				+ tr("Laboratory of Lighting Engineering and Electrothermics")
- 				);
+                "<a href=\"mailto:cagrin@gmail.com\">cagrin@gmail.com</a>" "<br><br>"
+                "<a href=\"http://sourceforge.net/projects/qlumedit/\">http://sourceforge.net/projects/qlumedit/</a>" "<br><br>"
+                + tr("You may use, distribute and copy the QLumEdit under "
+                 "the terms of GPL version 2.")
+                 + "<br><br>"
+                 + "<img src=\":images/lumen.png\" />&nbsp;&nbsp;"
+                 + tr("This version of QLumEdit is a part of master thesis "
+                 "and it was made under supervision of Poznan University of Technology") + "<br>"
+                 + tr("Institute of Electrical Engineering and Electronics") + "<br>"
+                 + tr("Laboratory of Lighting Engineering and Electrothermics")
+                 );
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -70,44 +70,44 @@ void MainWindow::newFile()
     maybeSave();
 
     saveAct->setEnabled(false);
-	saveAsAct->setEnabled(false);
+    saveAsAct->setEnabled(false);
     exportSubMenu->setEnabled(false);
-	// Synchronously, because the editor widgets refer to the model that is replaced below.
-	delete takeCentralWidget();
-	setCentralWidget(new QWidget);
+    // Synchronously, because the editor widgets refer to the model that is replaced below.
+    delete takeCentralWidget();
+    setCentralWidget(new QWidget);
 
 
-	NewDialog *newDialog;
-	newDialog = new NewDialog(this);
-	newDialog->exec();
+    NewDialog *newDialog;
+    newDialog = new NewDialog(this);
+    newDialog->exec();
 
-	if(Vars().newFile != "") {
-		ldt = std::make_unique<Eulumdat>();
-		ldt->loadFile(Vars().newFile);
+    if(Vars().newFile != "") {
+        ldt = std::make_unique<Eulumdat>();
+        ldt->loadFile(Vars().newFile);
 
-		saveAsAct->setEnabled(true);
-		exportSubMenu->setEnabled(true);
+        saveAsAct->setEnabled(true);
+        exportSubMenu->setEnabled(true);
 
-		central = new MainTabWidget(*ldt, this);
-	    setCentralWidget(central);
-		setMaybeSaveTriggers();
-	    setCurrentFile();
-	}
+        central = new MainTabWidget(*ldt, this);
+        setCentralWidget(central);
+        setMaybeSaveTriggers();
+        setCurrentFile();
+    }
 }
 
 void MainWindow::open()
 {
     if (maybeSave()) {
 
-	    QSettings settings("Cagrinlabs", "QLumEdit");
-	    QFileInfo info(settings.value("loaddir", QString()).toString());
+        QSettings settings("Cagrinlabs", "QLumEdit");
+        QFileInfo info(settings.value("loaddir", QString()).toString());
 
-		QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), info.path(), tr("Eulumdat file (*.ldt)"));
+        QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), info.path(), tr("Eulumdat file (*.ldt)"));
 
         if(!fileName.isEmpty()) {
             loadFile(fileName);
-   			settings.setValue("loaddir", fileName);
-       	}
+               settings.setValue("loaddir", fileName);
+           }
 
     }
 }
@@ -126,13 +126,13 @@ bool MainWindow::saveAs()
     QSettings settings("Cagrinlabs", "QLumEdit");
     QFileInfo info(settings.value("savedir", QString()).toString());
 
-	QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), info.path()+"/"+QFileInfo(curFile).fileName(), tr("Eulumdat file (*.ldt)"));
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), info.path()+"/"+QFileInfo(curFile).fileName(), tr("Eulumdat file (*.ldt)"));
 
     if (fileName.isEmpty()) {
         return false;
     }
 
-	settings.setValue("savedir", fileName);
+    settings.setValue("savedir", fileName);
 
     return saveFile(fileName);
 }
@@ -140,8 +140,8 @@ bool MainWindow::saveAs()
 void MainWindow::documentWasModified()
 {
     mods = true;
-   	saveAct->setEnabled(true);
-   	saveAsAct->setEnabled(true);
+       saveAct->setEnabled(true);
+       saveAsAct->setEnabled(true);
 }
 
 void MainWindow::createActions()
@@ -218,10 +218,10 @@ void MainWindow::createMenus()
 
     menuBar()->addSeparator();
 
-	toolsMenu = menuBar()->addMenu(tr("&Tools"));
-	toolsMenu->addAction(validatorAct);
-	toolsMenu->addSeparator();
-	toolsMenu->addAction(optionsAct);
+    toolsMenu = menuBar()->addMenu(tr("&Tools"));
+    toolsMenu->addAction(validatorAct);
+    toolsMenu->addSeparator();
+    toolsMenu->addAction(optionsAct);
 
     menuBar()->addSeparator();
 
@@ -252,9 +252,9 @@ void MainWindow::readSettings()
 {
     QSettings settings("Cagrinlabs", "QLumEdit");
     QPoint pos = settings.value("position", QPoint(200, 200)).toPoint();
-	resize(QSize(400, 400));
+    resize(QSize(400, 400));
     move(pos);
-	setValidatorOptions();
+    setValidatorOptions();
 }
 
 void MainWindow::writeSettings()
@@ -265,7 +265,7 @@ void MainWindow::writeSettings()
 
 bool MainWindow::maybeSave()
 {
-	if(mods == true) {
+    if(mods == true) {
         QMessageBox::StandardButton ret;
         ret = QMessageBox::warning(this, tr("QLumEdit"),
                      tr("The file has been modified.\n"
@@ -284,50 +284,50 @@ void MainWindow::loadFile(const QString &fileName)
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
         QMessageBox::warning(this, tr("QLumEdit"), tr("Cannot read file")
-        	+ QString(" %1:\n%2.").arg(fileName).arg(file.errorString()));
+            + QString(" %1:\n%2.").arg(fileName).arg(file.errorString()));
         return;
 
     }
 
     saveAct->setEnabled(false);
-	saveAsAct->setEnabled(false);
-	exportSubMenu->setEnabled(false);
-	// Synchronously, because the editor widgets refer to the model that is replaced below.
-	delete takeCentralWidget();
-	setCentralWidget(new QWidget);
+    saveAsAct->setEnabled(false);
+    exportSubMenu->setEnabled(false);
+    // Synchronously, because the editor widgets refer to the model that is replaced below.
+    delete takeCentralWidget();
+    setCentralWidget(new QWidget);
 
-	ldt = std::make_unique<Eulumdat>();
-	try {
-		QStringList warnings = ldt->loadFile(fileName);
-		if(!warnings.isEmpty()) {
-			QString warn = QString("<b>%1 ").arg(warnings.size()) + tr("warnings") + ":</b><br><br>";
+    ldt = std::make_unique<Eulumdat>();
+    try {
+        QStringList warnings = ldt->loadFile(fileName);
+        if(!warnings.isEmpty()) {
+            QString warn = QString("<b>%1 ").arg(warnings.size()) + tr("warnings") + ":</b><br><br>";
 
-			for(int i=0; i<warnings.size(); i++) {
-				warn += warnings[i];
-				warn += "<br>";
-			}
+            for(int i=0; i<warnings.size(); i++) {
+                warn += warnings[i];
+                warn += "<br>";
+            }
 
-			warn += "<br><b>" + tr("Auto corrected") + ".</b>";
+            warn += "<br><b>" + tr("Auto corrected") + ".</b>";
 
-			QMessageBox::warning(this, tr("Loading file"), warn);
-		}
-	}
-	catch (QString error) {
-		QMessageBox::critical(this, tr("Cannot load file"), error);
-		return;
-	}
-	catch(...) {
-		QMessageBox::critical(this, tr("Cannot load file"), tr("Unknown error!"));
-		return;
-	}
+            QMessageBox::warning(this, tr("Loading file"), warn);
+        }
+    }
+    catch (QString error) {
+        QMessageBox::critical(this, tr("Cannot load file"), error);
+        return;
+    }
+    catch(...) {
+        QMessageBox::critical(this, tr("Cannot load file"), tr("Unknown error!"));
+        return;
+    }
 
-	saveAsAct->setEnabled(true);
-	exportSubMenu->setEnabled(true);
+    saveAsAct->setEnabled(true);
+    exportSubMenu->setEnabled(true);
 
-	central = new MainTabWidget(*ldt, this);
+    central = new MainTabWidget(*ldt, this);
     setCentralWidget(central);
 
-	setMaybeSaveTriggers();
+    setMaybeSaveTriggers();
 
     setCurrentFile(fileName);
     statusBar()->showMessage(tr("File loaded"), 5000);
@@ -338,14 +338,14 @@ bool MainWindow::saveFile(const QString &fileName)
     QFile file(fileName);
     if (!file.open(QFile::WriteOnly | QFile::Text)) {
         QMessageBox::warning(this, tr("QLumEdit"), tr("Cannot write file")
-        	+ QString(" %1:\n%2.").arg(fileName).arg(file.errorString()));
+            + QString(" %1:\n%2.").arg(fileName).arg(file.errorString()));
         return false;
     }
 
 
-	saveFromWidget();
+    saveFromWidget();
 
-	ldt->saveFile(fileName);
+    ldt->saveFile(fileName);
 
     setCurrentFile(fileName);
     statusBar()->showMessage(tr("File saved"), 5000);
@@ -355,22 +355,22 @@ bool MainWindow::saveFile(const QString &fileName)
 void MainWindow::setCurrentFile(const QString &fileName)
 {
     curFile = fileName;
-	mods = false;
+    mods = false;
     setWindowModified(false);
 
     QString shownName;
     if (curFile.isNull()) {
-		curFile = shownName = tr("untitled.ldt");
-	    setWindowTitle(QString("%1[*] - %2").arg(shownName).arg("QLumEdit"));
-   	}
+        curFile = shownName = tr("untitled.ldt");
+        setWindowTitle(QString("%1[*] - %2").arg(shownName).arg("QLumEdit"));
+       }
     else if (curFile.isEmpty()) {
-		curFile = shownName = tr("untitled.ldt");
-		setWindowTitle("QLumEdit");
-   	}
-   	else {
-		shownName = strippedName(curFile);
-	    setWindowTitle(QString("%1[*] - %2").arg(shownName).arg("QLumEdit"));
-  	}
+        curFile = shownName = tr("untitled.ldt");
+        setWindowTitle("QLumEdit");
+       }
+       else {
+        shownName = strippedName(curFile);
+        setWindowTitle(QString("%1[*] - %2").arg(shownName).arg("QLumEdit"));
+      }
 }
 
 QString MainWindow::strippedName(const QString &fullFileName)
@@ -380,43 +380,43 @@ QString MainWindow::strippedName(const QString &fullFileName)
 
 void MainWindow::saveFromWidget(void) {
 
-	ldt->sIden = central->general->LineEdit1->text();
-	ldt->iItyp = central->general->ComboBox2->currentIndex()+1;
-	ldt->sMrn = central->general->LineEdit8->text();
-	ldt->sLnam = central->general->LineEdit9->text();
-	ldt->sLnum = central->general->LineEdit10->text();
-	ldt->sFnam = central->general->LineEdit11->text();
-	ldt->sDate = central->general->LineEdit12->text();
+    ldt->sIden = central->general->LineEdit1->text();
+    ldt->iItyp = central->general->ComboBox2->currentIndex()+1;
+    ldt->sMrn = central->general->LineEdit8->text();
+    ldt->sLnam = central->general->LineEdit9->text();
+    ldt->sLnum = central->general->LineEdit10->text();
+    ldt->sFnam = central->general->LineEdit11->text();
+    ldt->sDate = central->general->LineEdit12->text();
 
-	ldt->dL = central->luminaire->DoubleSpinBox13->value();
-	ldt->dB = central->luminaire->DoubleSpinBox14->value();
-	ldt->dH = central->luminaire->DoubleSpinBox15->value();
-	ldt->dLa = central->luminaire->DoubleSpinBox16->value();
-	ldt->dB1 = central->luminaire->DoubleSpinBox17->value();
-	ldt->dHC0 = central->luminaire->DoubleSpinBox18->value();
-	ldt->dHC90 = central->luminaire->DoubleSpinBox19->value();
-	ldt->dHC180 = central->luminaire->DoubleSpinBox20->value();
-	ldt->dHC270 = central->luminaire->DoubleSpinBox21->value();
-	ldt->dDFF = central->luminaire->DoubleSpinBox22->value();
-	ldt->dLORL = central->luminaire->DoubleSpinBox23->value();
-	ldt->dCFLI = central->luminaire->DoubleSpinBox24->value();
-	ldt->dTILT = central->luminaire->DoubleSpinBox25->value();
+    ldt->dL = central->luminaire->DoubleSpinBox13->value();
+    ldt->dB = central->luminaire->DoubleSpinBox14->value();
+    ldt->dH = central->luminaire->DoubleSpinBox15->value();
+    ldt->dLa = central->luminaire->DoubleSpinBox16->value();
+    ldt->dB1 = central->luminaire->DoubleSpinBox17->value();
+    ldt->dHC0 = central->luminaire->DoubleSpinBox18->value();
+    ldt->dHC90 = central->luminaire->DoubleSpinBox19->value();
+    ldt->dHC180 = central->luminaire->DoubleSpinBox20->value();
+    ldt->dHC270 = central->luminaire->DoubleSpinBox21->value();
+    ldt->dDFF = central->luminaire->DoubleSpinBox22->value();
+    ldt->dLORL = central->luminaire->DoubleSpinBox23->value();
+    ldt->dCFLI = central->luminaire->DoubleSpinBox24->value();
+    ldt->dTILT = central->luminaire->DoubleSpinBox25->value();
 
-	int i;
-	ldt->iNL = QList<int>(ldt->iN);
-	ldt->sTL = QStringList(ldt->iN);
-	ldt->dTLF = QList<double>(ldt->iN);
-	ldt->sCA = QStringList(ldt->iN);
-	ldt->sCRG = QStringList(ldt->iN);
-	ldt->dWB = QList<double>(ldt->iN);
+    int i;
+    ldt->iNL = QList<int>(ldt->iN);
+    ldt->sTL = QStringList(ldt->iN);
+    ldt->dTLF = QList<double>(ldt->iN);
+    ldt->sCA = QStringList(ldt->iN);
+    ldt->sCRG = QStringList(ldt->iN);
+    ldt->dWB = QList<double>(ldt->iN);
 
     for(i=0; i<ldt->iN; i++) {
-    	ldt->iNL[i] = central->lamps->SpinBox2[i]->value();
-    	ldt->sTL[i] = central->lamps->LineEdit3[i]->text();
-    	ldt->dTLF[i] = central->lamps->DoubleSpinBox4[i]->value();
-    	ldt->sCA[i] = central->lamps->LineEdit5[i]->text();
-    	ldt->sCRG[i] = central->lamps->LineEdit6[i]->text();
-    	ldt->dWB[i] = central->lamps->DoubleSpinBox7[i]->value();
+        ldt->iNL[i] = central->lamps->SpinBox2[i]->value();
+        ldt->sTL[i] = central->lamps->LineEdit3[i]->text();
+        ldt->dTLF[i] = central->lamps->DoubleSpinBox4[i]->value();
+        ldt->sCA[i] = central->lamps->LineEdit5[i]->text();
+        ldt->sCRG[i] = central->lamps->LineEdit6[i]->text();
+        ldt->dWB[i] = central->lamps->DoubleSpinBox7[i]->value();
     }
 
     ldt->dDR[0] = central->UFtable->DoubleSpinBox13->value();
@@ -457,12 +457,12 @@ void MainWindow::setMaybeSaveTriggers() {
     connect(central->luminaire->DoubleSpinBox25, SIGNAL(valueChanged(double)), this, SLOT(documentWasModified()));
 
     for(int i=0; i<ldt->iN; i++) {
-    	connect(central->lamps->SpinBox2[i], SIGNAL(valueChanged(int)), this, SLOT(documentWasModified()));
-    	connect(central->lamps->LineEdit3[i], SIGNAL(textChanged(QString)), this, SLOT(documentWasModified()));
-    	connect(central->lamps->DoubleSpinBox4[i], SIGNAL(valueChanged(double)), this, SLOT(documentWasModified()));
-    	connect(central->lamps->LineEdit5[i], SIGNAL(textChanged(QString)), this, SLOT(documentWasModified()));
-    	connect(central->lamps->LineEdit6[i], SIGNAL(textChanged(QString)), this, SLOT(documentWasModified()));
-	   	connect(central->lamps->DoubleSpinBox7[i], SIGNAL(valueChanged(double)), this, SLOT(documentWasModified()));
+        connect(central->lamps->SpinBox2[i], SIGNAL(valueChanged(int)), this, SLOT(documentWasModified()));
+        connect(central->lamps->LineEdit3[i], SIGNAL(textChanged(QString)), this, SLOT(documentWasModified()));
+        connect(central->lamps->DoubleSpinBox4[i], SIGNAL(valueChanged(double)), this, SLOT(documentWasModified()));
+        connect(central->lamps->LineEdit5[i], SIGNAL(textChanged(QString)), this, SLOT(documentWasModified()));
+        connect(central->lamps->LineEdit6[i], SIGNAL(textChanged(QString)), this, SLOT(documentWasModified()));
+           connect(central->lamps->DoubleSpinBox7[i], SIGNAL(valueChanged(double)), this, SLOT(documentWasModified()));
     }
 
     connect(central->UFtable->DoubleSpinBox13, SIGNAL(valueChanged(double)), this, SLOT(documentWasModified()));
@@ -476,7 +476,7 @@ void MainWindow::setMaybeSaveTriggers() {
     connect(central->UFtable->DoubleSpinBox21, SIGNAL(valueChanged(double)), this, SLOT(documentWasModified()));
     connect(central->UFtable->DoubleSpinBox22, SIGNAL(valueChanged(double)), this, SLOT(documentWasModified()));
 
-	connect(central->table->tableWidget, SIGNAL(cellChanged(int, int)), this, SLOT(documentWasModified()));
+    connect(central->table->tableWidget, SIGNAL(cellChanged(int, int)), this, SLOT(documentWasModified()));
 
 
 }
@@ -484,36 +484,36 @@ void MainWindow::setMaybeSaveTriggers() {
 
 void MainWindow::options()
 {
-	TabDialog *tabdialog;
-	tabdialog = new TabDialog(this);
-	tabdialog->exec();
+    TabDialog *tabdialog;
+    tabdialog = new TabDialog(this);
+    tabdialog->exec();
 
 }
 
 
 void MainWindow::validator()
 {
-	ValidatorDialog *validatorDialog;
-	validatorDialog = new ValidatorDialog(this);
-	validatorDialog->exec();
+    ValidatorDialog *validatorDialog;
+    validatorDialog = new ValidatorDialog(this);
+    validatorDialog->exec();
 }
 
 void MainWindow::setValidatorOptions() {
     QSettings settings("Cagrinlabs", "QLumEdit");
     QString restricted = settings.value("restricted", QString("false")).toString();
     if(restricted == "true") {
-	    Vars().line = 78;
-	    Vars().lineFNam = 8;
-	    Vars().lineTL = 24;
-	    Vars().lineCA = 16;
-	    Vars().lineCRG = 6;
-   	}
-   	else {
-   		int length = 255;
-	    Vars().line = length;
-	    Vars().lineFNam = length;
-	    Vars().lineTL = length;
-	    Vars().lineCA = length;
-	    Vars().lineCRG = length;
-  	}
+        Vars().line = 78;
+        Vars().lineFNam = 8;
+        Vars().lineTL = 24;
+        Vars().lineCA = 16;
+        Vars().lineCRG = 6;
+       }
+       else {
+           int length = 255;
+        Vars().line = length;
+        Vars().lineFNam = length;
+        Vars().lineTL = length;
+        Vars().lineCA = length;
+        Vars().lineCRG = length;
+      }
 }
