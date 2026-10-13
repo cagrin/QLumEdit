@@ -7,8 +7,12 @@ if(QLUMEDIT_COVERAGE)
         COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/coverage
         COMMAND ${GCOVR} -r sources ${CMAKE_BINARY_DIR} --filter sources/
                 --exclude ".*moc_.*" --exclude "sources/main\\.cpp" --delete
+                --exclude-throw-branches --exclude-unreachable-branches
                 --txt --html-details ${CMAKE_BINARY_DIR}/coverage/index.html
                 --lcov ${CMAKE_BINARY_DIR}/coverage/coverage.info
+                --json ${CMAKE_BINARY_DIR}/coverage/coverage.json
+        COMMAND ${GCOVR} -r sources -a ${CMAKE_BINARY_DIR}/coverage/coverage.json
+                --txt-metric branch --txt --txt-summary
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         USES_TERMINAL
         VERBATIM

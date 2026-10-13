@@ -41,6 +41,7 @@ cmake --workflow --preset test-exports       # compare HTML/PNG/IES exports with
 Build directories are in `/tmp/qlumedit/<preset>`, because the workspace mount does not allow CMake to set file permissions.
 The application executable is `/tmp/qlumedit/build/QLumEdit`.
 The HTML coverage report is in `/tmp/qlumedit/test-coverage/coverage/index.html`.
+The `test-coverage` preset also prints line and branch tables and a summary to the console.
 
 Outside the dev container set `export CMAKE_PREFIX_PATH=<path to Qt>/6.12.0/gcc_64` if Qt is not in `PATH`.
 

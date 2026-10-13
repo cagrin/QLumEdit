@@ -85,10 +85,156 @@ private slots:
         QVERIFY(loadError(lines).startsWith("Error reading file"));
     }
 
+    void loadFile_readsEmptyNumbersAsZero() {
+        QStringList lines = TestLdt().lines();
+        lines[13] = ""; // B
+        lines[26] = ""; // NL
+        Eulumdat ldt;
+        const QStringList warnings = load(ldt, lines);
+        QCOMPARE(ldt.dB, 0.0);
+        QCOMPARE(ldt.iNL[0], 0);
+        QCOMPARE(warnings.size(), 1);
+        QVERIFY(warnings[0].contains("Number of lamps"));
+    }
+
     void validate_rejectsTypeOutOfRange() {
         TestLdt spec;
         spec.ityp = 4;
         QVERIFY(loadError(spec.lines()).contains("Type indicator"));
+    }
+
+    void validate_errors_data() {
+        QTest::addColumn<QStringList>("lines");
+        QTest::addColumn<QString>("error");
+
+        auto withLine = [](int index, const QString &value) {
+            QStringList lines = TestLdt().lines();
+            lines[index] = value;
+            return lines;
+        };
+        TestLdt spec;
+
+        QTest::newRow("type < 1") << withLine(1, "0") << "Type indicator";
+        QTest::newRow("symmetry < 0") << withLine(2, "-1") << "Symmetry indicator";
+        QTest::newRow("symmetry > 4") << withLine(2, "5") << "Symmetry indicator";
+        QTest::newRow("Nc < 0") << withLine(3, "-1") << "Number of C-planes";
+        QTest::newRow("Nc > 721") << withLine(3, "722") << "Number of C-planes";
+        QTest::newRow("Dc < 0") << withLine(4, "-1") << "Distance between C-planes";
+        QTest::newRow("Dc > 360") << withLine(4, "361") << "Distance between C-planes";
+        QTest::newRow("Ng < 0") << withLine(5, "-1") << "Number of luminous intensities in each C-plane";
+        QTest::newRow("Ng > 361") << withLine(5, "362") << "Number of luminous intensities in each C-plane";
+        QTest::newRow("Dg < 0") << withLine(6, "-1") << "Distance between luminous intensities per C-plane";
+        QTest::newRow("Dg > 180") << withLine(6, "181") << "Distance between luminous intensities per C-plane";
+
+        QStringList noLamps = withLine(25, "0");
+        noLamps.remove(26, 6);
+        QTest::newRow("n < 1") << noLamps << "Number of standard sets of lamps";
+
+        QStringList manyLamps = withLine(25, "21");
+        const QStringList lampSet = manyLamps.mid(26, 6);
+        for (int i = 0; i < 20; i++)
+            manyLamps = manyLamps.mid(0, 32) + lampSet + manyLamps.mid(32);
+        QTest::newRow("n > 20") << manyLamps << "Number of standard sets of lamps";
+
+        spec = TestLdt();
+        spec.lcd = {{100, -1, 100}};
+        QTest::newRow("intensity < 0") << spec.lines() << "Luminous intensity distribution";
+
+        spec = TestLdt();
+        spec.lcd = {{100, 1000001, 100}};
+        QTest::newRow("intensity > 1000000") << spec.lines() << "Luminous intensity distribution";
+
+        spec = TestLdt();
+        spec.g = {-10, 90, 180};
+        QTest::newRow("gamma < 0") << spec.lines() << "Wrong Gamma-planes scheme";
+
+        spec = TestLdt();
+        spec.g = {0, 90, 190};
+        QTest::newRow("gamma > 180") << spec.lines() << "Wrong Gamma-planes scheme";
+
+        spec = isotropic(0, 4, 4);
+        spec.c = {0, 90, 200, 270};
+        QTest::newRow("isym 0 without C180") << spec.lines() << "Missing C180-plane";
+
+        spec = isotropic(0, 4, 4);
+        spec.c = {0, 90, 180, 300};
+        QTest::newRow("isym 0 without C270") << spec.lines() << "Missing C270-plane";
+
+        spec = isotropic(2, 4, 3);
+        spec.c = {0, 60, 180, 270};
+        QTest::newRow("isym 2 without C90") << spec.lines() << "Missing C90-plane";
+
+        spec = isotropic(3, 4, 3);
+        spec.c = {0, 90, 200, 270};
+        QTest::newRow("isym 3 without C180") << spec.lines() << "Missing C180-plane";
+
+        QTest::newRow("isym 0 with Mc < 4") << isotropic(0, 2, 2).lines() << "Wrong C-planes scheme";
+        QTest::newRow("isym 2 with Mc < 3") << isotropic(2, 2, 2).lines() << "Wrong C-planes scheme";
+        QTest::newRow("isym 3 with Mc < 3") << isotropic(3, 2, 2).lines() << "Wrong C-planes scheme";
+        QTest::newRow("isym 4 with Mc < 2") << isotropic(4, 2, 1).lines() << "Wrong C-planes scheme";
+    }
+    void validate_errors() {
+        QFETCH(QStringList, lines);
+        QFETCH(QString, error);
+        QVERIFY2(loadError(lines).startsWith(error), qPrintable(loadError(lines)));
+    }
+
+    void validate_warnings_data() {
+        QTest::addColumn<int>("index");
+        QTest::addColumn<QString>("value");
+        QTest::addColumn<QString>("warning");
+
+        QTest::newRow("Mrn") << 7 << QString(79, 'x') << "Measurement report number";
+        QTest::newRow("Lnam") << 8 << QString(79, 'x') << "Luminaire name";
+        QTest::newRow("Lnum") << 9 << QString(79, 'x') << "Luminaire number";
+        QTest::newRow("Fnam") << 10 << QString(9, 'x') << "File name";
+        QTest::newRow("Date") << 11 << QString(79, 'x') << "Date/user";
+        QTest::newRow("L > 9999") << 12 << "10000" << "Length/diameter of luminaire";
+        QTest::newRow("B < 0") << 13 << "-1" << "Width of luminaire";
+        QTest::newRow("B > 9999") << 13 << "10000" << "Width of luminaire";
+        QTest::newRow("H < 0") << 14 << "-1" << "Height of luminaire";
+        QTest::newRow("H > 9999") << 14 << "10000" << "Height of luminaire";
+        QTest::newRow("La < 0") << 15 << "-1" << "Length/diameter of luminous area";
+        QTest::newRow("La > 9999") << 15 << "10000" << "Length/diameter of luminous area";
+        QTest::newRow("B1 < 0") << 16 << "-1" << "Width of luminous area";
+        QTest::newRow("B1 > 9999") << 16 << "10000" << "Width of luminous area";
+        QTest::newRow("HC0 < 0") << 17 << "-1" << "Height of luminous area C0-plane";
+        QTest::newRow("HC0 > 9999") << 17 << "10000" << "Height of luminous area C0-plane";
+        QTest::newRow("HC90 < 0") << 18 << "-1" << "Height of luminous area C90-plane";
+        QTest::newRow("HC90 > 9999") << 18 << "10000" << "Height of luminous area C90-plane";
+        QTest::newRow("HC180 < 0") << 19 << "-1" << "Height of luminous area C180-plane";
+        QTest::newRow("HC180 > 9999") << 19 << "10000" << "Height of luminous area C180-plane";
+        QTest::newRow("HC270 < 0") << 20 << "-1" << "Height of luminous area C270-plane";
+        QTest::newRow("HC270 > 9999") << 20 << "10000" << "Height of luminous area C270-plane";
+        QTest::newRow("DFF < 0") << 21 << "-1" << "Downward flux fraction";
+        QTest::newRow("DFF > 100") << 21 << "101" << "Downward flux fraction";
+        QTest::newRow("LORL < 0") << 22 << "-1" << "Light output ratio of luminaire";
+        QTest::newRow("LORL > 100") << 22 << "101" << "Light output ratio of luminaire";
+        QTest::newRow("CFLI < 0") << 23 << "-1" << "Conversion factor for luminous intensities";
+        QTest::newRow("CFLI > 10") << 23 << "11" << "Conversion factor for luminous intensities";
+        QTest::newRow("TILT < -180") << 24 << "-181" << "Tilt of luminaire during measurement";
+        QTest::newRow("TILT > 180") << 24 << "181" << "Tilt of luminaire during measurement";
+        QTest::newRow("NL > 1000") << 26 << "1001" << "Number of lamps";
+        QTest::newRow("TL") << 27 << QString(25, 'x') << "Type of lamps";
+        QTest::newRow("TLF < 1") << 28 << "0" << "Total luminous flux of lamps";
+        QTest::newRow("TLF > 9999999") << 28 << "10000000" << "Total luminous flux of lamps";
+        QTest::newRow("CA") << 29 << QString(17, 'x') << "Color temperature of lamps";
+        QTest::newRow("CRG") << 30 << QString(7, 'x') << "Color rendering index";
+        QTest::newRow("WB < 0.1") << 31 << "0" << "Wattage including ballast";
+        QTest::newRow("WB > 10000") << 31 << "10001" << "Wattage including ballast";
+        QTest::newRow("DR < 0") << 32 << "-1" << "k[1]";
+        QTest::newRow("DR > 10") << 32 << "11" << "k[1]";
+    }
+    void validate_warnings() {
+        QFETCH(int, index);
+        QFETCH(QString, value);
+        QFETCH(QString, warning);
+        QStringList lines = TestLdt().lines();
+        lines[index] = value;
+        Eulumdat ldt;
+        const QStringList warnings = load(ldt, lines);
+        QCOMPARE(warnings.size(), 1);
+        QVERIFY2(warnings[0].startsWith(warning), qPrintable(warnings[0]));
     }
 
     void validate_warnsWhenIdentificationTooLong() {
@@ -168,6 +314,19 @@ private slots:
         Eulumdat reloaded;
         reloaded.loadFile(path);
         QCOMPARE(reloaded.iItyp, 3);
+    }
+
+    void saveFile_keepsType2() {
+        TestLdt spec;
+        spec.ityp = 2;
+        Eulumdat original;
+        load(original, spec.lines());
+
+        const QString path = tmp.filePath("type2.ldt");
+        original.saveFile(path);
+        Eulumdat reloaded;
+        reloaded.loadFile(path);
+        QCOMPARE(reloaded.iItyp, 2);
     }
 
     void bundledTemplates_load_data() {
