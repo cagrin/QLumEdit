@@ -1,3 +1,5 @@
+[![Coverage Status](https://img.shields.io/coveralls/github/cagrin/QLumEdit)](https://coveralls.io/github/cagrin/QLumEdit)
+
 # QLumEdit
 
 ### Project history

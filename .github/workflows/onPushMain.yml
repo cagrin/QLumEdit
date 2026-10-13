@@ -9,9 +9,22 @@ env:
   QT_VERSION: 6.12.0
 
 jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            cmake --workflow --preset test-coverage
+            sed "s|^SF:$PWD/|SF:|" /tmp/qlumedit/test-coverage/coverage/coverage.info > coverage.info
+      - uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: coverage.info
+          format: lcov
   build-on-ubuntu-latest:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     env:
       QT_HOST: linux
       QT_ARCH: linux_gcc_64
@@ -34,7 +47,6 @@ jobs:
         run: cmake --workflow --preset build
   build-on-macos-latest:
     runs-on: macos-latest
-    timeout-minutes: 15
     env:
       QT_HOST: mac
       QT_ARCH: clang_64
@@ -55,7 +67,6 @@ jobs:
         run: cmake --workflow --preset build
   build-on-windows-latest:
     runs-on: windows-latest
-    timeout-minutes: 15
     env:
       QT_HOST: windows
       QT_ARCH: win64_msvc2022_64
