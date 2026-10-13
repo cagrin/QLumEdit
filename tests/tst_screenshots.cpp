@@ -1,7 +1,5 @@
 #include "tst_gui.h"
 
-#include <memory>
-
 using namespace QLumEditTests;
 
 // Renders the main window tabs for the named templates and the dialogs, and compares the result
@@ -87,7 +85,6 @@ private slots:
         QTranslator translator;
         QVERIFY(installLanguage(translator, language, locale));
 
-        std::unique_ptr<Eulumdat> model;
         MainWindow window;
         // Checked after MainWindow sets the validator limits; warnings would block on a modal dialog.
         QCOMPARE(Eulumdat().loadFile(path), QStringList());
@@ -95,7 +92,6 @@ private slots:
         window.show();
         QVERIFY(QTest::qWaitForWindowExposed(&window));
         window.loadFile(path);
-        model.reset(window.ldt);
 
         QTabWidget *tabs = window.central->tabWidget;
         QCOMPARE(tabs->count(), kTabs.size());

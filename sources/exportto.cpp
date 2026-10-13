@@ -177,7 +177,7 @@ out << "<table border=\"1\"><tbody>";
 	}
 out << "</tbody></table>" + end;
 
-	RenderWidget *render = new RenderWidget(*ldt, this);
+	RenderWidget render(*ldt);
 	fileName.remove(QFileInfo(fileName).completeSuffix());
 
 	fileName += "png";
@@ -196,7 +196,7 @@ out <<
     
 	file.close();
 
-	render->saveImage(fileName, 640);
+	render.saveImage(fileName, 640);
 	
     statusBar()->showMessage(tr("File exported to HTML/PNG"), 5000);
     	

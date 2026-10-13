@@ -223,8 +223,8 @@ void RenderWidget::paintEvent(QPaintEvent *)
     }          
 
 
-    QRectF * test;
-    test = new QRectF;
+    QRectF textBounds;
+    QRectF * test = &textBounds;
 	int space = 2;    
     
     painter.setPen(QPen(Qt::black, 0, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
@@ -398,14 +398,14 @@ void RenderWidget::paintEvent(QPaintEvent *)
 
 void RenderWidget::saveImage(QString fileName, int resolution) {
 	
-	QImage *image = new QImage(resolution, resolution, QImage::Format_RGB32);
+	QImage image(resolution, resolution, QImage::Format_RGB32);
 	
 	max = 20.0*ceil(max / 20.0);
 	double marg = 60;	
 	double side = resolution-(int)marg;
     double scale = max / side * 2;
     
-    QPainter painter(image);
+    QPainter painter(&image);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.translate(resolution / 2, resolution / 2);
 
@@ -428,8 +428,8 @@ void RenderWidget::saveImage(QString fileName, int resolution) {
     }          
 
 
-    QRectF * test;
-    test = new QRectF;
+    QRectF textBounds;
+    QRectF * test = &textBounds;
 	int space = 2;    
     
     painter.setPen(QPen(Qt::black, 0, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
@@ -596,5 +596,5 @@ void RenderWidget::saveImage(QString fileName, int resolution) {
 		}	
 	}
 	
-	image->save(fileName, "PNG");
+	image.save(fileName, "PNG");
 }

@@ -1,7 +1,5 @@
 #include "tst_gui.h"
 
-#include <memory>
-
 using namespace QLumEditTests;
 
 // Characterization of LDT saving: the bundled templates must be saved unchanged,
@@ -26,10 +24,8 @@ void saveWithModel(const QString &input, const QString &output) {
 // Opens a copy of the file in the main window and saves it with "Save" (QFileDialog is not deterministic offscreen).
 void saveWithApp(const QString &input, const QString &output) {
     QVERIFY(QFile::copy(input, output));
-    std::unique_ptr<Eulumdat> model;
     MainWindow window;
     window.loadFile(output);
-    model.reset(window.ldt);
 
     QAction *save = findAction(window, "&Save");
     QVERIFY(save);

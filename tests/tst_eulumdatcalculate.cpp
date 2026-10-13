@@ -69,11 +69,10 @@ private slots:
         QFETCH(double, h9);
         Eulumdat ldt;
         loadLdt(ldt, tmp, isotropic(1, 1, 1).lines());
-        double *dr = ldt.directRadios(shr);
-        const double first = dr[0], last = dr[9];
-        delete[] dr;
-        QCOMPARE(first, 50 * h0 / 100000);
-        QCOMPARE(last, 50 * h9 / 100000);
+        const QList<double> dr = ldt.directRadios(shr);
+        QCOMPARE(dr.size(), 10);
+        QCOMPARE(dr[0], 50 * h0 / 100000);
+        QCOMPARE(dr[9], 50 * h9 / 100000);
     }
 
     void directRadios_sameForAllSymmetries_data() { addSymmetryRows(); }
@@ -84,23 +83,16 @@ private slots:
         Eulumdat reference, ldt;
         loadLdt(reference, tmp, isotropic(1, 1, 1, 5).lines());
         loadLdt(ldt, tmp, isotropic(isym, nc, mc, 5).lines());
-        double *expected = reference.directRadios("1.00");
-        double *actual = ldt.directRadios("1.00");
+        const QList<double> expected = reference.directRadios("1.00");
+        const QList<double> actual = ldt.directRadios("1.00");
         for (int i = 0; i < 10; i++)
             QVERIFY2(std::abs(actual[i] - expected[i]) < 1e-9, qPrintable(QString("k[%1]").arg(i + 1)));
-        delete[] expected;
-        delete[] actual;
     }
 
     void directRadios_unknownRatioFallsBackTo150() {
         Eulumdat ldt;
         loadLdt(ldt, tmp, isotropic(1, 1, 1, 5).lines());
-        double *expected = ldt.directRadios("1.50");
-        double *actual = ldt.directRadios("unknown");
-        for (int i = 0; i < 10; i++)
-            QCOMPARE(actual[i], expected[i]);
-        delete[] expected;
-        delete[] actual;
+        QCOMPARE(ldt.directRadios("unknown"), ldt.directRadios("1.50"));
     }
 };
 

@@ -159,16 +159,9 @@ void EulumdatTableWidget::tryToImportFromClipboard() {
 	}
 			
 	int i;			
-	double *aC;
-	double *aG;
-	double **aLcd;		
-	aC = new double[n-1];
-	aG = new double[m-1];
-	aLcd = new double*[n-1];
-	
-	for(i=0; i<(n-1); i++) {
-		aLcd[i] = new double[m-1];
-	}
+	QList<double> aC(n-1);
+	QList<double> aG(m-1);
+	QList<QList<double>> aLcd(n-1, QList<double>(m-1));
 	
 	for(i=0; i<(n-1); i++) {
 		aC[i] = list[i].toDouble();
@@ -316,7 +309,7 @@ void EulumdatTableWidget::tryToImportFromClipboard() {
 		pldt->dDc = staticC;
 		pldt->dDg = staticG;
 		pldt->calcMc();
-		pldt->dC = new double[pldt->iNc];
+		pldt->dC = QList<double>(pldt->iNc);
 		
 		for(i=0; i<(n-1); i++) {	
 			pldt->dC[i] = aC[i];
@@ -351,7 +344,7 @@ void EulumdatTableWidget::tryToImportFromClipboard() {
 		pldt->dDc = staticC;
 		pldt->dDg = staticG;
 		pldt->calcMc();
-		pldt->dC = new double[pldt->iNc];		
+		pldt->dC = QList<double>(pldt->iNc);		
 
 		for(i=0; i<(n-1); i++) {	
 			pldt->dC[i] = aC[i];
@@ -399,7 +392,7 @@ void EulumdatTableWidget::tryToImportFromClipboard() {
 		pldt->dDc = staticC;
 		pldt->dDg = staticG;
 		pldt->calcMc();		
-		pldt->dC = new double[pldt->iNc];
+		pldt->dC = QList<double>(pldt->iNc);
 			
 		i = 0;
 		j = n-1-2;

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include <memory>
+
 #include "eulumdat.h"
 #include "maintabwidget.h"
 
@@ -16,6 +18,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow();
+    ~MainWindow() override;
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -75,7 +78,7 @@ private:
     void setMaybeSaveTriggers();
 
 public:
-    Eulumdat * ldt;
+    std::unique_ptr<Eulumdat> ldt;
     MainTabWidget *central;
     
     void setValidatorOptions();  

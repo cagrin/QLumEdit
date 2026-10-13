@@ -5,10 +5,10 @@
 
 #include "vars.h"
 
-double* Eulumdat::directRadios(QString SHR) {
+QList<double> Eulumdat::directRadios(QString SHR) {
 	double a, b, c, d;
 	QVector<double> e, f, g, h; //e[10], f[10], g[10], h[10];
-	double * DFL = new double[10];
+	QList<double> DFL(10);
 
 	if(SHR == tr("1.00")) {	
 		e << 943 << 752 << 636 << 510 << 429 << 354 << 286 << 258 << 236 << 231;

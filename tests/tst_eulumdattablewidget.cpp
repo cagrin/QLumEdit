@@ -78,7 +78,7 @@ private slots:
 
         window.central->table->importFromClipboard();
 
-        Eulumdat *ldt = window.ldt;
+        Eulumdat *ldt = window.ldt.get();
         QCOMPARE(ldt->iIsym, 1);
         QCOMPARE(ldt->iNc, 1);
         QCOMPARE(ldt->iNg, 5);
@@ -98,7 +98,7 @@ private slots:
 
         window.central->table->importFromClipboard();
 
-        Eulumdat *ldt = window.ldt;
+        Eulumdat *ldt = window.ldt.get();
         QCOMPARE(ldt->iIsym, 2);
         QCOMPARE(ldt->iNc, 4);
         QCOMPARE(ldt->iMc, 3);

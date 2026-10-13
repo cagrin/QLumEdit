@@ -11,9 +11,6 @@ class Eulumdat : public QWidget
     Q_OBJECT
 
 public:
-	Eulumdat();
-	~Eulumdat();
-
 	QString sIden;
 	int iItyp;
 	int iIsym;
@@ -40,17 +37,17 @@ public:
 	double dCFLI;
 	double dTILT;
 	int iN;
-	int * iNL;	// 26a
-	QString * sTL;
-	double * dTLF;
-	QString * sCA;
-	QString * sCRG;
-	double * dWB;  // 26f
+	QList<int> iNL;	// 26a
+	QStringList sTL;
+	QList<double> dTLF;
+	QStringList sCA;
+	QStringList sCRG;
+	QList<double> dWB;  // 26f
 	double dDR[10];
-	double * dC;
-	double * dG;
-	double ** dLcd;
-	int iMc;
+	QList<double> dC;
+	QList<double> dG;
+	QList<QList<double>> dLcd;
+	int iMc = 0;
 
 
 	QStringList loadFile(QString);
@@ -60,13 +57,10 @@ public:
 	QStringList validate();
 	double downward();
 	double output();	
-	double* directRadios(QString);
+	QList<double> directRadios(QString);
 
 	
 private:
-	void Init(void);
-	void Reset(void);
-	
 	double getDouble(QTextStream &);
 	int getInt(QTextStream &);	
 	

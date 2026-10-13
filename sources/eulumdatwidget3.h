@@ -24,20 +24,22 @@ public:
     
 	QLabel *Label1;
 	QPushButton *addButton, *removeButton;
-	QSpinBox **SpinBox2;
-	QLineEdit **LineEdit3;
-	QDoubleSpinBox **DoubleSpinBox4;
-	QLineEdit **LineEdit5;
-	QLineEdit **LineEdit6;
-	QDoubleSpinBox **DoubleSpinBox7;
+	QList<QSpinBox *> SpinBox2;
+	QList<QLineEdit *> LineEdit3;
+	QList<QDoubleSpinBox *> DoubleSpinBox4;
+	QList<QLineEdit *> LineEdit5;
+	QList<QLineEdit *> LineEdit6;
+	QList<QDoubleSpinBox *> DoubleSpinBox7;
 
-	QWidget **GroupBox;
-	QTabWidget * tabWidget;	
-	
+	QList<QWidget *> GroupBox;
+	QTabWidget * tabWidget;
+
 private slots:
 	void addSet(void);
 	void removeSet(void);
-									
+
+private:
+	void createSetPage();
 };
 
 #endif // __EULUMDATWIDGET3_H__

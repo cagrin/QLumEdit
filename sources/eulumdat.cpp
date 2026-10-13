@@ -5,44 +5,6 @@
 
 #include "vars.h"
 
-Eulumdat::Eulumdat() {
-	Init();
-}
-
-Eulumdat::~Eulumdat() {
-	Reset();
-}
-
-void Eulumdat::Init(void) {
-	iNL = NULL;	
-	sTL = NULL;
-	dTLF = NULL;
-	sCA = NULL;
-	sCRG = NULL;
-	dWB = NULL;
-	dC = NULL;
-	dG = NULL;
-	dLcd = NULL;
-}
-void Eulumdat::Reset(void){
-
-	if(iNL != NULL) delete[] iNL;		
-	if(sTL != NULL) delete[] sTL;
-	if(dTLF != NULL) delete[] dTLF;
-	if(sCA != NULL) delete[] sCA;
-	if(sCRG != NULL) delete[] sCRG;
-	if(dWB != NULL) delete[] dWB;
-	if(dC != NULL) delete[] dC;
-	if(dG != NULL) delete[] dG;
-	if(dLcd != NULL) {
-		for(int i=0; i<iMc; i++) {
-			delete dLcd[i];
-		}	
-		delete[] dLcd;	
-	}
-	
-}
-
 double Eulumdat::getDouble(QTextStream & text) {
 	QString line = text.readLine();
 	
@@ -86,9 +48,6 @@ int Eulumdat::getInt(QTextStream & text) {
 
 QStringList Eulumdat::loadFile(QString fileName) {
 	
-	Reset();
-	Init();
-	
 	QFile file(fileName); 
 	file.open(QFile::ReadOnly | QFile::Text);  	
    	QTextStream in(&file);
@@ -120,12 +79,13 @@ QStringList Eulumdat::loadFile(QString fileName) {
 	dTILT = getDouble(in);
 	iN = getInt(in);
 	
-	iNL = new int[iN];
-	sTL = new QString[iN];
-	dTLF = new double[iN];
-	sCA = new QString[iN];
-	sCRG = new QString[iN];
-	dWB = new double[iN];
+	// Negative counts are rejected by validate().
+	iNL = QList<int>(qMax(0, iN));
+	sTL = QStringList(qMax(0, iN));
+	dTLF = QList<double>(qMax(0, iN));
+	sCA = QStringList(qMax(0, iN));
+	sCRG = QStringList(qMax(0, iN));
+	dWB = QList<double>(qMax(0, iN));
 	
 	for(int i=0; i<iN; i++) {
 		iNL[i] = getInt(in);
@@ -140,8 +100,8 @@ QStringList Eulumdat::loadFile(QString fileName) {
 		dDR[i] = getDouble(in);	
 	}	
 	
-	dC = new double[iNc];
-	dG = new double[iNg];
+	dC = QList<double>(qMax(0, iNc));
+	dG = QList<double>(qMax(0, iNg));
 
 	for(int i=0; i<iNc; i++) {
 		dC[i] = getDouble(in);
@@ -152,10 +112,7 @@ QStringList Eulumdat::loadFile(QString fileName) {
 
 	calcMc();	
 	
-	dLcd = new double*[iMc];
-	for(int i=0; i<iMc; i++) {
-		dLcd[i] = new double[iNg];
-	}
+	dLcd = QList<QList<double>>(qMax(0, iMc), QList<double>(qMax(0, iNg)));
 	
 	for(int i=0; i<iMc; i++) {
 		for(int j=0; j<iNg; j++) {

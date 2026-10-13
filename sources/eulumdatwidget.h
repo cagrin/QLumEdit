@@ -11,7 +11,6 @@ class QLineEdit;
 class QSpinBox;
 class QDoubleSpinBox;
 class QLabel;
-class QPushButton;
 
 class EulumdatWidget : public QWidget
 {
@@ -38,11 +37,6 @@ public:
 	QLabel *Label7;
 	
 	void setValues();
-	
-	QPushButton *optimizePushButton;
-private slots:
-	void optimize();
-
 };
 
 #endif // __EULUMDATWIDGET_H__

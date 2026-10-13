@@ -34,9 +34,7 @@ private slots:
     void computeStoresRatiosForSelectedSpacing() {
         Eulumdat ldt;
         loadLdt(ldt, tmp, isotropic(1, 1, 1, 5).lines());
-        double *dr = ldt.directRadios("1.25");
-        const QList<double> expected(dr, dr + 10);
-        delete[] dr;
+        const QList<double> expected = ldt.directRadios("1.25");
         for (double k : expected)
             QVERIFY(k <= 1);
 

@@ -31,6 +31,12 @@ MainWindow::MainWindow()
     setCurrentFile("");
 }
 
+MainWindow::~MainWindow()
+{
+    // The editor widgets refer to the model, so they go first.
+    delete takeCentralWidget();
+}
+
 void MainWindow::about()
 {
    QMessageBox::about(this, tr("About QLumEdit"), "<b><font size=\"+4\">QLumEdit 1.0.3</font></b><br><br>"+
@@ -66,6 +72,8 @@ void MainWindow::newFile()
     saveAct->setEnabled(false);
 	saveAsAct->setEnabled(false);
     exportSubMenu->setEnabled(false);
+	// Synchronously, because the editor widgets refer to the model that is replaced below.
+	delete takeCentralWidget();
 	setCentralWidget(new QWidget);
 
 
@@ -74,7 +82,7 @@ void MainWindow::newFile()
 	newDialog->exec();
 
 	if(Vars().newFile != "") {
-		ldt = new Eulumdat();
+		ldt = std::make_unique<Eulumdat>();
 		ldt->loadFile(Vars().newFile);
 
 		saveAsAct->setEnabled(true);
@@ -200,7 +208,7 @@ void MainWindow::createMenus()
     fileMenu->addAction(saveAsAct);
     fileMenu->addSeparator();
 
-    exportSubMenu = new QMenu(tr("Export as"));
+    exportSubMenu = new QMenu(tr("Export as"), this);
     exportSubMenu->addAction(exportToHTMLAct);
     exportSubMenu->addAction(exportToIesnaAct);
     fileMenu->addMenu(exportSubMenu);
@@ -284,9 +292,11 @@ void MainWindow::loadFile(const QString &fileName)
     saveAct->setEnabled(false);
 	saveAsAct->setEnabled(false);
 	exportSubMenu->setEnabled(false);
+	// Synchronously, because the editor widgets refer to the model that is replaced below.
+	delete takeCentralWidget();
 	setCentralWidget(new QWidget);
 
-	ldt = new Eulumdat();
+	ldt = std::make_unique<Eulumdat>();
 	try {
 		QStringList warnings = ldt->loadFile(fileName);
 		if(!warnings.isEmpty()) {
@@ -393,12 +403,12 @@ void MainWindow::saveFromWidget(void) {
 	ldt->dTILT = central->luminaire->DoubleSpinBox25->value();
 
 	int i;
-	ldt->iNL = new int[ldt->iN];
-	ldt->sTL = new QString[ldt->iN];
-	ldt->dTLF = new double [ldt->iN];
-	ldt->sCA = new QString[ldt->iN];
-	ldt->sCRG = new QString[ldt->iN];
-	ldt->dWB = new double[ldt->iN];
+	ldt->iNL = QList<int>(ldt->iN);
+	ldt->sTL = QStringList(ldt->iN);
+	ldt->dTLF = QList<double>(ldt->iN);
+	ldt->sCA = QStringList(ldt->iN);
+	ldt->sCRG = QStringList(ldt->iN);
+	ldt->dWB = QList<double>(ldt->iN);
 
     for(i=0; i<ldt->iN; i++) {
     	ldt->iNL[i] = central->lamps->SpinBox2[i]->value();

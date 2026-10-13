@@ -72,6 +72,7 @@ qt_add_translations(QLumEdit
     RESOURCE_PREFIX /translations
     MERGE_QT_TRANSLATIONS
     QT_TRANSLATION_CATALOGS qtbase
+    LUPDATE_OPTIONS -no-obsolete
 )
 
 if(WIN32)

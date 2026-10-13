@@ -153,7 +153,7 @@ void EulumdatWidget4::compute() {
                
     if ( !(ok && !item.isEmpty()) ) return;
     	
-	double* DFL = pldt->directRadios(item);
+	const QList<double> DFL = pldt->directRadios(item);
 	for(int i=0; i<10; i++) {
 		if(DFL[i] > 1) {
 			QMessageBox::warning(this, "QLumEdit",

@@ -77,12 +77,6 @@ EulumdatWidget::EulumdatWidget(Eulumdat &ldt, QWidget *parent) : QWidget(parent)
 	HLayout12->addWidget(Label12);
 	HLayout12->addWidget(LineEdit12);
 	
-	optimizePushButton = new QPushButton(tr("Optimize data"));	
-    connect(optimizePushButton, SIGNAL(clicked()), this, SLOT(optimize()));	
-	QHBoxLayout *HLayout13 = new QHBoxLayout; 
-	HLayout13->addWidget(optimizePushButton);
-	HLayout13->addStretch(1);  	
-	
     QVBoxLayout *mainLayout = new QVBoxLayout;
 	mainLayout->addLayout(HLayout1);
 	mainLayout->addLayout(HLayout2);
@@ -96,7 +90,6 @@ EulumdatWidget::EulumdatWidget(Eulumdat &ldt, QWidget *parent) : QWidget(parent)
 	mainLayout->addLayout(HLayout10);
 	mainLayout->addLayout(HLayout11);
 	mainLayout->addLayout(HLayout12);
-	//mainLayout->addLayout(HLayout13);						
     mainLayout->addStretch(1);	       
     setLayout(mainLayout);
 	
@@ -150,12 +143,6 @@ void EulumdatWidget::setValues() {
 	}
     Label7->setText(text);    	
     
-}
-
-void EulumdatWidget::optimize() {
-	Vars().mainWindow->central->table->exportToClipboard();
-	Vars().mainWindow->central->table->importFromClipboard();
-	Vars().mainWindow->statusBar()->showMessage(tr("Data optimized"), 5000);		
 }
 
 

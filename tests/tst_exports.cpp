@@ -69,22 +69,17 @@ void verifyExport(const QString &actualPath, const QString &fileName) {
 class TestExports : public QObject {
     Q_OBJECT
 
-    std::unique_ptr<Eulumdat> model;
     std::unique_ptr<MainWindow> window;
 
     void openTemplate(const QString &name) {
         window = std::make_unique<MainWindow>();
         window->loadFile(QString(TEMPLATES_DIR) + "/" + name + ".ldt");
-        model.reset(window->ldt);
     }
 
 private slots:
     void initTestCase() { useDefaultSettings(); }
 
-    void cleanup() {
-        window.reset();
-        model.reset();
-    }
+    void cleanup() { window.reset(); }
 
     void html_data() {
         addLanguageColumns();
