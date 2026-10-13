@@ -8,6 +8,7 @@ if(QLUMEDIT_COVERAGE)
         COMMAND ${GCOVR} -r sources ${CMAKE_BINARY_DIR} --filter sources/
                 --exclude ".*moc_.*" --exclude "sources/main\\.cpp" --delete
                 --txt --html-details ${CMAKE_BINARY_DIR}/coverage/index.html
+                --lcov ${CMAKE_BINARY_DIR}/coverage/coverage.info
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         USES_TERMINAL
         VERBATIM
@@ -15,7 +16,7 @@ if(QLUMEDIT_COVERAGE)
 endif()
 
 function(qlumedit_add_test name lib)
-    add_executable(${name} ${name}.cpp tst_ldt.h)
+    add_executable(${name} ${name}.cpp tst_ldt.h tst_gui.h)
     target_link_libraries(${name} PRIVATE ${lib} Qt6::Test)
     target_compile_definitions(${name} PRIVATE TEMPLATES_DIR="${PROJECT_SOURCE_DIR}/sources/templates")
     add_test(NAME ${name} COMMAND ${name})
@@ -23,6 +24,20 @@ function(qlumedit_add_test name lib)
     if(TARGET coverage)
         add_dependencies(coverage ${name})
     endif()
+endfunction()
+
+# Embeds application.qrc and the .qm files built by qt_add_translations() in the root CMakeLists.txt
+# (QM_FILES_OUTPUT_VARIABLE conflicts with RESOURCE_PREFIX, so the paths are derived from the languages).
+function(qlumedit_add_app_resources name)
+    target_sources(${name} PRIVATE ${PROJECT_SOURCE_DIR}/sources/application.qrc)
+    list(TRANSFORM QT_I18N_TRANSLATED_LANGUAGES REPLACE "(.+)" "${PROJECT_BINARY_DIR}/qlumedit_\\1.qm" OUTPUT_VARIABLE qm_files)
+    set_source_files_properties(${qm_files} PROPERTIES GENERATED TRUE)
+    qt_add_resources(${name} ${name}_translations
+        PREFIX /translations
+        BASE ${PROJECT_BINARY_DIR}
+        FILES ${qm_files}
+    )
+    add_dependencies(${name} QLumEdit_lrelease)
 endfunction()
 
 qlumedit_add_test(tst_eulumdat qlumedit_core)
@@ -34,18 +49,17 @@ qlumedit_add_test(tst_eulumdatwidget4 qlumedit_gui)
 qlumedit_add_test(tst_eulumdattablewidget qlumedit_gui)
 qlumedit_add_test(tst_ldtroundtrip qlumedit_gui)
 
+qlumedit_add_test(tst_exports qlumedit_gui)
+set_tests_properties(tst_exports PROPERTIES LABELS exports)
+qlumedit_add_app_resources(tst_exports)
+target_compile_definitions(tst_exports PRIVATE
+    EXPORTS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/exports"
+    EXPORTS_OUTPUT_DIR="${CMAKE_CURRENT_BINARY_DIR}/exports"
+)
+
 qlumedit_add_test(tst_screenshots qlumedit_gui)
 set_tests_properties(tst_screenshots PROPERTIES LABELS screenshots)
-target_sources(tst_screenshots PRIVATE ${PROJECT_SOURCE_DIR}/sources/application.qrc)
-# .qm files built by qt_add_translations() in the root CMakeLists.txt (QM_FILES_OUTPUT_VARIABLE conflicts with RESOURCE_PREFIX).
-list(TRANSFORM QT_I18N_TRANSLATED_LANGUAGES REPLACE "(.+)" "${PROJECT_BINARY_DIR}/qlumedit_\\1.qm" OUTPUT_VARIABLE qm_files)
-set_source_files_properties(${qm_files} PROPERTIES GENERATED TRUE)
-qt_add_resources(tst_screenshots tst_screenshots_translations
-    PREFIX /translations
-    BASE ${PROJECT_BINARY_DIR}
-    FILES ${qm_files}
-)
-add_dependencies(tst_screenshots QLumEdit_lrelease)
+qlumedit_add_app_resources(tst_screenshots)
 target_compile_definitions(tst_screenshots PRIVATE
     SCREENSHOTS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/screenshots"
     SCREENSHOTS_OUTPUT_DIR="${CMAKE_CURRENT_BINARY_DIR}/screenshots"

@@ -1,5 +1,4 @@
-#include "tst_ldt.h"
-#include "mainwindow.h"
+#include "tst_gui.h"
 
 #include <memory>
 
@@ -11,9 +10,6 @@ using namespace QLumEditTests;
 
 namespace {
 
-// Language code and the system locale assumed for it.
-const QList<std::pair<QString, QString>> kLanguages = {{"en", "en_US"}, {"pl", "pl_PL"}, {"de", "de_DE"}};
-const QStringList kTemplates = {"floor_uplight", "fluorescent_luminaire", "projector", "road_luminaire"};
 const QStringList kTabs = {"general", "luminaire", "lamps", "utilization_factors", "luminous_intensity", "diagram"};
 
 struct DialogCase {
@@ -41,26 +37,6 @@ QImage grabImage(QWidget *widget) {
     return widget->grab().toImage().convertToFormat(QImage::Format_ARGB32);
 }
 
-void addLanguageColumns() {
-    QTest::addColumn<QString>("language");
-    QTest::addColumn<QString>("locale");
-}
-
-// Same lookup as main(); there is no .qm for English.
-bool installLanguage(QTranslator &translator, const QString &language, const QString &locale) {
-    QLocale::setDefault(QLocale(locale));
-    if (language == "en")
-        return true;
-    return translator.load(":/translations/qlumedit_" + language + ".qm") && QApplication::installTranslator(&translator);
-}
-
-QAction *findAction(const QWidget &window, const char *sourceText) {
-    for (QAction *action : window.findChildren<QAction *>())
-        if (action->text() == MainWindow::tr(sourceText))
-            return action;
-    return nullptr;
-}
-
 // Writes the image to the build directory and compares it with the reference (or updates the reference).
 void verifyScreenshot(const QImage &actual, const QString &fileName) {
     const QString actualPath = QString(SCREENSHOTS_OUTPUT_DIR) + "/" + fileName;
@@ -85,9 +61,7 @@ class TestScreenshots : public QObject {
 
 private slots:
     void initTestCase() {
-        // Isolates QSettings from the user's configuration, so default options are used.
-        QStandardPaths::setTestModeEnabled(true);
-        QSettings("Cagrinlabs", "QLumEdit").clear();
+        useDefaultSettings();
         // A blinking text cursor would make the images nondeterministic.
         QApplication::setCursorFlashTime(0);
     }
@@ -97,7 +71,7 @@ private slots:
         QTest::addColumn<QString>("name");
         QTest::addColumn<int>("tab");
         for (const auto &[language, locale] : kLanguages)
-            for (const QString &name : kTemplates)
+            for (const QString &name : kExampleTemplates)
                 for (int tab = 0; tab < kTabs.size(); tab++)
                     QTest::addRow("%s/%s/%d", qPrintable(language), qPrintable(name), tab)
                         << language << locale << name << tab;

@@ -34,26 +34,33 @@
         { "name": "test", "configurePreset": "test" },
         { "name": "test-coverage", "configurePreset": "test-coverage", "targets": ["coverage"] },
         { "name": "test-sanitize", "configurePreset": "test-sanitize" },
-        { "name": "test-screenshots", "configurePreset": "test", "targets": ["tst_screenshots"] }
+        { "name": "test-screenshots", "configurePreset": "test", "targets": ["tst_screenshots"] },
+        { "name": "test-exports", "configurePreset": "test", "targets": ["tst_exports"] }
     ],
     "testPresets": [
         {
             "name": "test",
             "configurePreset": "test",
             "output": { "outputOnFailure": true },
-            "filter": { "exclude": { "label": "screenshots" } }
+            "filter": { "exclude": { "label": "^(screenshots|exports)$" } }
         },
         {
             "name": "test-sanitize",
             "configurePreset": "test-sanitize",
             "output": { "outputOnFailure": true },
-            "filter": { "exclude": { "label": "screenshots" } }
+            "filter": { "exclude": { "label": "^(screenshots|exports)$" } }
         },
         {
             "name": "test-screenshots",
             "configurePreset": "test",
             "output": { "outputOnFailure": true },
-            "filter": { "include": { "label": "screenshots" } }
+            "filter": { "include": { "label": "^screenshots$" } }
+        },
+        {
+            "name": "test-exports",
+            "configurePreset": "test",
+            "output": { "outputOnFailure": true },
+            "filter": { "include": { "label": "^exports$" } }
         }
     ],
     "workflowPresets": [
@@ -107,6 +114,14 @@
                 { "type": "configure", "name": "test" },
                 { "type": "build", "name": "test-screenshots" },
                 { "type": "test", "name": "test-screenshots" }
+            ]
+        },
+        {
+            "name": "test-exports",
+            "steps": [
+                { "type": "configure", "name": "test" },
+                { "type": "build", "name": "test-exports" },
+                { "type": "test", "name": "test-exports" }
             ]
         }
     ]

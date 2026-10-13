@@ -35,6 +35,7 @@ cmake --workflow --preset test               # configure, build and run tests
 cmake --workflow --preset test-coverage      # the same with code coverage (gcovr)
 cmake --workflow --preset test-sanitize      # the same with AddressSanitizer and UBSan
 cmake --workflow --preset test-screenshots   # compare screenshots with tests/screenshots/<os>/<language>/
+cmake --workflow --preset test-exports       # compare HTML/PNG/IES exports with tests/exports/<os>/
 ```
 
 Build directories are in `/tmp/qlumedit/<preset>`, because the workspace mount does not allow CMake to set file permissions.
@@ -59,6 +60,18 @@ To refresh the references after an intended UI change:
 
 ```bash
 QLUMEDIT_UPDATE_SCREENSHOTS=1 cmake --workflow --preset test-screenshots
+```
+
+## Exports
+
+The export test is excluded from the `test` and `test-sanitize` presets.
+It exports the example templates to HTML/PNG in every language and to IES,
+and compares the files with the references in `tests/exports/<os>/`.
+The current files are written to `/tmp/qlumedit/test/tests/exports/`.
+To refresh the references after an intended change of the export:
+
+```bash
+QLUMEDIT_UPDATE_EXPORTS=1 cmake --workflow --preset test-exports
 ```
 
 # Translations

@@ -1,5 +1,4 @@
-#include "tst_ldt.h"
-#include "mainwindow.h"
+#include "tst_gui.h"
 
 #include <memory>
 
@@ -17,30 +16,6 @@ constexpr int kLampFluxLine = 28;
 constexpr int kWattageLine = 31;
 constexpr int kFirstDirectRatioLine = 32;
 constexpr int kFirstIntensityLine = 46;
-
-QStringList readLines(const QString &path) {
-    QFile f(path);
-    if (!f.open(QFile::ReadOnly | QFile::Text))
-        return {};
-    return QString::fromUtf8(f.readAll()).split('\n');
-}
-
-QString firstDifference(const QStringList &actual, const QStringList &expected) {
-    for (int i = 0; i < std::max(actual.size(), expected.size()); i++) {
-        const QString a = actual.value(i, "<missing>");
-        const QString e = expected.value(i, "<missing>");
-        if (a != e)
-            return QString("line %1: '%2', expected '%3'").arg(i + 1).arg(a, e);
-    }
-    return {};
-}
-
-QAction *findAction(const QWidget &window, const char *sourceText) {
-    for (QAction *action : window.findChildren<QAction *>())
-        if (action->text() == MainWindow::tr(sourceText))
-            return action;
-    return nullptr;
-}
 
 void saveWithModel(const QString &input, const QString &output) {
     Eulumdat ldt;
@@ -102,9 +77,7 @@ class TestLdtRoundTrip : public QObject {
 private slots:
     void initTestCase() {
         QVERIFY(tmp.isValid());
-        // Isolates QSettings (validator limits, dialog directories) from the user's configuration.
-        QStandardPaths::setTestModeEnabled(true);
-        QSettings("Cagrinlabs", "QLumEdit").clear();
+        useDefaultSettings();
     }
 
     void templateWithModel_data() { addTemplateRows(); }
