@@ -33,11 +33,28 @@
         { "name": "installer-windows", "configurePreset": "build", "targets": ["installer"] },
         { "name": "test", "configurePreset": "test" },
         { "name": "test-coverage", "configurePreset": "test-coverage", "targets": ["coverage"] },
-        { "name": "test-sanitize", "configurePreset": "test-sanitize" }
+        { "name": "test-sanitize", "configurePreset": "test-sanitize" },
+        { "name": "test-screenshots", "configurePreset": "test", "targets": ["tst_screenshots"] }
     ],
     "testPresets": [
-        { "name": "test", "configurePreset": "test", "output": { "outputOnFailure": true } },
-        { "name": "test-sanitize", "configurePreset": "test-sanitize", "output": { "outputOnFailure": true } }
+        {
+            "name": "test",
+            "configurePreset": "test",
+            "output": { "outputOnFailure": true },
+            "filter": { "exclude": { "label": "screenshots" } }
+        },
+        {
+            "name": "test-sanitize",
+            "configurePreset": "test-sanitize",
+            "output": { "outputOnFailure": true },
+            "filter": { "exclude": { "label": "screenshots" } }
+        },
+        {
+            "name": "test-screenshots",
+            "configurePreset": "test",
+            "output": { "outputOnFailure": true },
+            "filter": { "include": { "label": "screenshots" } }
+        }
     ],
     "workflowPresets": [
         {
@@ -82,6 +99,14 @@
                 { "type": "configure", "name": "test-sanitize" },
                 { "type": "build", "name": "test-sanitize" },
                 { "type": "test", "name": "test-sanitize" }
+            ]
+        },
+        {
+            "name": "test-screenshots",
+            "steps": [
+                { "type": "configure", "name": "test" },
+                { "type": "build", "name": "test-screenshots" },
+                { "type": "test", "name": "test-screenshots" }
             ]
         }
     ]

@@ -34,6 +34,7 @@ cmake --workflow --preset installer-windows  # Windows only: build-windows + NSI
 cmake --workflow --preset test               # configure, build and run tests
 cmake --workflow --preset test-coverage      # the same with code coverage (gcovr)
 cmake --workflow --preset test-sanitize      # the same with AddressSanitizer and UBSan
+cmake --workflow --preset test-screenshots   # compare screenshots with tests/screenshots/<os>/<language>/
 ```
 
 Build directories are in `/tmp/qlumedit/<preset>`, because the workspace mount does not allow CMake to set file permissions.
@@ -47,6 +48,17 @@ Outside the dev container set `export CMAKE_PREFIX_PATH=<path to Qt>/6.12.0/gcc_
 ```bash
 ctest --preset test -R tst_eulumdatcalculate
 QT_QPA_PLATFORM=offscreen /tmp/qlumedit/test/tests/tst_eulumdat loadFile_readsFields
+```
+
+## Screenshots
+
+The screenshot test is excluded from the `test` and `test-sanitize` presets.
+It renders the main window tabs and the dialogs in every language and compares them pixel by pixel with the references.
+The current images are written to `/tmp/qlumedit/test/tests/screenshots/`.
+To refresh the references after an intended UI change:
+
+```bash
+QLUMEDIT_UPDATE_SCREENSHOTS=1 cmake --workflow --preset test-screenshots
 ```
 
 # Translations
