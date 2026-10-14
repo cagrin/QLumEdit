@@ -120,6 +120,7 @@ qlumedit_add_test(tst_eulumdatwidget3 qlumedit_gui)
 qlumedit_add_test(tst_eulumdatwidget4 qlumedit_gui)
 qlumedit_add_test(tst_eulumdattablewidget qlumedit_gui)
 qlumedit_add_test(tst_ldtroundtrip qlumedit_gui)
+qlumedit_add_test(tst_validator qlumedit_gui)
 
 qlumedit_add_test(tst_exports qlumedit_gui)
 set_tests_properties(tst_exports PROPERTIES LABELS exports)
