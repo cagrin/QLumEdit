@@ -76,7 +76,8 @@ void MainWindow::newFile()
     exportSubMenu->setEnabled(false);
     // Synchronously, because the editor widgets refer to the model that is replaced below.
     delete takeCentralWidget();
-    setCentralWidget(new QWidget);
+    QWidget *placeholder = new QWidget;
+    setCentralWidget(placeholder);
     central = nullptr;
     setCurrentFile("");
 
@@ -297,7 +298,8 @@ void MainWindow::loadFile(const QString &fileName)
     exportSubMenu->setEnabled(false);
     // Synchronously, because the editor widgets refer to the model that is replaced below.
     delete takeCentralWidget();
-    setCentralWidget(new QWidget);
+    QWidget *placeholder = new QWidget;
+    setCentralWidget(placeholder);
     central = nullptr;
     setCurrentFile("");
 
