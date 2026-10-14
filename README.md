@@ -14,9 +14,7 @@ The ```.devcontainer``` folder contains a development container with a lightweig
 The ```.github``` folder shows how to build the application on all platforms: Windows, Linux and macOS.
 
 ### Unit tests
-The ```tests``` folder contains unit tests written with **Qt Test**. They cover the Eulumdat data model (loading, saving and validating LDT files, photometric calculations) as well as the editor widgets. Each source file ```sources/<name>.cpp``` has a matching test file ```tests/tst_<name>.cpp```; shared test helpers are in ```tests/tst_ldt.h```.
-
-The application and the tests are built with CMake. From the repository root you can:
+The ```tests``` folder contains unit tests written with **Qt Test**. They cover the Eulumdat data model (loading, saving and validating LDT files, photometric calculations) as well as the editor widgets. The application and the tests are built with CMake. From the repository root you can:
 
 ```bash
 cmake --workflow --preset build          # build the application
