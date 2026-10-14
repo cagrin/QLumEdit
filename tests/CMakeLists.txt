@@ -121,6 +121,9 @@ qlumedit_add_test(tst_eulumdatwidget3 qlumedit_gui)
 qlumedit_add_test(tst_eulumdatwidget4 qlumedit_gui)
 qlumedit_add_test(tst_eulumdattablewidget qlumedit_gui)
 qlumedit_add_test(tst_ldtroundtrip qlumedit_gui)
+qlumedit_add_test(tst_newdialog qlumedit_gui)
+# The dialog returns :/templates/*.ldt paths.
+target_sources(tst_newdialog PRIVATE ${PROJECT_SOURCE_DIR}/sources/application.qrc)
 qlumedit_add_test(tst_validator qlumedit_gui)
 
 qlumedit_add_test(tst_exports qlumedit_gui)
