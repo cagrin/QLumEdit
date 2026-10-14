@@ -114,6 +114,7 @@ endfunction()
 
 qlumedit_add_test(tst_eulumdat qlumedit_core)
 qlumedit_add_test(tst_eulumdatcalculate qlumedit_core)
+qlumedit_add_test(tst_configtabdialog qlumedit_gui)
 qlumedit_add_test(tst_eulumdatwidget qlumedit_gui)
 qlumedit_add_test(tst_eulumdatwidget2 qlumedit_gui)
 qlumedit_add_test(tst_eulumdatwidget3 qlumedit_gui)
