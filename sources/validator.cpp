@@ -121,12 +121,14 @@ void ValidatorDialog::openDirectory() {
             textEdit->append(text);
             e++;
         }
+        // GCOVR_EXCL_START: e.g. std::bad_alloc from a huge count in a damaged file (a test would allocate many GB)
         catch(...) {
             text = files[i] + "<br>";
             text += "<b>" + tr("Unknown error!") + "</b>";
             textEdit->append(text);
             e++;
         }
+        // GCOVR_EXCL_STOP
 
         QCoreApplication::processEvents();
         delete ldt;
