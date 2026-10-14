@@ -127,6 +127,7 @@ target_sources(tst_mainwindow PRIVATE ${PROJECT_SOURCE_DIR}/sources/application.
 qlumedit_add_test(tst_newdialog qlumedit_gui)
 # The dialog returns :/templates/*.ldt paths.
 target_sources(tst_newdialog PRIVATE ${PROJECT_SOURCE_DIR}/sources/application.qrc)
+qlumedit_add_test(tst_renderwidget qlumedit_gui)
 qlumedit_add_test(tst_validator qlumedit_gui)
 
 qlumedit_add_test(tst_exports qlumedit_gui)

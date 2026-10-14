@@ -317,11 +317,8 @@ void RenderWidget::paintEvent(QPaintEvent *)
        }
     
     QPainterPath pathC90C270;   
-    pathC90C270.moveTo(pointsC90C270[0]);
-    
-    for(int i=1; i<pointsC90C270.size(); i++) {
-        pathC90C270.lineTo(pointsC90C270[i]);
-       }
+    // Empty for rotational symmetry (Isym 1), where C0-C180 stands for both planes.
+    pathC90C270.addPolygon(QPolygonF(pointsC90C270));
    
     painter.setPen(QPen(Qt::red, 2, Qt::DashLine, Qt::RoundCap, Qt::RoundJoin));   
     painter.setBrush(QBrush(QColor(255, 0, 0, alpha), Qt::SolidPattern));
@@ -522,11 +519,8 @@ void RenderWidget::saveImage(QString fileName, int resolution) {
        }
     
     QPainterPath pathC90C270;   
-    pathC90C270.moveTo(pointsC90C270[0]);
-    
-    for(int i=1; i<pointsC90C270.size(); i++) {
-        pathC90C270.lineTo(pointsC90C270[i]);
-       }
+    // Empty for rotational symmetry (Isym 1), where C0-C180 stands for both planes.
+    pathC90C270.addPolygon(QPolygonF(pointsC90C270));
    
     painter.setPen(QPen(Qt::red, 2, Qt::DashLine, Qt::RoundCap, Qt::RoundJoin));   
     if(Vars().fill) {
