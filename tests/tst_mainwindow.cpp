@@ -71,6 +71,16 @@ QPushButton *findButton(const QDialog *dialog, const char *sourceText) {
     return nullptr;
 }
 
+void addExportRows() {
+    QTest::addColumn<QByteArray>("actionText");
+    QTest::addColumn<QString>("key");
+    QTest::addColumn<QString>("suffix");
+    QTest::addColumn<QString>("message");
+    QTest::newRow("html") << QByteArray("HTML/PNG...") << "exportxhtml" << ".html" << "File exported to HTML/PNG";
+    QTest::newRow("ies") << QByteArray("Iesna LM-63-1995...") << "exportiesna" << ".ies"
+                         << "File exported to Iesna LM-63-1995";
+}
+
 } // namespace
 
 class TestMainWindow : public QObject {
@@ -277,6 +287,65 @@ private slots:
         QCOMPARE(QDir(tmp.path()).entryList(QDir::Files), before);
         QCOMPARE(setting("savedir"), QString());
         QCOMPARE(window.windowTitle(), QFileInfo(file).fileName() + "[*] - QLumEdit");
+    }
+
+    void export_writesChosenFile_data() { addExportRows(); }
+    void export_writesChosenFile() {
+        QFETCH(QByteArray, actionText);
+        QFETCH(QString, key);
+        QFETCH(QString, suffix);
+        QFETCH(QString, message);
+        MainWindow window;
+        window.loadFile(writeTestLdt());
+        const QString target = path(suffix);
+        answerModals(&window, [target](QDialog *d) { selectFile(d, target); });
+
+        action(window, actionText.constData())->trigger();
+
+        QVERIFY(QFileInfo(target).size() > 0);
+        QCOMPARE(setting(key), target);
+        QCOMPARE(window.statusBar()->currentMessage(), message);
+    }
+
+    void export_cancelWritesNothing_data() { addExportRows(); }
+    void export_cancelWritesNothing() {
+        QFETCH(QByteArray, actionText);
+        QFETCH(QString, key);
+        MainWindow window;
+        window.loadFile(writeTestLdt());
+        const QStringList before = QDir(tmp.path()).entryList(QDir::Files);
+        answerModals(&window, [](QDialog *d) { d->reject(); });
+
+        action(window, actionText.constData())->trigger();
+
+        QCOMPARE(QDir(tmp.path()).entryList(QDir::Files), before);
+        QCOMPARE(setting(key), QString());
+        QCOMPARE(window.statusBar()->currentMessage(), "File loaded");
+    }
+
+    void export_reportsUnwritableFile_data() { addExportRows(); }
+    void export_reportsUnwritableFile() {
+        QFETCH(QByteArray, actionText);
+        QFETCH(QString, key);
+        QFETCH(QString, suffix);
+        MainWindow window;
+        window.loadFile(writeTestLdt());
+        const QString target = tmp.filePath("missing/export" + suffix);
+        QStringList shown;
+        answerModals(&window, [&shown, target](QDialog *d) {
+            if (qobject_cast<QFileDialog *>(d))
+                selectFile(d, target);
+            else
+                answerMessageBox(d, shown);
+        });
+
+        action(window, actionText.constData())->trigger();
+
+        QCOMPARE(shown.size(), 1);
+        QVERIFY2(shown[0].startsWith("QLumEdit: Cannot write file " + target + ":\n"), qPrintable(shown[0]));
+        QVERIFY(!QFileInfo::exists(target));
+        QCOMPARE(setting(key), QString());
+        QCOMPARE(window.statusBar()->currentMessage(), "File loaded");
     }
 
     void close_withoutChangesDoesNotAsk() {

@@ -53,6 +53,38 @@ private slots:
         }
     }
 
+    // Only reachable with invalid model data: the ratios are relative to the total flux, so they exceed 1 only
+    // with negative intensities, which loading rejects. Here a narrow beam with a negative upper hemisphere.
+    void computeWarnsAndKeepsRatiosAbove1() {
+        Eulumdat ldt;
+        loadLdt(ldt, tmp, isotropic(1, 1, 1, 5).lines());
+        for (int j = 0; j < ldt.iNg; j++)
+            ldt.dLcd[0][j] = ldt.dG[j] <= 40 ? 1000 : ldt.dG[j] <= 90 ? 0 : -130;
+        const QList<double> ratios = ldt.directRadios("1.00");
+        const auto first = std::find_if(ratios.begin(), ratios.end(), [](double k) { return k > 1; });
+        QVERIFY(first != ratios.end());
+        const QString expected = QString("k[%1] = %2 -> value is out of range").arg(first - ratios.begin() + 1).arg(*first);
+
+        EulumdatWidget4 w(ldt);
+        QString message;
+        handleNextModal([&message](QDialog *dialog) {
+            // The warning follows the spacing dialog.
+            handleNextModal([&message](QDialog *warning) {
+                if (auto *box = qobject_cast<QMessageBox *>(warning))
+                    message = box->text();
+                warning->accept();
+            });
+            dialog->accept();
+        });
+        w.computePushButton->click();
+
+        QVERIFY2(message.startsWith(expected), qPrintable(message));
+        for (int i = 0; i < 10; i++)
+            QCOMPARE(ldt.dDR[i], 0.5);
+        for (QDoubleSpinBox *box : ratioSpinBoxes(w))
+            QCOMPARE(box->value(), 0.5);
+    }
+
     void computeCancelledKeepsRatios() {
         Eulumdat ldt;
         loadLdt(ldt, tmp, isotropic(1, 1, 1, 5).lines());

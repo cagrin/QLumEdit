@@ -48,6 +48,27 @@ private slots:
         QCOMPARE(w.DoubleSpinBox22->value(), 50.0);
     }
 
+    // Only reachable with invalid model data: the flux fraction is a ratio, so it exceeds 100% only with
+    // negative intensities, which loading rejects.
+    void downwardButtonWarnsAndKeepsValueAbove100Percent() {
+        Eulumdat ldt;
+        loadLdt(ldt, tmp, TestLdt().lines());
+        ldt.dLcd[0][2] = -200;
+        EulumdatWidget2 w(ldt);
+
+        QString message;
+        handleNextModal([&message](QDialog *dialog) {
+            if (auto *box = qobject_cast<QMessageBox *>(dialog))
+                message = box->text();
+            dialog->accept();
+        });
+        w.downwardPushButton->click();
+
+        QVERIFY2(message.startsWith("Downward flux fraction = 200 -> value is out of range"), qPrintable(message));
+        QCOMPARE(ldt.dDFF, 100.0);
+        QCOMPARE(w.DoubleSpinBox22->value(), 100.0);
+    }
+
     void outputButtonStoresCalculatedValue() {
         Eulumdat ldt;
         loadLdt(ldt, tmp, isotropic(1, 1, 1).scaled(0.5).lines());
