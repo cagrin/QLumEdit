@@ -70,7 +70,7 @@ double Eulumdat::downwardDFL(double arc) {
     }
     else if(iIsym == 3) {
         int j;
-        for(j=1; j<iNc; j++) {
+        for(j=0; j<iNc; j++) {
             if(dC[j] == 90) {
                 break;
             }
@@ -137,7 +137,7 @@ double Eulumdat::downward() {
     }
     else if(iIsym == 3) {
         int j;
-        for(j=1; j<iNc; j++) {
+        for(j=0; j<iNc; j++) {
             if(dC[j] == 90) {
                 break;
             }
@@ -201,7 +201,7 @@ double Eulumdat::output() {
     }
     else if(iIsym == 3) {
         int j;
-        for(j=1; j<iNc; j++) {
+        for(j=0; j<iNc; j++) {
             if(dC[j] == 90) {
                 break;
             }

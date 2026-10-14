@@ -168,6 +168,25 @@ private slots:
         spec.c = {0, 90, 200, 270};
         QTest::newRow("isym 3 without C180") << spec.lines() << "Missing C180-plane";
 
+        // Planes the code looks up among the stored ones (reading past the end of the lists before).
+        spec = isotropic(2, 4, 3);
+        spec.c = {0, 90, 100, 200};
+        QTest::newRow("isym 2 without C180") << spec.lines() << "Missing C180-plane";
+
+        spec = isotropic(3, 4, 3);
+        spec.c = {0, 100, 180, 300};
+        QTest::newRow("isym 3 without C90") << spec.lines() << "Missing C90-plane";
+
+        spec = isotropic(3, 4, 3);
+        spec.c = {0, 90, 180, 200};
+        QTest::newRow("isym 3 without C270") << spec.lines() << "Missing C270-plane";
+
+        spec = isotropic(3, 6, 4);
+        spec.c = {0, 30, 60, 90, 180, 270};
+        QTest::newRow("isym 3 with planes missing after C90") << spec.lines() << "Wrong C-planes scheme";
+
+        QTest::newRow("isym 4 without C90") << isotropic(4, 10, 3).lines() << "Missing C90-plane";
+
         QTest::newRow("isym 0 with Mc < 4") << isotropic(0, 2, 2).lines() << "Wrong C-planes scheme";
         QTest::newRow("isym 2 with Mc < 3") << isotropic(2, 2, 2).lines() << "Wrong C-planes scheme";
         QTest::newRow("isym 3 with Mc < 3") << isotropic(3, 2, 2).lines() << "Wrong C-planes scheme";

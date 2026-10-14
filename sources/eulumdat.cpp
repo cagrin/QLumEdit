@@ -442,8 +442,30 @@ QStringList Eulumdat::validate() {
         if(i == iNc) {
             throw tr("Missing C90-plane");
         }
+        // Stored C0 to C180.
+        for(i=0; i<iMc; i++) {
+            if(dC[i] == 180) {
+                break;
+            }
+        }
+        if(i == iMc) {
+            throw tr("Missing C180-plane");
+        }
     }
     else if( (iIsym == 3) && (iMc >= 3) ) {
+        for(i=0; i<iNc; i++) {
+            if(dC[i] == 90) {
+                break;
+            }
+        }
+        if(i == iNc) {
+            throw tr("Missing C90-plane");
+        }
+        // Stored C90 to C270.
+        int last = i + iMc;
+        if(last > iNc) {
+            throw tr("Wrong C-planes scheme");
+        }
         for(i=0; i<iNc; i++) {
             if(dC[i] == 180) {
                 break;
@@ -452,9 +474,25 @@ QStringList Eulumdat::validate() {
         if(i == iNc) {
             throw tr("Missing C180-plane");
         }
+        for(i=0; i<last; i++) {
+            if(dC[i] == 270) {
+                break;
+            }
+        }
+        if(i == last) {
+            throw tr("Missing C270-plane");
+        }
     }
     else if( (iIsym == 4) && (iMc >= 2) ) {
-        //
+        // Stored C0 to C90.
+        for(i=0; i<iMc; i++) {
+            if(dC[i] == 90) {
+                break;
+            }
+        }
+        if(i == iMc) {
+            throw tr("Missing C90-plane");
+        }
     }
     else {
         throw tr("Wrong C-planes scheme");

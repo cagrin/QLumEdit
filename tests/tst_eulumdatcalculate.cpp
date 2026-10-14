@@ -94,6 +94,22 @@ private slots:
         loadLdt(ldt, tmp, isotropic(1, 1, 1, 5).lines());
         QCOMPARE(ldt.directRadios("unknown"), ldt.directRadios("1.50"));
     }
+
+    // The C-planes may start at C90, the first stored plane (read past the end of the list before).
+    void symmetry3_planesStartingAtC90() {
+        TestLdt spec = isotropic(3, 4, 3, 5);
+        spec.c = {90, 180, 270, 300};
+        Eulumdat reference, ldt;
+        loadLdt(reference, tmp, isotropic(1, 1, 1, 5).lines());
+        QCOMPARE(loadLdt(ldt, tmp, spec.lines()), QStringList());
+
+        QCOMPARE(ldt.output(), reference.output());
+        QCOMPARE(ldt.downward(), reference.downward());
+        const QList<double> expected = reference.directRadios("1.00");
+        const QList<double> actual = ldt.directRadios("1.00");
+        for (int i = 0; i < 10; i++)
+            QVERIFY2(std::abs(actual[i] - expected[i]) < 1e-9, qPrintable(QString("k[%1]").arg(i + 1)));
+    }
 };
 
 QTEST_MAIN(TestEulumdatCalculate)
