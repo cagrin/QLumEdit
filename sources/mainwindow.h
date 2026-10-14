@@ -71,6 +71,8 @@ private:
     QAction *aboutQtAct;
    
     QString curFile;    
+    // Not saved yet: curFile is only the shown name "untitled.ldt".
+    bool isUntitled;
     bool mods;
     
     void saveFromWidget(void);
@@ -79,7 +81,7 @@ private:
 
 public:
     std::unique_ptr<Eulumdat> ldt;
-    MainTabWidget *central;
+    MainTabWidget *central = nullptr;
     
     void setValidatorOptions();  
     void loadFile(const QString &fileName);

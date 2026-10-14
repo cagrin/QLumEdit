@@ -21,6 +21,8 @@ QMenu *exportMenu(const MainWindow &window) {
 
 bool isEditing(const MainWindow &window) { return qobject_cast<MainTabWidget *>(window.centralWidget()); }
 
+const QString kSavePrompt = "QLumEdit: The file has been modified.\nDo you want to save your changes?";
+
 QString setting(const QString &key) { return QSettings("Cagrinlabs", "QLumEdit").value(key).toString(); }
 
 // Calls the handler for every modal dialog shown while the owner exists.
@@ -185,7 +187,9 @@ private slots:
         QFETCH(QString, value);
         QFETCH(QString, error);
         MainWindow window;
-        window.loadFile(writeTestLdt());
+        const QString previous = writeTestLdt();
+        // Edited, as after "Discard" in the save prompt of Open.
+        loadAndModify(window, previous);
         QStringList lines = TestLdt().lines();
         lines[line] = value;
         const QString file = writeLdt(tmp, lines);
@@ -198,9 +202,15 @@ private slots:
         QVERIFY2(shown[0].startsWith("Cannot load file: " + error), qPrintable(shown[0]));
         // The previous file is closed and nothing can be saved or exported.
         QVERIFY(!isEditing(window));
+        QVERIFY(!window.central);
+        QCOMPARE(window.windowTitle(), "QLumEdit");
         QVERIFY(!action(window, "&Save")->isEnabled());
         QVERIFY(!action(window, "Save &As...")->isEnabled());
         QVERIFY(!exportMenu(window)->isEnabled());
+        // The discarded changes are not offered for saving again.
+        QVERIFY(window.close());
+        QCOMPARE(shown.size(), 1);
+        QCOMPARE(readLines(previous).value(0), "Test luminaire");
     }
 
     void edit_enablesSave() {
@@ -303,7 +313,7 @@ private slots:
 
         QCOMPARE(window.close(), closed);
 
-        QCOMPARE(shown, QStringList{"QLumEdit: The file has been modified.\nDo you want to save your changes?"});
+        QCOMPARE(shown, QStringList{kSavePrompt});
         QCOMPARE(readLines(file).value(0), firstLine);
         QCOMPARE(QSettings("Cagrinlabs", "QLumEdit").contains("position"), closed);
     }
@@ -342,8 +352,7 @@ private slots:
 
         action(window, "&Open...")->trigger();
 
-        QCOMPARE(shown.size(), 1);
-        QVERIFY(shown[0].startsWith("QLumEdit: The file has been modified."));
+        QCOMPARE(shown, QStringList{kSavePrompt});
         QVERIFY(action(window, "&Save")->isEnabled());
     }
 
@@ -379,7 +388,7 @@ private slots:
         QVERIFY(!exportMenu(window)->isEnabled());
     }
 
-    void new_cancelAtSavePromptStillShowsNewDialog() {
+    void new_cancelAtSavePromptKeepsEditedFile() {
         MainWindow window;
         const QString file = writeTestLdt();
         loadAndModify(window, file);
@@ -395,34 +404,91 @@ private slots:
 
         action(window, "&New...")->trigger();
 
-        // Current behavior: the result of the save prompt is ignored and the edited file is closed.
-        QCOMPARE(shown.size(), 2);
-        QCOMPARE(shown[1], "NewDialog");
+        QCOMPARE(shown, QStringList{kSavePrompt});
+        QVERIFY(isEditing(window));
+        QCOMPARE(window.central->general->LineEdit1->text(), "Edited");
+        QVERIFY(action(window, "&Save")->isEnabled());
+        QCOMPARE(window.windowTitle(), QFileInfo(file).fileName() + "[*] - QLumEdit");
+    }
+
+    void new_discardThenCancelLeavesNoFile() {
+        MainWindow window;
+        const QString file = writeTestLdt();
+        loadAndModify(window, file);
+        QStringList shown;
+        answerModals(&window, [&shown](QDialog *d) {
+            if (qobject_cast<NewDialog *>(d)) {
+                shown << "NewDialog";
+                d->reject();
+            } else {
+                answerMessageBox(d, shown, QMessageBox::Discard);
+            }
+        });
+
+        action(window, "&New...")->trigger();
+
+        QCOMPARE(shown, (QStringList{kSavePrompt, "NewDialog"}));
         QVERIFY(!isEditing(window));
+        QVERIFY(!window.central);
+        QCOMPARE(window.windowTitle(), "QLumEdit");
+        QVERIFY(!action(window, "&Save")->isEnabled());
+        // The discarded changes are not offered for saving again.
+        QVERIFY(window.close());
+        QCOMPARE(shown.size(), 2);
         QCOMPARE(readLines(file).value(0), "Test luminaire");
     }
 
-    void save_afterNewWritesUntitledToWorkingDirectory() {
-        const QString previous = QDir::currentPath();
-        QVERIFY(QDir::setCurrent(tmp.path()));
+    void save_afterNewAsksForFileName() {
         MainWindow window;
-        answerModals(&window, [](QDialog *d) {
-            if (QPushButton *button = findButton(d, "Projector"))
+        const QString target = path();
+        QStringList shown;
+        answerModals(&window, [&shown, target](QDialog *d) {
+            if (QPushButton *button = findButton(d, "Projector")) {
                 button->click();
-            else
-                d->reject();
+            } else if (qobject_cast<QFileDialog *>(d)) {
+                shown << "QFileDialog";
+                selectFile(d, target);
+            } else {
+                answerMessageBox(d, shown);
+            }
         });
         action(window, "&New...")->trigger();
         window.central->general->LineEdit1->setText("New projector");
 
         action(window, "&Save")->trigger();
 
-        // Current behavior: "Save" does not ask for a name, the relative "untitled.ldt" is used.
-        const QString untitled = tmp.filePath("untitled.ldt");
-        const QString firstLine = readLines(untitled).value(0);
-        QFile::remove(untitled);
-        QVERIFY(QDir::setCurrent(previous));
-        QCOMPARE(firstLine, "New projector");
+        QCOMPARE(shown, QStringList{"QFileDialog"});
+        QCOMPARE(readLines(target).value(0), "New projector");
+        QCOMPARE(window.windowTitle(), QFileInfo(target).fileName() + "[*] - QLumEdit");
+
+        // Once saved, "Save" writes to the chosen file without asking.
+        window.central->general->LineEdit1->setText("Saved again");
+        action(window, "&Save")->trigger();
+        QCOMPARE(shown.size(), 1);
+        QCOMPARE(readLines(target).value(0), "Saved again");
+    }
+
+    void close_untitledCancelInFileDialogKeepsWindowOpen() {
+        MainWindow window;
+        QStringList shown;
+        answerModals(&window, [&shown](QDialog *d) {
+            if (QPushButton *button = findButton(d, "Projector")) {
+                button->click();
+            } else if (qobject_cast<QFileDialog *>(d)) {
+                shown << "QFileDialog";
+                d->reject();
+            } else {
+                answerMessageBox(d, shown, QMessageBox::Save);
+            }
+        });
+        action(window, "&New...")->trigger();
+        window.central->general->LineEdit1->setText("New projector");
+
+        QVERIFY(!window.close());
+
+        QCOMPARE(shown, (QStringList{kSavePrompt, "QFileDialog"}));
+        QVERIFY(isEditing(window));
+        QVERIFY(action(window, "&Save")->isEnabled());
     }
 };
 

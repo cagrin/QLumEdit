@@ -67,7 +67,9 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::newFile()
 {
-    maybeSave();
+    if (!maybeSave()) {
+        return;
+    }
 
     saveAct->setEnabled(false);
     saveAsAct->setEnabled(false);
@@ -75,7 +77,8 @@ void MainWindow::newFile()
     // Synchronously, because the editor widgets refer to the model that is replaced below.
     delete takeCentralWidget();
     setCentralWidget(new QWidget);
-
+    central = nullptr;
+    setCurrentFile("");
 
     NewDialog *newDialog;
     newDialog = new NewDialog(this);
@@ -114,7 +117,7 @@ void MainWindow::open()
 
 bool MainWindow::save()
 {
-    if (curFile.isEmpty()) {
+    if (isUntitled) {
         return saveAs();
     } else {
         return saveFile(curFile);
@@ -295,6 +298,8 @@ void MainWindow::loadFile(const QString &fileName)
     // Synchronously, because the editor widgets refer to the model that is replaced below.
     delete takeCentralWidget();
     setCentralWidget(new QWidget);
+    central = nullptr;
+    setCurrentFile("");
 
     ldt = std::make_unique<Eulumdat>();
     try {
@@ -355,6 +360,7 @@ bool MainWindow::saveFile(const QString &fileName)
 void MainWindow::setCurrentFile(const QString &fileName)
 {
     curFile = fileName;
+    isUntitled = fileName.isEmpty();
     mods = false;
     setWindowModified(false);
 
