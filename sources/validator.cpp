@@ -89,16 +89,15 @@ void ValidatorDialog::openDirectory() {
     dirName->setText(directory);
 
     QString text;
-    Eulumdat * ldt = 0;
     int w=0, e=0, i=0;
 
     for(i=0; i<files.size(); i++) {
-        ldt = new Eulumdat();
+        Eulumdat ldt;
         dirName->setText(QString("<b> %1 / %2 </b>").arg(i).arg(files.size())
         + QString(" (<font color=blue>%1</font> / <font color=red>%2</font>)").arg(w).arg(e)
         + "<br>" + files[i]);
         try {
-            QStringList warnings = ldt->loadFile(files[i]);
+            QStringList warnings = ldt.loadFile(files[i]);
             if(!warnings.isEmpty()) {
 
                 text = files[i] + "<br>";
@@ -123,7 +122,6 @@ void ValidatorDialog::openDirectory() {
         }
 
         QCoreApplication::processEvents();
-        delete ldt;
         if(stop) {
             break;
            }
