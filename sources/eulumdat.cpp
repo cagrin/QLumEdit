@@ -79,6 +79,12 @@ QStringList Eulumdat::loadFile(QString fileName) {
     dTILT = getDouble(in);
     iN = getInt(in);
 
+    // A damaged file must not allocate the lists below with these sizes. validate() checks
+    // the counts before it uses any list, so it throws here with the usual messages.
+    if( (iNc < 0) || (iNc > 721) || (iNg < 0) || (iNg > 361) || (iN < 1) || (iN > 20) ) {
+        validate(); // GCOVR_EXCL_BR_LINE
+    }
+
     // Negative counts are rejected by validate().
     iNL = QList<int>(qMax(0, iN));
     sTL = QStringList(qMax(0, iN));

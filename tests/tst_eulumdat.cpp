@@ -136,6 +136,12 @@ private slots:
             manyLamps = manyLamps.mid(0, 32) + lampSet + manyLamps.mid(32);
         QTest::newRow("n > 20") << manyLamps << "Number of standard sets of lamps";
 
+        // A damaged file must not allocate lists with these sizes (std::bad_alloc or many GB before).
+        QTest::newRow("Nc huge") << withLine(3, "2000000000") << "Number of C-planes = 2000000000";
+        QTest::newRow("Ng huge") << withLine(5, "2000000000")
+                                 << "Number of luminous intensities in each C-plane = 2000000000";
+        QTest::newRow("n huge") << withLine(25, "2000000000") << "Number of standard sets of lamps = 2000000000";
+
         spec = TestLdt();
         spec.lcd = {{100, -1, 100}};
         QTest::newRow("intensity < 0") << spec.lines() << "Luminous intensity distribution";

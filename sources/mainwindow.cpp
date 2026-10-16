@@ -319,16 +319,10 @@ void MainWindow::loadFile(const QString &fileName)
             QMessageBox::warning(this, tr("Loading file"), warn);
         }
     }
-    catch (QString error) {
+    catch (QString error) { // GCOVR_EXCL_BR_LINE
         QMessageBox::critical(this, tr("Cannot load file"), error);
         return;
     }
-    // GCOVR_EXCL_START: e.g. std::bad_alloc from a huge count in a damaged file (a test would allocate many GB)
-    catch(...) {
-        QMessageBox::critical(this, tr("Cannot load file"), tr("Unknown error!"));
-        return;
-    }
-    // GCOVR_EXCL_STOP
 
     saveAsAct->setEnabled(true);
     exportSubMenu->setEnabled(true);

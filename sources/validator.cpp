@@ -76,7 +76,7 @@ void ValidatorDialog::openDirectory() {
     try {
         files = getAllFilesFromPath(directory, filters);
     }
-    catch(int) {
+    catch (int) { // GCOVR_EXCL_BR_LINE
         openDir->setEnabled(true);
         dirName->setText(tr("Choose directory to scan for Eulumdat files"));
         QApplication::restoreOverrideCursor();
@@ -115,20 +115,12 @@ void ValidatorDialog::openDirectory() {
                 w++;
             }
         }
-        catch (QString error) {
+        catch (QString error) { // GCOVR_EXCL_BR_LINE
             text = files[i] + "<br>";
             text += "<font color=red>" + tr("error") + ": " + error + "</font>";
             textEdit->append(text);
             e++;
         }
-        // GCOVR_EXCL_START: e.g. std::bad_alloc from a huge count in a damaged file (a test would allocate many GB)
-        catch(...) {
-            text = files[i] + "<br>";
-            text += "<b>" + tr("Unknown error!") + "</b>";
-            textEdit->append(text);
-            e++;
-        }
-        // GCOVR_EXCL_STOP
 
         QCoreApplication::processEvents();
         delete ldt;

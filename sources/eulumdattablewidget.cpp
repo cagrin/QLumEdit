@@ -80,17 +80,10 @@ void EulumdatTableWidget::importFromClipboard() {
     try {
         tryToImportFromClipboard();
     }
-    catch (QString error) {
+    catch (QString error) { // GCOVR_EXCL_BR_LINE
         QMessageBox::warning(this, tr("Paste from Clipboard"), error);
         return;
     }
-    // GCOVR_EXCL_START: only QString is thrown above, this is for e.g. std::bad_alloc (out of memory)
-    catch(...) {
-        QMessageBox::critical(this, tr("Paste from Clipboard"),
-                tr("Unknown error!"));    
-        return;        
-    }
-    // GCOVR_EXCL_STOP
 
     setTable();
     Vars().mainWindow->central->general->setValues();

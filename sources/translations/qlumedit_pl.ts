@@ -10,203 +10,203 @@
         <translation> bajcie</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="222"/>
+        <location filename="../eulumdat.cpp" line="228"/>
         <source>Identification</source>
         <translation>Identyfikator</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="223"/>
-        <location filename="../eulumdat.cpp" line="257"/>
-        <location filename="../eulumdat.cpp" line="261"/>
-        <location filename="../eulumdat.cpp" line="265"/>
-        <location filename="../eulumdat.cpp" line="269"/>
-        <location filename="../eulumdat.cpp" line="273"/>
-        <location filename="../eulumdat.cpp" line="339"/>
-        <location filename="../eulumdat.cpp" line="347"/>
-        <location filename="../eulumdat.cpp" line="351"/>
+        <location filename="../eulumdat.cpp" line="229"/>
+        <location filename="../eulumdat.cpp" line="263"/>
+        <location filename="../eulumdat.cpp" line="267"/>
+        <location filename="../eulumdat.cpp" line="271"/>
+        <location filename="../eulumdat.cpp" line="275"/>
+        <location filename="../eulumdat.cpp" line="279"/>
+        <location filename="../eulumdat.cpp" line="345"/>
+        <location filename="../eulumdat.cpp" line="353"/>
+        <location filename="../eulumdat.cpp" line="357"/>
         <source>line is too long</source>
         <translation>wiersz jest za długi</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="226"/>
+        <location filename="../eulumdat.cpp" line="232"/>
         <source>Type indicator</source>
         <translation>Rodzaj oprawy</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="231"/>
+        <location filename="../eulumdat.cpp" line="237"/>
         <source>Symmetry indicator</source>
         <translation>Rodzaj symetrii</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="236"/>
+        <location filename="../eulumdat.cpp" line="242"/>
         <source>Number of C-planes</source>
         <translation>Liczba płaszczyzn C</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="241"/>
+        <location filename="../eulumdat.cpp" line="247"/>
         <source>Distance between C-planes</source>
         <translation>Odległość pomiędzy płaszczyznami&#xa0;C</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="246"/>
+        <location filename="../eulumdat.cpp" line="252"/>
         <source>Number of luminous intensities in each C-plane</source>
         <translation>Liczba punktów pomiarowych w każdej płaszczyźnie C</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="251"/>
+        <location filename="../eulumdat.cpp" line="257"/>
         <source>Distance between luminous intensities per C-plane</source>
         <translation>Odległość pomiędzy punktami pomiarowymi dla płaszczyzny C</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="256"/>
+        <location filename="../eulumdat.cpp" line="262"/>
         <source>Measurement report number</source>
         <translation>Numer raportu pomiaru</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="260"/>
+        <location filename="../eulumdat.cpp" line="266"/>
         <source>Luminaire name</source>
         <translation>Nazwa oprawy</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="264"/>
+        <location filename="../eulumdat.cpp" line="270"/>
         <source>Luminaire number</source>
         <translation>Numer oprawy</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="268"/>
+        <location filename="../eulumdat.cpp" line="274"/>
         <source>File name</source>
         <translation>Nazwa pliku</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="272"/>
+        <location filename="../eulumdat.cpp" line="278"/>
         <source>Date/user</source>
         <translation>Data i użytkownik</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="227"/>
-        <location filename="../eulumdat.cpp" line="232"/>
-        <location filename="../eulumdat.cpp" line="237"/>
-        <location filename="../eulumdat.cpp" line="242"/>
-        <location filename="../eulumdat.cpp" line="247"/>
-        <location filename="../eulumdat.cpp" line="252"/>
-        <location filename="../eulumdat.cpp" line="277"/>
-        <location filename="../eulumdat.cpp" line="281"/>
-        <location filename="../eulumdat.cpp" line="285"/>
-        <location filename="../eulumdat.cpp" line="289"/>
-        <location filename="../eulumdat.cpp" line="293"/>
-        <location filename="../eulumdat.cpp" line="297"/>
-        <location filename="../eulumdat.cpp" line="301"/>
-        <location filename="../eulumdat.cpp" line="305"/>
-        <location filename="../eulumdat.cpp" line="309"/>
-        <location filename="../eulumdat.cpp" line="313"/>
-        <location filename="../eulumdat.cpp" line="317"/>
-        <location filename="../eulumdat.cpp" line="321"/>
-        <location filename="../eulumdat.cpp" line="325"/>
-        <location filename="../eulumdat.cpp" line="329"/>
+        <location filename="../eulumdat.cpp" line="233"/>
+        <location filename="../eulumdat.cpp" line="238"/>
+        <location filename="../eulumdat.cpp" line="243"/>
+        <location filename="../eulumdat.cpp" line="248"/>
+        <location filename="../eulumdat.cpp" line="253"/>
+        <location filename="../eulumdat.cpp" line="258"/>
+        <location filename="../eulumdat.cpp" line="283"/>
+        <location filename="../eulumdat.cpp" line="287"/>
+        <location filename="../eulumdat.cpp" line="291"/>
+        <location filename="../eulumdat.cpp" line="295"/>
+        <location filename="../eulumdat.cpp" line="299"/>
+        <location filename="../eulumdat.cpp" line="303"/>
+        <location filename="../eulumdat.cpp" line="307"/>
+        <location filename="../eulumdat.cpp" line="311"/>
+        <location filename="../eulumdat.cpp" line="315"/>
+        <location filename="../eulumdat.cpp" line="319"/>
+        <location filename="../eulumdat.cpp" line="323"/>
+        <location filename="../eulumdat.cpp" line="327"/>
+        <location filename="../eulumdat.cpp" line="331"/>
         <location filename="../eulumdat.cpp" line="335"/>
-        <location filename="../eulumdat.cpp" line="343"/>
-        <location filename="../eulumdat.cpp" line="355"/>
+        <location filename="../eulumdat.cpp" line="341"/>
+        <location filename="../eulumdat.cpp" line="349"/>
         <location filename="../eulumdat.cpp" line="361"/>
+        <location filename="../eulumdat.cpp" line="367"/>
         <source>value is out of range</source>
         <translation>wartość jest poza zakresem</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="276"/>
+        <location filename="../eulumdat.cpp" line="282"/>
         <source>Length/diameter of luminaire</source>
         <translation>Długość (lub średnica) oprawy</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="280"/>
+        <location filename="../eulumdat.cpp" line="286"/>
         <source>Width of luminaire</source>
         <translation>Szerokość oprawy</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="284"/>
+        <location filename="../eulumdat.cpp" line="290"/>
         <source>Height of luminaire</source>
         <translation>Wysokość oprawy</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="288"/>
+        <location filename="../eulumdat.cpp" line="294"/>
         <source>Length/diameter of luminous area</source>
         <translation>Długość (lub średnica) części świecącej</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="292"/>
+        <location filename="../eulumdat.cpp" line="298"/>
         <source>Width of luminous area</source>
         <translation>Szerokość części świecącej</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="296"/>
+        <location filename="../eulumdat.cpp" line="302"/>
         <source>Height of luminous area C0-plane</source>
         <translation>Wysokość części świecącej w płaszczyźnie C0</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="300"/>
+        <location filename="../eulumdat.cpp" line="306"/>
         <source>Height of luminous area C90-plane</source>
         <translation>Wysokość części świecącej w płaszczyźnie C90</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="304"/>
+        <location filename="../eulumdat.cpp" line="310"/>
         <source>Height of luminous area C180-plane</source>
         <translation>Wysokość części świecącej w płaszczyźnie C180</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="312"/>
+        <location filename="../eulumdat.cpp" line="318"/>
         <source>Downward flux fraction</source>
         <translation>Udział strumienia dolnego</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="320"/>
+        <location filename="../eulumdat.cpp" line="326"/>
         <source>Conversion factor for luminous intensities</source>
         <translation>Mnożnik rozsyłu światłości</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="324"/>
+        <location filename="../eulumdat.cpp" line="330"/>
         <source>Tilt of luminaire during measurement</source>
         <translation>Nachylenie oprawy podczas pomiarów</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="328"/>
+        <location filename="../eulumdat.cpp" line="334"/>
         <source>Number of standard sets of lamps</source>
         <translation>Liczba zestawów źródeł światła</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="334"/>
+        <location filename="../eulumdat.cpp" line="340"/>
         <source>Number of lamps</source>
         <translation>Liczba źródeł światła</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="338"/>
+        <location filename="../eulumdat.cpp" line="344"/>
         <source>Type of lamps</source>
         <translation>Typ źródeł światła</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="342"/>
+        <location filename="../eulumdat.cpp" line="348"/>
         <source>Total luminous flux of lamps</source>
         <translation>Całkowity strumień świetlny źródeł światła</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="354"/>
+        <location filename="../eulumdat.cpp" line="360"/>
         <source>Wattage including ballast</source>
         <translation>Moc oprawy ze statecznikiem</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="368"/>
+        <location filename="../eulumdat.cpp" line="374"/>
         <source>values are out of range</source>
         <translation>wartości są poza zakresem</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="367"/>
+        <location filename="../eulumdat.cpp" line="373"/>
         <source>Luminous intensity distribution</source>
         <translation>Rozsył światłości</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="388"/>
+        <location filename="../eulumdat.cpp" line="394"/>
         <source>values are too low</source>
         <translation>wartości są zbyt niskie</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="387"/>
+        <location filename="../eulumdat.cpp" line="393"/>
         <source>avg</source>
         <translation>średnia</translation>
     </message>
@@ -217,59 +217,63 @@
         <translation>Błąd odczytu pliku w</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="308"/>
+        <location filename="../eulumdat.cpp" line="314"/>
         <source>Height of luminous area C270-plane</source>
         <translation>Wysokość części świecącej w płaszczyźnie C270</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="346"/>
+        <location filename="../eulumdat.cpp" line="352"/>
         <source>Color temperature of lamps</source>
         <translation>Temperatura barwowa źródeł światła</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="350"/>
+        <location filename="../eulumdat.cpp" line="356"/>
         <source>Color rendering index</source>
         <translation>Wskaźnik oddawania barw</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="394"/>
+        <location filename="../eulumdat.cpp" line="400"/>
         <source>C-planes not sorted</source>
         <translation>Płaszczyzny C nie są posortowane</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="399"/>
+        <location filename="../eulumdat.cpp" line="405"/>
         <source>Gamma-planes not sorted</source>
         <translation>Płaszczyzny Gamma nie są posortowane</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="403"/>
+        <location filename="../eulumdat.cpp" line="409"/>
         <source>Wrong Gamma-planes scheme</source>
         <translation>Nieprawidłowy układ płaszczyzn Gamma</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="414"/>
-        <location filename="../eulumdat.cpp" line="443"/>
+        <location filename="../eulumdat.cpp" line="420"/>
+        <location filename="../eulumdat.cpp" line="449"/>
+        <location filename="../eulumdat.cpp" line="468"/>
+        <location filename="../eulumdat.cpp" line="500"/>
         <source>Missing C90-plane</source>
         <translation>Brak płaszczyzny C90</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="422"/>
-        <location filename="../eulumdat.cpp" line="453"/>
+        <location filename="../eulumdat.cpp" line="428"/>
+        <location filename="../eulumdat.cpp" line="458"/>
+        <location filename="../eulumdat.cpp" line="481"/>
         <source>Missing C180-plane</source>
         <translation>Brak płaszczyzny C180</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="460"/>
+        <location filename="../eulumdat.cpp" line="473"/>
+        <location filename="../eulumdat.cpp" line="504"/>
         <source>Wrong C-planes scheme</source>
         <translation>Nieprawidłowy układ płaszczyzn C</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="387"/>
+        <location filename="../eulumdat.cpp" line="393"/>
         <source>Distribution of luminous intensity</source>
         <translation>Rozsył światłości</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="316"/>
+        <location filename="../eulumdat.cpp" line="322"/>
         <source>Light output ratio of luminaire</source>
         <translation>Sprawność eksploatacyjna oprawy</translation>
     </message>
@@ -284,7 +288,8 @@
         <translation>1,25</translation>
     </message>
     <message>
-        <location filename="../eulumdat.cpp" line="430"/>
+        <location filename="../eulumdat.cpp" line="436"/>
+        <location filename="../eulumdat.cpp" line="489"/>
         <source>Missing C270-plane</source>
         <translation>Brak płaszczyzny C270</translation>
     </message>
@@ -292,71 +297,65 @@
 <context>
     <name>EulumdatTableWidget</name>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="133"/>
+        <location filename="../eulumdattablewidget.cpp" line="128"/>
         <source>None useful data</source>
         <translation>Brak użytecznych danych</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="147"/>
+        <location filename="../eulumdattablewidget.cpp" line="142"/>
         <source>Lack of useful data</source>
         <translation>Za mało użytecznych danych</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="157"/>
+        <location filename="../eulumdattablewidget.cpp" line="152"/>
         <source>Values out of range</source>
         <translation>Wartości poza zakresem</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="181"/>
+        <location filename="../eulumdattablewidget.cpp" line="176"/>
         <source>C-planes not sorted</source>
         <translation>Płaszczyzny C nie są posortowane</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="186"/>
+        <location filename="../eulumdattablewidget.cpp" line="181"/>
         <source>Gamma-planes not sorted</source>
         <translation>Płaszczyzny Gamma nie są posortowane</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="190"/>
+        <location filename="../eulumdattablewidget.cpp" line="185"/>
         <source>Wrong Gamma-planes scheme</source>
         <translation>Nieprawidłowy układ płaszczyzn Gamma</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="417"/>
+        <location filename="../eulumdattablewidget.cpp" line="412"/>
         <source>Wrong C-planes scheme</source>
         <translation>Nieprawidłowy układ płaszczyzn C</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="154"/>
+        <location filename="../eulumdattablewidget.cpp" line="149"/>
         <source>Data are not real numbers</source>
         <translation>Dane nie są liczbami rzeczywistymi</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="89"/>
-        <source>Unknown error!</source>
-        <translation>NIeznany błąd!</translation>
-    </message>
-    <message>
-        <location filename="../eulumdattablewidget.cpp" line="203"/>
+        <location filename="../eulumdattablewidget.cpp" line="198"/>
         <source>Values are too low</source>
         <translation>Wartości są zbyt niskie</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="236"/>
-        <location filename="../eulumdattablewidget.cpp" line="289"/>
+        <location filename="../eulumdattablewidget.cpp" line="231"/>
+        <location filename="../eulumdattablewidget.cpp" line="284"/>
         <source>Missing C90-plane</source>
         <translation>Brak płaszczyzny C90</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="244"/>
-        <location filename="../eulumdattablewidget.cpp" line="370"/>
+        <location filename="../eulumdattablewidget.cpp" line="239"/>
+        <location filename="../eulumdattablewidget.cpp" line="365"/>
         <source>Missing C180-plane</source>
         <translation>Brak płaszczyzny C180</translation>
     </message>
     <message>
         <location filename="../eulumdattablewidget.cpp" line="11"/>
         <location filename="../eulumdattablewidget.cpp" line="84"/>
-        <location filename="../eulumdattablewidget.cpp" line="88"/>
         <source>Paste from Clipboard</source>
         <translation>Wklej ze Schowka</translation>
     </message>
@@ -371,17 +370,17 @@
         <translation>Dane skopiowane</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="97"/>
+        <location filename="../eulumdattablewidget.cpp" line="92"/>
         <source>Data pasted</source>
         <translation>Dane wklejone</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="129"/>
+        <location filename="../eulumdattablewidget.cpp" line="124"/>
         <source>Nothing to paste</source>
         <translation>Schowek jest pusty</translation>
     </message>
     <message>
-        <location filename="../eulumdattablewidget.cpp" line="252"/>
+        <location filename="../eulumdattablewidget.cpp" line="247"/>
         <source>Missing C270-plane</source>
         <translation>Brak płaszczyzny C270</translation>
     </message>
@@ -770,87 +769,87 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="150"/>
+        <location filename="../mainwindow.cpp" line="154"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="154"/>
+        <location filename="../mainwindow.cpp" line="158"/>
         <source>&amp;Open...</source>
         <translation>&amp;Otwórz...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="155"/>
+        <location filename="../mainwindow.cpp" line="159"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="159"/>
+        <location filename="../mainwindow.cpp" line="163"/>
         <source>&amp;Save</source>
         <translation>&amp;Zapisz</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="160"/>
+        <location filename="../mainwindow.cpp" line="164"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="164"/>
+        <location filename="../mainwindow.cpp" line="168"/>
         <source>Save &amp;As...</source>
         <translation>Zapisz &amp;jako...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="174"/>
+        <location filename="../mainwindow.cpp" line="178"/>
         <source>E&amp;xit</source>
         <translation>&amp;Wyjście</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="175"/>
+        <location filename="../mainwindow.cpp" line="179"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="176"/>
+        <location filename="../mainwindow.cpp" line="180"/>
         <source>Exit the application</source>
         <translation>Wyjście z programu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="190"/>
+        <location filename="../mainwindow.cpp" line="194"/>
         <source>&amp;About</source>
         <translation>&amp;O programie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="194"/>
+        <location filename="../mainwindow.cpp" line="198"/>
         <source>About &amp;Qt</source>
         <translation>O bibliotece &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="204"/>
+        <location filename="../mainwindow.cpp" line="208"/>
         <source>&amp;File</source>
         <translation>&amp;Plik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="228"/>
+        <location filename="../mainwindow.cpp" line="232"/>
         <source>&amp;Help</source>
         <translation>&amp;Pomoc</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="238"/>
+        <location filename="../mainwindow.cpp" line="242"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
+        <location filename="../mainwindow.cpp" line="252"/>
         <source>Ready</source>
         <translation>Gotowy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="333"/>
+        <location filename="../mainwindow.cpp" line="336"/>
         <source>File loaded</source>
         <translation>Plik wczytany</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="351"/>
+        <location filename="../mainwindow.cpp" line="354"/>
         <source>File saved</source>
         <translation>Plik zapisany</translation>
     </message>
@@ -860,113 +859,107 @@
         <translation>O programie QLumEdit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="191"/>
+        <location filename="../mainwindow.cpp" line="195"/>
         <source>Show informations about QLumEdit</source>
         <translation>Pokaż informacje o programie QLumEdit</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="195"/>
+        <location filename="../mainwindow.cpp" line="199"/>
         <source>Show informations about Qt library</source>
         <translation>Pokaż informacje o bibliotece Qt</translation>
     </message>
     <message>
         <location filename="../exportto.cpp" line="29"/>
         <location filename="../exportto.cpp" line="220"/>
-        <location filename="../mainwindow.cpp" line="270"/>
-        <location filename="../mainwindow.cpp" line="286"/>
-        <location filename="../mainwindow.cpp" line="340"/>
+        <location filename="../mainwindow.cpp" line="274"/>
+        <location filename="../mainwindow.cpp" line="290"/>
+        <location filename="../mainwindow.cpp" line="343"/>
         <source>QLumEdit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="271"/>
+        <location filename="../mainwindow.cpp" line="275"/>
         <source>The file has been modified.
 Do you want to save your changes?</source>
         <translation>Plik został zmieniony.
 Czy chcesz zapisać swoje zmiany?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="105"/>
+        <location filename="../mainwindow.cpp" line="109"/>
         <source>Open File</source>
         <translation>Otwórz plik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="105"/>
-        <location filename="../mainwindow.cpp" line="129"/>
+        <location filename="../mainwindow.cpp" line="109"/>
+        <location filename="../mainwindow.cpp" line="133"/>
         <source>Eulumdat file (*.ldt)</source>
         <translation>plik Eulumdat (*.ldt)</translation>
     </message>
     <message>
         <location filename="../exportto.cpp" line="20"/>
         <location filename="../exportto.cpp" line="211"/>
-        <location filename="../mainwindow.cpp" line="129"/>
+        <location filename="../mainwindow.cpp" line="133"/>
         <source>Save File</source>
         <translation>Zapisz plik</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="185"/>
+        <location filename="../mainwindow.cpp" line="189"/>
         <source>&amp;Options...</source>
         <translation>&amp;Opcje...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="221"/>
+        <location filename="../mainwindow.cpp" line="225"/>
         <source>&amp;Tools</source>
         <translation>&amp;Narzędzia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="156"/>
+        <location filename="../mainwindow.cpp" line="160"/>
         <source>Open an existing Eulumdat file</source>
         <translation>Otwórz istniejący plik Eulumdat</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="161"/>
+        <location filename="../mainwindow.cpp" line="165"/>
         <source>Save the file to disk</source>
         <translation>Zapisz plik na dysku</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="165"/>
+        <location filename="../mainwindow.cpp" line="169"/>
         <source>Save the file under a new name</source>
         <translation>Zapisz plik pod nową nazwą</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="186"/>
+        <location filename="../mainwindow.cpp" line="190"/>
         <source>Show options</source>
         <translation>Pokaż opcje</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="363"/>
         <location filename="../mainwindow.cpp" line="367"/>
+        <location filename="../mainwindow.cpp" line="371"/>
         <source>untitled.ldt</source>
         <translation>beznazwy.ldt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="312"/>
+        <location filename="../mainwindow.cpp" line="319"/>
         <source>Loading file</source>
         <translation>Odczyt pliku</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="320"/>
-        <source>Unknown error!</source>
-        <translation>Nieznany błąd!</translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="180"/>
+        <location filename="../mainwindow.cpp" line="184"/>
         <source>Eulumdat &amp;Validator...</source>
         <translation>&amp;Weryfikator Eulumdat...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="181"/>
+        <location filename="../mainwindow.cpp" line="185"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="182"/>
+        <location filename="../mainwindow.cpp" line="186"/>
         <source>Run multiple file validator</source>
         <translation>Uruchamia wieloplikową weryfikację</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="316"/>
-        <location filename="../mainwindow.cpp" line="320"/>
+        <location filename="../mainwindow.cpp" line="323"/>
         <source>Cannot load file</source>
         <translation>Nie można wczytać pliku</translation>
     </message>
@@ -976,39 +969,39 @@ Czy chcesz zapisać swoje zmiany?</translation>
         <translation>Największy open source&apos;owy edytor plików Eulumdat.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="303"/>
+        <location filename="../mainwindow.cpp" line="310"/>
         <source>warnings</source>
         <translation>ostrzeżeń</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="310"/>
+        <location filename="../mainwindow.cpp" line="317"/>
         <source>Auto corrected</source>
         <translation>Automatycznie poprawione</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="290"/>
         <source>Cannot read file</source>
         <translation>Nie można odczytać pliku</translation>
     </message>
     <message>
         <location filename="../exportto.cpp" line="29"/>
         <location filename="../exportto.cpp" line="220"/>
-        <location filename="../mainwindow.cpp" line="340"/>
+        <location filename="../mainwindow.cpp" line="343"/>
         <source>Cannot write file</source>
         <translation>Nie można zapisać pliku</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="149"/>
+        <location filename="../mainwindow.cpp" line="153"/>
         <source>&amp;New...</source>
         <translation>&amp;Nowy...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="151"/>
+        <location filename="../mainwindow.cpp" line="155"/>
         <source>Create a new Eulumdat file from template</source>
         <translation>Stwórz nowy plik Eulumdat z szablonu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="211"/>
+        <location filename="../mainwindow.cpp" line="215"/>
         <source>Export as</source>
         <translation>Eksportuj jako</translation>
     </message>
@@ -1539,42 +1532,37 @@ Czy chcesz zapisać swoje zmiany?</translation>
         <translation>błąd</translation>
     </message>
     <message>
-        <location filename="../validator.cpp" line="126"/>
-        <source>Unknown error!</source>
-        <translation>Nieznany błąd!</translation>
-    </message>
-    <message>
-        <location filename="../validator.cpp" line="139"/>
+        <location filename="../validator.cpp" line="133"/>
         <source>Stopped</source>
         <translation>Zatrzymano</translation>
     </message>
     <message>
-        <location filename="../validator.cpp" line="139"/>
-        <location filename="../validator.cpp" line="146"/>
+        <location filename="../validator.cpp" line="133"/>
+        <location filename="../validator.cpp" line="140"/>
         <source>Validated</source>
         <translation>Zweryfikowano</translation>
     </message>
     <message>
+        <location filename="../validator.cpp" line="134"/>
         <location filename="../validator.cpp" line="140"/>
-        <location filename="../validator.cpp" line="146"/>
         <source>files</source>
         <translation>plików</translation>
     </message>
     <message>
+        <location filename="../validator.cpp" line="135"/>
         <location filename="../validator.cpp" line="141"/>
-        <location filename="../validator.cpp" line="147"/>
         <source>warnings</source>
         <translation>ostrzeżeń</translation>
     </message>
     <message>
+        <location filename="../validator.cpp" line="136"/>
         <location filename="../validator.cpp" line="142"/>
-        <location filename="../validator.cpp" line="148"/>
         <source>errors</source>
         <translation>błędów</translation>
     </message>
     <message>
+        <location filename="../validator.cpp" line="137"/>
         <location filename="../validator.cpp" line="143"/>
-        <location filename="../validator.cpp" line="149"/>
         <source>from directory (including subfolders)</source>
         <translation>z katalogu (wliczając podfoldery)</translation>
     </message>
