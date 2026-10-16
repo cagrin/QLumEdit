@@ -425,6 +425,17 @@ private slots:
         QVERIFY(action(window, "&Save")->isEnabled());
     }
 
+    void dialogs_areDeletedAfterClosing() {
+        MainWindow window;
+        answerModals(&window, [](QDialog *d) { d->reject(); });
+
+        action(window, "&New...")->trigger();
+        action(window, "&Options...")->trigger();
+        action(window, "Eulumdat &Validator...")->trigger();
+
+        QCOMPARE(window.findChildren<QDialog *>().size(), 0);
+    }
+
     void new_createsUntitledFileFromExample() {
         MainWindow window;
         answerModals(&window, [](QDialog *d) {

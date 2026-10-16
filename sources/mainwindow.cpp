@@ -81,9 +81,8 @@ void MainWindow::newFile()
     central = nullptr;
     setCurrentFile("");
 
-    NewDialog *newDialog;
-    newDialog = new NewDialog(this);
-    newDialog->exec();
+    NewDialog newDialog(this);
+    newDialog.exec();
 
     if(Vars().newFile != "") {
         ldt = std::make_unique<Eulumdat>();
@@ -488,18 +487,16 @@ void MainWindow::setMaybeSaveTriggers() {
 
 void MainWindow::options()
 {
-    TabDialog *tabdialog;
-    tabdialog = new TabDialog(this);
-    tabdialog->exec();
+    TabDialog tabdialog(this);
+    tabdialog.exec();
 
 }
 
 
 void MainWindow::validator()
 {
-    ValidatorDialog *validatorDialog;
-    validatorDialog = new ValidatorDialog(this);
-    validatorDialog->exec();
+    ValidatorDialog validatorDialog(this);
+    validatorDialog.exec();
 }
 
 void MainWindow::setValidatorOptions() {
