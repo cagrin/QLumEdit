@@ -87,6 +87,25 @@ private slots:
         QCOMPARE(ldt.iN, 20);
         QCOMPARE(w.tabWidget->count(), 20);
     }
+
+    // Pages of removed sets are kept and reused, so a set added again shows its previous values.
+    void addSetAfterRemoveReusesPage() {
+        MainWindow window;
+        Eulumdat ldt;
+        loadLdt(ldt, tmp, TestLdt().lines());
+        EulumdatWidget3 w(ldt);
+        w.addButton->click();
+        QWidget *page = w.tabWidget->widget(1);
+        w.LineEdit3[1]->setText("Halogen");
+        w.removeButton->click();
+
+        w.addButton->click();
+
+        QCOMPARE(ldt.iN, 2);
+        QCOMPARE(w.GroupBox.size(), 2);
+        QCOMPARE(w.tabWidget->widget(1), page);
+        QCOMPARE(w.LineEdit3[1]->text(), "Halogen");
+    }
 };
 
 QTEST_MAIN(TestEulumdatWidget3)

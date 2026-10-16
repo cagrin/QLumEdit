@@ -95,6 +95,22 @@ private slots:
         QCOMPARE(ldt.directRadios("unknown"), ldt.directRadios("1.50"));
     }
 
+    // A downlight measured only to 90 degrees has the same ratios as when measured to 180 degrees.
+    void directRadios_lowerHemisphereOnly() {
+        TestLdt lower;
+        lower.g = {0, 45, 90};
+        lower.lcd = {{100, 100, 0}};
+        TestLdt full;
+        full.g = {0, 45, 90, 135, 180};
+        full.lcd = {{100, 100, 0, 0, 0}};
+        Eulumdat ldt, reference;
+        loadLdt(ldt, tmp, lower.lines());
+        loadLdt(reference, tmp, full.lines());
+
+        QCOMPARE(ldt.downward(), 100.0);
+        QCOMPARE(ldt.directRadios("1.00"), reference.directRadios("1.00"));
+    }
+
     // The C-planes may start at C90, the first stored plane (read past the end of the list before).
     void symmetry3_planesStartingAtC90() {
         TestLdt spec = isotropic(3, 4, 3, 5);
