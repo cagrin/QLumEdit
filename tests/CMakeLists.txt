@@ -79,8 +79,10 @@ if(QLUMEDIT_COVERAGE)
                 --txt --html-details ${CMAKE_BINARY_DIR}/coverage/index.html
                 --lcov ${CMAKE_BINARY_DIR}/coverage/coverage.info
                 --json ${CMAKE_BINARY_DIR}/coverage/coverage.json
+        # Fails the target if any line or branch is not covered (after the reports above are written).
         COMMAND ${GCOVR} -r sources -a ${CMAKE_BINARY_DIR}/coverage/coverage.json
                 --txt-metric branch --txt --txt-summary
+                --fail-under-line 100 --fail-under-branch 100
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         USES_TERMINAL
         VERBATIM

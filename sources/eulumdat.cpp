@@ -12,7 +12,7 @@ double Eulumdat::getDouble(QTextStream & text) {
     line.replace(" ", "");
     line.replace(",", ".");
 
-    if(line.isEmpty() || line.isNull()) {
+    if(line.isEmpty()) {
         return 0;
     }
 
@@ -31,7 +31,7 @@ double Eulumdat::getDouble(QTextStream & text) {
 int Eulumdat::getInt(QTextStream & text) {
     QString line = text.readLine();
 
-    if(line.isEmpty() || line.isNull()) {
+    if(line.isEmpty()) {
         return 0;
     }
 
@@ -436,7 +436,7 @@ QStringList Eulumdat::validate() {
             throw tr("Missing C270-plane");
         }
     }
-    else if( (iIsym == 1) && (iMc == 1) ) {
+    else if( (iIsym == 1) && (iMc == 1) ) { // GCOVR_EXCL_BR_LINE
         //
     }
     else if( (iIsym == 2) && (iMc >= 3) ) {

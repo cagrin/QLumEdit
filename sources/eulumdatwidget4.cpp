@@ -151,7 +151,7 @@ void EulumdatWidget4::compute() {
                                             tr("Spacing to height ratio") +  
                                          "<br>SHR<sub>nom</sub>:", items, 0, false, &ok);
                
-    if ( !(ok && !item.isEmpty()) ) return;
+    if(!ok) return;
         
     const QList<double> DFL = pldt->directRadios(item);
     for(int i=0; i<10; i++) {

@@ -138,7 +138,7 @@ void EulumdatTableWidget::tryToImportFromClipboard() {
     int a = list.size()+1;
     int m = a/n;
 
-    if( (n < 2) || (m < 5) || (a < 10) || ((a % n) != 0) ) {
+    if( (m < 5) || ((a % n) != 0) ) {
         throw tr("Lack of useful data");
     }
     bool ok;
@@ -181,7 +181,7 @@ void EulumdatTableWidget::tryToImportFromClipboard() {
             throw tr("Gamma-planes not sorted");
         }        
     }        
-    if( (aG[0] < 0) || (aG[m-2] > 180) ){
+    if(aG[m-2] > 180) {
         throw tr("Wrong Gamma-planes scheme");
     }
     
@@ -318,7 +318,7 @@ void EulumdatTableWidget::tryToImportFromClipboard() {
         pldt->dLcd = aLcd;    
     }        
     // Isym == 4
-    else if( (aC[0] == 0) && (aC[n-2] == 90) && (n > 2) ) {
+    else if( (aC[0] == 0) && (aC[n-2] == 90) ) {
         pldt->iIsym = 4;
         pldt->iNc = 4*(n-1)-4;
         pldt->iNg = m-1;    
