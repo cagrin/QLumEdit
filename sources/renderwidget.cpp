@@ -56,11 +56,10 @@ void RenderWidget::setVectors()
            while(pldt->dC[b] < 90.0) {
             b++;
            }
-           for(a=0; a<pldt->iMc; a++) {
-               if(pldt->dC[a+b] == 180.0) {
-                break;
-              }
-          }
+           a=0;
+           while(pldt->dC[a+b] != 180.0) {
+            a++;
+           }
         for(int j=0; j<pldt->iNg; j++) {
             x = pldt->dLcd[a][j] * cos(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);
             y = pldt->dLcd[a][j] * sin(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);        
@@ -85,11 +84,10 @@ void RenderWidget::setVectors()
       }
       else {
           // poszukac C180 w katach    
-           for(a=0; a<pldt->iMc; a++) {
-               if(pldt->dC[a] == 180.0) {
-                break;
-              }
-          }
+           a=0;
+           while(pldt->dC[a] != 180.0) {
+            a++;
+           }
         for(int j=pldt->iNg-1; j>=0; j--) {
             x = pldt->dLcd[a][j] * cos(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);
             y = pldt->dLcd[a][j] * sin(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);        
@@ -122,11 +120,10 @@ void RenderWidget::setVectors()
      else {
            // poszukac C90
            b=0;          
-           for(a=0; a<pldt->iMc; a++) {
-               if(pldt->dC[a+b] == 90.0) {
-                break;
-              }
-          }
+           a=0;
+           while(pldt->dC[a+b] != 90.0) {
+            a++;
+           }
         for(int j=0; j<pldt->iNg; j++) {
             x = pldt->dLcd[a][j] * cos(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);
             y = pldt->dLcd[a][j] * sin(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);        
@@ -143,11 +140,10 @@ void RenderWidget::setVectors()
     // C270
        if(pldt->iIsym == 0) {
            b=0;          
-           for(a=0; a<pldt->iMc; a++) {
-               if(pldt->dC[a+b] == 270.0) {
-                break;
-              }
-          }
+           a=0;
+           while(pldt->dC[a+b] != 270.0) {
+            a++;
+           }
         for(int j=pldt->iNg-1; j>=0; j--) {
             x = pldt->dLcd[a][j] * cos(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);
             y = pldt->dLcd[a][j] * sin(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);        
@@ -164,11 +160,10 @@ void RenderWidget::setVectors()
            while(pldt->dC[b] < 90.0) {
             b++;
            }               
-           for(a=0; a<pldt->iMc; a++) {
-               if(pldt->dC[a+b] == 270.0) {
-                break;
-              }
-          }
+           a=0;
+           while(pldt->dC[a+b] != 270.0) {
+            a++;
+           }
         for(int j=pldt->iNg-1; j>=0; j--) {
             x = pldt->dLcd[a][j] * cos(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);
             y = pldt->dLcd[a][j] * sin(-(pldt->dG[j] * M_PI / 180.0) + M_PI_2);        

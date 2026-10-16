@@ -70,10 +70,9 @@ double Eulumdat::downwardDFL(double arc) {
     }
     else if(iIsym == 3) {
         int j;
-        for(j=0; j<iNc; j++) {
-            if(dC[j] == 90) {
-                break;
-            }
+        j=0;
+        while(dC[j] != 90) {
+            j++;
         }
         for(i=1, j++; i<iMc; i++, j++) {
             d += 2*(dC[j]-dC[j-1])*downwardForPlaneDFL(i-1, arc);
@@ -81,15 +80,12 @@ double Eulumdat::downwardDFL(double arc) {
         d += 2*(270-dC[--j])*downwardForPlaneDFL(iMc-1, arc);
         d /= 360;        
     }
-    else if(iIsym == 4) {
+    else { // iIsym == 4
         for(i=1; i<iMc; i++) {
             d += 4*(dC[i]-dC[i-1])*downwardForPlaneDFL(i-1, arc);
         }    
         d += 4*(90-dC[iMc-1])*downwardForPlaneDFL(iMc-1, arc);
         d /= 360;
-    }
-    else {
-
     }
     return 100*d/output();
 }
@@ -137,10 +133,9 @@ double Eulumdat::downward() {
     }
     else if(iIsym == 3) {
         int j;
-        for(j=0; j<iNc; j++) {
-            if(dC[j] == 90) {
-                break;
-            }
+        j=0;
+        while(dC[j] != 90) {
+            j++;
         }
         for(i=1, j++; i<iMc; i++, j++) {
             d += 2*(dC[j]-dC[j-1])*downwardForPlane(i-1);
@@ -148,15 +143,12 @@ double Eulumdat::downward() {
         d += 2*(270-dC[--j])*downwardForPlane(iMc-1);
         d /= 360;        
     }
-    else if(iIsym == 4) {
+    else { // iIsym == 4
         for(i=1; i<iMc; i++) {
             d += 4*(dC[i]-dC[i-1])*downwardForPlane(i-1);
         }    
         d += 4*(90-dC[iMc-1])*downwardForPlane(iMc-1);
         d /= 360;
-    }
-    else {
-
     }
     return 100*d/output();
 }
@@ -201,10 +193,9 @@ double Eulumdat::output() {
     }
     else if(iIsym == 3) {
         int j;
-        for(j=0; j<iNc; j++) {
-            if(dC[j] == 90) {
-                break;
-            }
+        j=0;
+        while(dC[j] != 90) {
+            j++;
         }
         for(i=1, j++; i<iMc; i++, j++) {
             d += 2*(dC[j]-dC[j-1])*outputForPlane(i-1);
@@ -212,15 +203,12 @@ double Eulumdat::output() {
         d += 2*(270-dC[--j])*outputForPlane(iMc-1);    
         d /= 360;        
     }
-    else if(iIsym == 4) {
+    else { // iIsym == 4
         for(i=1; i<iMc; i++) {
             d += 4*(dC[i]-dC[i-1])*outputForPlane(i-1);
         }    
         d += 4*(90-dC[iMc-1])*outputForPlane(iMc-1);    
         d /= 360;
-    }
-    else {
-
     }
     return d;
 }
